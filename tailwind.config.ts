@@ -8,7 +8,7 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    container: { // Added container plugin for consistent centering
+    container: { 
       center: true,
       padding: {
         DEFAULT: '1rem',
@@ -21,13 +21,21 @@ export default {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
+        '2xl': '1400px', // Added for max-w-screen-2xl consistency
       },
     },
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        headline: ['Inter', 'sans-serif'], // Used for main name, titles
         code: ['monospace', 'monospace'],
+      },
+      fontWeight: { // Added font weights from Google Fonts import
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        black: '900', // For the prominent name
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -63,28 +71,17 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      aspectRatio: { // Added common aspect ratios
+        '4/3': '4 / 3',
+        '3/2': '3 / 2',
+        '16/9': '16 / 9',
+        '1/1': '1 / 1',
       },
       keyframes: {
         'accordion-down': {

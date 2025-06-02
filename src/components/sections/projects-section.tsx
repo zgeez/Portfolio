@@ -1,11 +1,49 @@
 import Image from "next/image";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { Code, ExternalLink } from "lucide-react";
 
-const projects = [
+export interface Project {
+  slug: string;
+  title: string;
+  description: string[];
+  image: string;
+  imageHint: string;
+}
+
+// Updated project data
+export const projects: Project[] = [
   {
+    slug: "brass-pen",
+    title: "BRASS PEN",
+    description: [
+      "Detailed design and fabrication of a brass pen.",
+      "Focused on material selection and precision machining.",
+    ],
+    image: "https://placehold.co/400x300.png",
+    imageHint: "brass pen blueprint",
+  },
+  {
+    slug: "flood-proofing",
+    title: "FLOOD-PROOFING",
+    description: [
+      "Innovative solutions for flood-proofing vulnerable structures.",
+      "Includes material research and structural analysis.",
+    ],
+    image: "https://placehold.co/400x300.png",
+    imageHint: "camp flood defense",
+  },
+  {
+    slug: "cold-gas-thruster",
+    title: "COLD GAS THRUSTER",
+    description: [
+      "Design and testing of a cold gas thruster for small satellite applications.",
+      "Involved CFD analysis and performance optimization.",
+    ],
+    image: "https://placehold.co/400x300.png",
+    imageHint: "3d print thruster",
+  },
+   {
+    slug: "iot-device-automation",
     title: "IoT Device Automation System",
     description: [
       "Developed a modular low-power IoT ecosystem using ESP-IDF and AWS IoT, enabling app-controlled, non-invasive automation of appliances and industrial machines.",
@@ -14,43 +52,19 @@ const projects = [
       "Integrated a serverless backend using AWS Lambda, API Gateway, and DynamoDB for device registration and data management.",
       "Implemented multi-mode deep sleep power management, extending battery life by up to 3x."
     ],
-    image: "https://placehold.co/600x338.png",
+    image: "https://placehold.co/400x300.png",
     imageHint: "iot circuit",
-    link: "#", // Placeholder link
   },
   {
+    slug: "stm32-function-generator",
     title: "STM32 Function Generator",
     description: [
       "Developed STM32F4 firmware for a function generator supporting sine, square, and triangle waveforms using optimized LUTs, achieving high signal fidelity across 1Hz–300kHz output range.",
       "Leveraged DMA with DAC and timer peripherals to enable precise, real-time waveform control.",
       "Enabled USB CDC interface for live waveform parameter tuning and system diagnostics."
     ],
-    image: "https://placehold.co/600x338.png",
+    image: "https://placehold.co/400x300.png",
     imageHint: "signal waveform",
-    link: "#",
-  },
-  {
-    title: "ATMEGA328 MCU Data Logger",
-    description: [
-      "Designed a compact double-layer PCB using KiCad with ATMEGA328, 512KB EEPROM, and RTC for high-frequency sensor data logging.",
-      "Reduced PCB footprint by 60% compared to Arduino Uno R3 by eliminating USB interface and optimizing component layout.",
-      "Applied passive thermal management strategies for stable operation during prolonged high-load data logging."
-    ],
-    image: "https://placehold.co/600x338.png",
-    imageHint: "pcb design",
-    link: "#",
-  },
-  {
-    title: "Dynamic Wireless Charging Roads Simulation",
-    description: [
-      "Led a 3-member research team to design industry standard-compliant EV wireless charging lanes for NYC’s 42nd Street.",
-      "Built a full-stack simulation pipeline: SUMO for traffic flow, MATLAB for energy transfer, and Python for cost modeling.",
-      "Demonstrated 10% SOC gain per hour in stop-and-go traffic and 2x range increase at 60 mph.",
-      "Project recognized as “Most Innovative Idea” at the 2025 NYIT UREP Symposium."
-    ],
-    image: "https://placehold.co/600x338.png",
-    imageHint: "electric vehicle charging",
-    link: "#",
   },
 ];
 
@@ -58,40 +72,33 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto">
-        <h2 className="font-headline text-4xl font-bold text-center mb-12 text-primary">
-          <Code className="inline-block h-10 w-10 mr-3" />
-          Projects
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Card key={index} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="relative w-full h-56">
-                <Image 
-                  src={project.image} 
-                  alt={project.title} 
-                  layout="fill" 
-                  objectFit="cover"
-                  data-ai-hint={project.imageHint}
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-primary">{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="list-disc list-inside space-y-1 text-sm text-foreground/70">
-                  {project.description.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" asChild disabled={project.link === "#"}>
-                  <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                    View Project <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl font-bold text-primary inline-block uppercase tracking-wider">
+            Projects
+          </h2>
+          <div className="w-20 h-px bg-foreground mx-auto mt-3"></div>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <Link key={project.slug} href={`/projects/${project.slug}`} className="group block">
+              <Card className="overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out h-full flex flex-col border-transparent hover:border-primary/50">
+                <div className="relative w-full aspect-[4/3] bg-muted overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint={project.imageHint}
+                    className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+                <CardHeader className="p-4 text-center flex-grow flex flex-col justify-center">
+                  <CardTitle className="text-md font-semibold text-foreground group-hover:text-accent uppercase tracking-wide">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

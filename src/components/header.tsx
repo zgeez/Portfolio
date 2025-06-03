@@ -16,12 +16,12 @@ export default function Header() {
         {/* Right-aligned Social Icons */}
         <div className="flex justify-end items-center space-x-1">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Link href="https://linkedin.com/in/ziad-ghanem/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5 text-foreground/70 hover:text-primary" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <Link href="https://github.com/zgeez" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="h-5 w-5 text-foreground/70 hover:text-primary" />
             </Link>
           </Button>

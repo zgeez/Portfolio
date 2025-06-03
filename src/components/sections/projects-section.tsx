@@ -30,7 +30,7 @@ export const projects: Project[] = [
     slug: "nyc-dynamic-wireless-charging-roads",
     title: "NYC Dynamic Wireless Charging Roads Simulation",
     summary: "Led research for NYC EV wireless charging lanes, developing a simulation model demonstrating real-time charging feasibility and recognized for innovation.",
-    image: "https://placehold.co/400x300.png",
+    image: "/assets/dwpt/main.gif",
     imageHint: "wireless charging road",
   }
 ];

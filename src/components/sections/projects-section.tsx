@@ -10,39 +10,8 @@ export interface Project {
   imageHint: string;
 }
 
-// Restored original project data
 export const projects: Project[] = [
   {
-    slug: "brass-pen",
-    title: "BRASS PEN",
-    description: [
-      "Detailed design and fabrication of a brass pen.",
-      "Focused on material selection and precision machining.",
-    ],
-    image: "https://placehold.co/400x300.png",
-    imageHint: "brass pen blueprint",
-  },
-  {
-    slug: "flood-proofing",
-    title: "FLOOD-PROOFING",
-    description: [
-      "Innovative solutions for flood-proofing vulnerable structures.",
-      "Includes material research and structural analysis.",
-    ],
-    image: "https://placehold.co/400x300.png",
-    imageHint: "camp flood defense",
-  },
-  {
-    slug: "cold-gas-thruster",
-    title: "COLD GAS THRUSTER",
-    description: [
-      "Design and testing of a cold gas thruster for small satellite applications.",
-      "Involved CFD analysis and performance optimization.",
-    ],
-    image: "https://placehold.co/400x300.png",
-    imageHint: "3d print thruster",
-  },
-   {
     slug: "iot-device-automation",
     title: "IoT Device Automation System",
     description: [
@@ -66,6 +35,18 @@ export const projects: Project[] = [
     image: "https://placehold.co/400x300.png",
     imageHint: "signal waveform",
   },
+  {
+    slug: "nyc-dynamic-wireless-charging-roads",
+    title: "NYC Dynamic Wireless Charging Roads Simulation",
+    description: [
+      "Team Lead: Led a 3-member research team to design industry standard-compliant EV wireless charging lanes for NYC’s 42nd Street, delivering a tested simulation model for real-time urban charging feasibility.",
+      "Built a full-stack simulation pipeline: SUMO for traffic flow, MATLAB for energy transfer, and Python for cost modeling.",
+      "Demonstrated 10% SOC gain per hour in stop-and-go traffic and 2x range increase at 60 mph through system simulation.",
+      "Project recognized as “Most Innovative Idea” by a panel of industry professionals at the 2025 NYIT UREP Symposium.",
+    ],
+    image: "https://placehold.co/400x300.png",
+    imageHint: "wireless charging road",
+  }
 ];
 
 export default function ProjectsSection() {

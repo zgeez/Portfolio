@@ -3,30 +3,22 @@ import { Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
-  { href: '/', label: 'HOME' },
-  { href: '/', label: 'ALL PROJECTS' }, // Assuming main page is "All Projects"
-  { href: '/about', label: 'ABOUT' }, // Placeholder for About page
+  { href: '/', label: 'ALL PROJECTS' },
 ];
 
 export default function Header() {
   // In a real app, you'd use the router to determine the active path.
-  // For this prototype, we'll hardcode "ALL PROJECTS" as active on the main page.
-  // This logic would typically live in a client component or be passed as a prop.
-  const currentPage = 'ALL PROJECTS'; 
+  // For this prototype, "ALL PROJECTS" will always be active as it's the only link.
+  const currentPage = 'ALL PROJECTS';
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-28 max-w-screen-2xl items-center">
+      <div className="container flex h-20 max-w-screen-2xl items-center"> {/* Reduced height from h-28 to h-20 */}
         {/* Invisible spacer to balance the social icons on the right, ensuring central content is truly centered */}
         <div className="flex-1"></div>
 
-        {/* Central content: Name and Nav */}
+        {/* Central content: Nav */}
         <div className="flex flex-1 flex-col items-center justify-center py-4">
-          <Link href="/" className="mb-3">
-            <h1 className="text-4xl md:text-5xl font-black text-foreground hover:text-primary transition-colors">
-              GAYATRI SUNDAR RAJAN
-            </h1>
-          </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {navLinks.map((link) => (
               <Link

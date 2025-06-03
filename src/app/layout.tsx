@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "GAYATRI SUNDAR RAJAN",
-  description: "Portfolio of Gayatri Sundar Rajan.",
+  title: "Ziad Ghanem",
+  description: "Portfolio of Ziad Ghanem.",
 };
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
   return {
-    title: `${project.title} | Gayatri Sundar Rajan`,
+    title: `${project.title} | Ziad Ghanem`,
     description: project.description.join(' '),
   };
 }
@@ -44,7 +44,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
       <main className="flex-grow container mx-auto py-12 md:py-16">
         <div className="mb-8">
           <Button variant="outline" asChild className="hover:bg-accent/10 hover:border-accent">
-            <Link href="/#projects">
+            <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
               All Projects
             </Link>

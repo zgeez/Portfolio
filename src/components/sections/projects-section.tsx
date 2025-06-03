@@ -10,7 +10,7 @@ export interface Project {
   imageHint: string;
 }
 
-// Updated project data
+// Restored original project data
 export const projects: Project[] = [
   {
     slug: "brass-pen",

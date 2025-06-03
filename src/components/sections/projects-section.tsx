@@ -70,7 +70,7 @@ export const projects: Project[] = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-16 md:py-24 bg-background">
+    <section id="projects" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl font-bold text-primary inline-block uppercase tracking-wider">

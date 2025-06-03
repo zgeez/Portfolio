@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-grow container mx-auto py-12 md:py-16">
+      <main className="flex-grow container mx-auto pb-12 md:pb-16">
         <ProjectsSection />
       </main>
       <Footer />

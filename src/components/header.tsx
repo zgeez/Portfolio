@@ -8,9 +8,9 @@ export default function Header() {
       <div className="container flex h-20 max-w-screen-2xl items-center justify-between">
         {/* Left-aligned Name */}
         <div className="flex-1">
-          <Link href="/" className="text-2xl font-bold text-primary hover:text-accent transition-colors uppercase tracking-wider">
+          <a href="mailto:zghanema@gmail.com" className="text-2xl font-bold text-primary hover:text-accent transition-colors uppercase tracking-wider">
             Ziad Ghanem
-          </Link>
+          </a>
         </div>
 
         {/* Right-aligned Social Icons */}

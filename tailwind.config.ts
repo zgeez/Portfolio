@@ -21,21 +21,21 @@ export default {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1400px', // Added for max-w-screen-2xl consistency
+        '2xl': '1400px', 
       },
     },
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'], // Used for main name, titles
+        headline: ['Inter', 'sans-serif'], 
         code: ['monospace', 'monospace'],
       },
-      fontWeight: { // Added font weights from Google Fonts import
+      fontWeight: { 
         normal: '400',
         medium: '500',
         semibold: '600',
         bold: '700',
-        black: '900', // For the prominent name
+        black: '900', 
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -77,7 +77,7 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      aspectRatio: { // Added common aspect ratios
+      aspectRatio: { 
         '4/3': '4 / 3',
         '3/2': '3 / 2',
         '16/9': '16 / 9',
@@ -107,5 +107,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;

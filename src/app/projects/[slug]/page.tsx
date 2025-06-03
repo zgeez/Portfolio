@@ -25,9 +25,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: 'Project Not Found',
     };
   }
+
+  // Basic way to strip HTML tags for meta description
+  const metaDescription = project.description 
+    ? project.description.replace(/<[^>]+>/g, ' ').replace(/\s\s+/g, ' ').trim().substring(0, 160) 
+    : `Details about the project: ${project.title}.`;
+
   return {
     title: `${project.title} | Ziad Ghanem`,
-    description: project.description.join(' '),
+    description: metaDescription,
   };
 }
 
@@ -67,13 +73,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               />
           </div>
           <CardContent className="p-6 md:p-8">
-            <div className="max-w-2xl mx-auto">
-              {project.description && project.description.length > 0 && (
-                <ul className="list-disc list-inside space-y-3 text-foreground/80 text-base md:text-lg">
-                  {project.description.map((paragraph, index) => (
-                    <li key={index}>{paragraph}</li>
-                  ))}
-                </ul>
+            <div className="max-w-4xl mx-auto"> {/* Increased max-width for richer content */}
+              {project.description && (
+                <div
+                  className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none text-foreground/80 prose-headings:text-primary prose-a:text-accent hover:prose-a:text-accent/80 prose-strong:text-foreground/90"
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                />
               )}
             </div>
           </CardContent>

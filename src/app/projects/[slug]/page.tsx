@@ -1,3 +1,4 @@
+
 import { projects as allProjects, type Project } from '@/components/sections/projects-section';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,6 +8,12 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+// Import project content components
+import IotDeviceAutomationContent from '@/components/project-details/iot-device-automation-content';
+import Stm32FunctionGeneratorContent from '@/components/project-details/stm32-function-generator-content';
+import NycDynamicWirelessChargingRoadsContent from '@/components/project-details/nyc-dynamic-wireless-charging-roads-content';
+import type React from 'react';
 
 async function getProjectBySlug(slug: string): Promise<Project | undefined> {
   return allProjects.find(p => p.slug === slug);
@@ -26,16 +33,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  // Basic way to strip HTML tags for meta description
-  const metaDescription = project.description 
-    ? project.description.replace(/<[^>]+>/g, ' ').replace(/\s\s+/g, ' ').trim().substring(0, 160) 
-    : `Details about the project: ${project.title}.`;
-
   return {
     title: `${project.title} | Ziad Ghanem`,
-    description: metaDescription,
+    description: project.summary, // Use the new summary field
   };
 }
+
+const ProjectContentComponents: { [key: string]: React.FC } = {
+  'iot-device-automation': IotDeviceAutomationContent,
+  'stm32-function-generator': Stm32FunctionGeneratorContent,
+  'nyc-dynamic-wireless-charging-roads': NycDynamicWirelessChargingRoadsContent,
+};
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
   const project = await getProjectBySlug(params.slug);
@@ -43,6 +51,8 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   if (!project) {
     notFound();
   }
+
+  const ContentComponent = ProjectContentComponents[project.slug];
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -73,13 +83,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               />
           </div>
           <CardContent className="p-6 md:p-8">
-            <div className="max-w-4xl mx-auto"> {/* Increased max-width for richer content */}
-              {project.description && (
-                <div
-                  className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none text-foreground/80 prose-headings:text-primary prose-a:text-accent hover:prose-a:text-accent/80 prose-strong:text-foreground/90"
-                  dangerouslySetInnerHTML={{ __html: project.description }}
-                />
-              )}
+            <div className="max-w-4xl mx-auto">
+              <div
+                className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none text-foreground/80 prose-headings:text-primary prose-a:text-accent hover:prose-a:text-accent/80 prose-strong:text-foreground/90"
+              >
+                {ContentComponent ? <ContentComponent /> : <p>Project content is being prepared. Please check back later.</p>}
+              </div>
             </div>
           </CardContent>
         </Card>

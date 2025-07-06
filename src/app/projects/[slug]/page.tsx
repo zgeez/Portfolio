@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import IotDeviceAutomationContent from '@/components/project-details/iot-device-automation-content';
 import Stm32FunctionGeneratorContent from '@/components/project-details/stm32-function-generator-content';
 import NycDynamicWirelessChargingRoadsContent from '@/components/project-details/nyc-dynamic-wireless-charging-roads-content';
+import ElectromagneticKinetic7SegmentDisplayContent from '@/components/project-details/electromagnetic-kinetic-7-segment-display-content';
 import type React from 'react';
 
 async function getProjectBySlug(slug: string): Promise<Project | undefined> {
@@ -43,6 +44,7 @@ const ProjectContentComponents: { [key: string]: React.FC } = {
   'iot-device-automation': IotDeviceAutomationContent,
   'stm32-function-generator': Stm32FunctionGeneratorContent,
   'nyc-dynamic-wireless-charging-roads': NycDynamicWirelessChargingRoadsContent,
+  'electromagnetic-kinetic-7-segment-display': ElectromagneticKinetic7SegmentDisplayContent,
 };
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {

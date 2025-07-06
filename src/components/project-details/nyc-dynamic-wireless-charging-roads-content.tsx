@@ -7,9 +7,6 @@ export default function DynamicWirelessChargingRoads42ndSt() {
     <article className="prose prose-lg max-w-none">
       {/* ─────────────────────────────── Hero ─────────────────────────────── */}
       <header className="mb-6">
-        <h1 className="text-3xl font-bold">
-          Dynamic Wireless Charging Road — NYC Pilot
-        </h1>
         <p className="italic">
           Simulated SAE-J2954 lanes on Midtown’s busiest crosstown artery, showing that&nbsp;
           <strong>&lt; 3 mi</strong> of equipped roadway can offset an EV’s entire daily energy use.

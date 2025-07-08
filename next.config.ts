@@ -7,6 +7,7 @@ const isGitHubPages = true;
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
+  distDir: 'portfolio',
   assetPrefix: isGitHubPages ? '/portfolio' : '',
   basePath: isGitHubPages ? '/portfolio' : '',
   trailingSlash: true,

@@ -73,7 +73,7 @@ const IotDeviceAutomationContent: React.FC = () => (
       <h2>System Architecture</h2>
       <div className="my-8 rounded-2xl overflow-hidden shadow-md">
         <Image
-          src="/assets/iot-automation/iot_diagram.jpeg"
+          src="/portfolio/assets/iot-automation/iot_diagram.jpeg"
           alt="High‑level architecture diagram: ESP32 nodes ↔ AWS IoT Core ↔ Lambda ↔ DynamoDB ↔ Flutter app"
           width={1024}
           height={640}
@@ -92,7 +92,7 @@ const IotDeviceAutomationContent: React.FC = () => (
       <h2>Mobile Experience</h2>
       <div className="grid gap-6 sm:grid-cols-2">
         <Image
-          src="/assets/iot-automation/automations.jpg"
+          src="portfolio/assets/iot-automation/automations.jpg"
           alt="Flutter app — real‑time dashboard"
           width={600}
           height={1200}

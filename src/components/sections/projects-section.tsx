@@ -16,7 +16,7 @@ export const projects: Project[] = [
     slug: "iot-device-automation",
     title: "IoT Device Automation System",
     summary: "A versatile and energy-efficient IoT ecosystem using ESP-IDF and AWS IoT for app-controlled automation of appliances and industrial machines.",
-    image: "assets/iot-automation/main.png",
+    image: "/portfolio/assets/iot-automation/main.png",
     imageHint: "iot circuit",
   },
   // {

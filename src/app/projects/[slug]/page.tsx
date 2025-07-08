@@ -75,12 +75,11 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               {project.title}
             </CardTitle>
           </CardHeader>
-          <div className="relative w-full aspect-[16/9] max-h-[500px] mx-auto bg-muted my-4 md:my-6">
-             <Image
+          <div className="relative w-full aspect-[16/9] max-h-[500px] mx-auto bg-muted my-4 md:my-6">              <Image
                 src={project.image}
                 alt={project.title}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: 'cover' }}
                 data-ai-hint={project.imageHint}
               />
           </div>

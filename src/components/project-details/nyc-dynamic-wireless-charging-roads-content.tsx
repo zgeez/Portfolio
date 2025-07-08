@@ -15,7 +15,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
         {/* Immediate visual context */}
         <figure className="my-4 rounded shadow overflow-hidden">
           <Image
-            src="/assets/dwpt/block_diagram.png"
+            src="assets/dwpt/block_diagram.png"
             alt="Poster overview: coil layout + SUMO heat-map of 42 nd St"
             width={900}
             height={500}
@@ -44,7 +44,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/assets/dwpt/sumo_midtown_map.png"
+          src="assets/dwpt/sumo_midtown_map.png"
           alt="SUMO traffic density heat-map for Midtown Manhattan"
           width={600}
           height={300}
@@ -84,7 +84,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/assets/dwpt/matlab_power_curve.png"
+          src="assets/dwpt/matlab_power_curve.png"
           alt="MATLAB plot: instantaneous power pickup along 42 nd St"
           width={600}
           height={300}
@@ -97,7 +97,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/assets/dwpt/sumo_sim_result.png"
+          src="assets/dwpt/sumo_sim_result.png"
           alt="MATLAB plot: instantaneous power pickup along 42 nd St"
           width={600}
           height={300}

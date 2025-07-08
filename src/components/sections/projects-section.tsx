@@ -16,28 +16,28 @@ export const projects: Project[] = [
     slug: "iot-device-automation",
     title: "IoT Device Automation System",
     summary: "A versatile and energy-efficient IoT ecosystem using ESP-IDF and AWS IoT for app-controlled automation of appliances and industrial machines.",
-    image: "/assets/iot-automation/main.png",
+    image: "assets/iot-automation/main.png",
     imageHint: "iot circuit",
   },
   // {
   //   slug: "stm32-function-generator",
   //   title: "STM32 Function Generator",
   //   summary: "Development of a high-fidelity function generator using an STM32F4 microcontroller, supporting multiple waveforms with DMA and USB control.",
-  //   image: "/assets/dwpt/square-10khz.png",
+  //   image: "assets/dwpt/square-10khz.png",
   //   imageHint: "signal waveform",
   // },
   {
     slug: "nyc-dynamic-wireless-charging-roads",
     title: "NYC Dynamic Wireless Charging Roads Simulation",
     summary: "Led research for NYC EV wireless charging lanes, developing a simulation model demonstrating real-time charging feasibility and recognized for innovation.",
-    image: "/assets/dwpt/main.gif",
+    image: "assets/dwpt/main.gif",
     imageHint: "wireless charging road",
   },
   {
     slug: "electromagnetic-kinetic-7-segment-display",
     title: "Electromagnetic Kinetic 7-Segment Display",
     summary: "An exploration of physical display technology using electromagnets and 7-segment displays.",
-    image: "/assets/electromagnetic-display/demo.gif",
+    image: "assets/electromagnetic-display/demo.gif",
     imageHint: "Electromagnetic Kinetic 7-Segment Display in action",
   }
 ];
@@ -60,8 +60,8 @@ export default function ProjectsSection() {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: 'cover' }}
                     data-ai-hint={project.imageHint}
                     className="transition-transform duration-300 ease-in-out group-hover:scale-105"
                   />

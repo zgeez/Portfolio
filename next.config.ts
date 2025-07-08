@@ -1,12 +1,14 @@
 import type {NextConfig} from 'next';
 
-const isProd = process.env.NODE_ENV === 'production';
+// Set this to true when deploying to GitHub Pages at username.github.io/portfolio
+// Set to false for local development or root domain deployment
+const isGitHubPages = true;
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export', // Add this line for static HTML export
-  basePath: isProd ? '/<repo>' : '',
-  assetPrefix: isProd ? '/<repo>/' : '',
+  output: 'export',
+  assetPrefix: isGitHubPages ? '/portfolio/' : '',
+  basePath: isGitHubPages ? '/portfolio' : '',
   trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,

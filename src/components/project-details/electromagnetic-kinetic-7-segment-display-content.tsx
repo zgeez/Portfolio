@@ -16,7 +16,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
     {/* ────────────── Hero / Demo GIF ────────────── */}
     <figure className="mb-12">
       <Image
-        src="/assets/electromagnetic-display/demo.gif" // ► replace
+        src="/portfolio/assets/electromagnetic-display/demo.gif" // ► replace
         alt="Animated demo of the kinetic digit counting down"
         width={1280}
         height={720}
@@ -68,7 +68,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/assets/electromagnetic-display/cad_model.png"
+            src="/portfolio/assets/electromagnetic-display/cad_model.png"
             alt="CAD cut-away of rail & coil"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -82,7 +82,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/assets/electromagnetic-display/coil.jpg"
+            src="/portfolio/assets/electromagnetic-display/coil.jpg"
             alt="Hand-wound coil on M3 screw and TB6612 driver board"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -96,7 +96,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/assets/electromagnetic-display/firmware.png"
+            src="/portfolio/assets/electromagnetic-display/firmware.png"
             alt="Firmware diff-pulse logic"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -110,7 +110,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/assets/electromagnetic-display/assembly.jpg"
+            src="/portfolio/assets/electromagnetic-display/assembly.jpg"
             alt="Completed single-digit module on desk"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

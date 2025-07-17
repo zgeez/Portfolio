@@ -2,7 +2,7 @@ import type {NextConfig} from 'next';
 
 // Set this to true when deploying to GitHub Pages at username.github.io/portfolio
 // Set to false for local development or root domain deployment
-const isGitHubPages = false;
+const isGitHubPages = true;
 
 const nextConfig: NextConfig = {
   /* config options here */

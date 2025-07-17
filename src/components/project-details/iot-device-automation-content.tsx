@@ -14,7 +14,7 @@ const IotDeviceAutomationContent: React.FC = () => (
     <header className="mb-14 text-center">
       <p className="text-gray-600 max-w-2xl mx-auto">
         A modular, battery‑friendly platform that retrofits legacy machinery with
-        AWS‑connected intelligence—delivering instant, scheduled, or sensor‑driven
+        AWS‑connected intelligence: delivering instant, scheduled, or sensor‑driven
         automation through a Flutter mobile app.
       </p>
     </header>
@@ -22,7 +22,7 @@ const IotDeviceAutomationContent: React.FC = () => (
     {/* ────────────── Hero / Demo GIF ────────────── */}
     {/* <figure className="mb-16 rounded-2xl overflow-hidden shadow-lg">
       <Image
-        src="/portfolio/assets/iot-automation/hero-demo.gif" // TODO: replace
+        src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/hero-demo.gif`} // TODO: replace
         alt="Time‑lapse demo of an appliance toggling via the mobile app"
         width={1280}
         height={720}
@@ -73,7 +73,7 @@ const IotDeviceAutomationContent: React.FC = () => (
       <h2>System Architecture</h2>
       <div className="my-8 rounded-2xl overflow-hidden shadow-md">
         <Image
-          src="/portfolio/assets/iot-automation/iot_diagram.jpeg"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/iot_diagram.jpeg`}
           alt="High‑level architecture diagram: ESP32 nodes ↔ AWS IoT Core ↔ Lambda ↔ DynamoDB ↔ Flutter app"
           width={1024}
           height={640}
@@ -92,14 +92,14 @@ const IotDeviceAutomationContent: React.FC = () => (
       <h2>Mobile Experience</h2>
       <div className="grid gap-6 sm:grid-cols-2">
         <Image
-          src="/portfolio/assets/iot-automation/automations.jpg"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/automations.jpg`}
           alt="Flutter app — real‑time dashboard"
           width={600}
           height={1200}
           className="rounded-xl shadow-md"
         />
         <Image
-          src="/portfolio/assets/iot-automation/execution.jpg"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/execution.jpg`}
           alt="Flutter app — workflow builder screen"
           width={600}
           height={1200}
@@ -108,8 +108,7 @@ const IotDeviceAutomationContent: React.FC = () => (
       </div>
       <p className="mt-4">
         A reactive UI built with Riverpod streams live telemetry over MQTT and
-        lets users compose automation chains visually—mirroring Node-RED’s UX
-        but tuned for mobile ergonomics.
+        lets users compose automation chains visually.
       </p>
     </section>
 
@@ -163,8 +162,8 @@ const IotDeviceAutomationContent: React.FC = () => (
       <h2>Tech Stack</h2>
       <ul>
         <li><strong>Firmware:</strong> ESP‑IDF | FreeRTOS | C/C++17</li>
-        <li><strong>Cloud:</strong> AWS IoT Core | Lambda (Node.js) | API Gateway | DynamoDB | S3 | CodePipeline</li>
-        <li><strong>Mobile:</strong> Flutter | Riverpod | AWS Amplify</li>
+        <li><strong>Cloud:</strong> AWS IoT Core | Lambda (Node.js) | API Gateway | DynamoDB | S3</li>
+        <li><strong>Mobile:</strong> Flutter | Riverpod | ESP SmartConfig</li>
       </ul>
     </section>
 

@@ -1,5 +1,6 @@
 import Header from '@/components/header';
 import ProjectsSection from '@/components/sections/projects-section';
+import CredentialsSection from '@/components/sections/credentials-section';
 import Footer from '@/components/footer';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Header />
       <main className="flex-grow container mx-auto pb-12 md:pb-16">
         <ProjectsSection />
+        <CredentialsSection />
       </main>
       <Footer />
     </div>

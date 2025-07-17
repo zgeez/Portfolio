@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 
@@ -15,7 +14,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
         {/* Immediate visual context */}
         <figure className="my-4 rounded shadow overflow-hidden">
           <Image
-            src="/portfolio/assets/dwpt/block_diagram.png"
+            src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/block_diagram.png`}
             alt="Poster overview: coil layout + SUMO heat-map of 42 nd St"
             width={900}
             height={500}
@@ -27,14 +26,14 @@ export default function DynamicWirelessChargingRoads42ndSt() {
       {/* ─────────────────────────────── Role ─────────────────────────────── */}
       <h2>Role</h2>
       <p>
-        <strong>Team Lead</strong> on a three-member research group — scoped the study, built the simulation
+        <strong>Team Lead</strong> on a three-member research group: scoped the study, built the simulation
         pipeline, and presented findings to UREP (Undergraduate Research and Entrepreneurship Program) judges.
       </p>
 
       {/* ─────────────────────── Problem / Goal (with visual) ─────────────────────── */}
       <h2>Problem &amp; Goal</h2>
       <p>
-        42nd St averages <strong>≈ 70 k</strong> vehicles/day crawling at <strong>≈ 3 mph</strong> — ideal
+        42nd St averages <strong>≈ 70 k</strong> vehicles/day crawling at <strong>≈ 3 mph</strong>, ideal
         “dwell-time rich” conditions for in-motion charging. We asked:
       </p>
       <ul>
@@ -44,7 +43,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/portfolio/assets/dwpt/sumo_midtown_map.png"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/sumo_midtown_map.png`}
           alt="SUMO traffic density heat-map for Midtown Manhattan"
           width={600}
           height={300}
@@ -84,7 +83,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/portfolio/assets/dwpt/matlab_power_curve.png"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/matlab_power_curve.png`}
           alt="MATLAB plot: instantaneous power pickup along 42 nd St"
           width={600}
           height={300}
@@ -97,7 +96,7 @@ export default function DynamicWirelessChargingRoads42ndSt() {
 
       <figure className="my-6 rounded shadow overflow-hidden">
         <Image
-          src="/portfolio/assets/dwpt/sumo_sim_result.png"
+          src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/sumo_sim_result.png`}
           alt="MATLAB plot: instantaneous power pickup along 42 nd St"
           width={600}
           height={300}

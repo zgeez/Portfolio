@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
@@ -16,7 +15,7 @@ export const projects: Project[] = [
     slug: "iot-device-automation",
     title: "IoT Device Automation System",
     summary: "A versatile and energy-efficient IoT ecosystem using ESP-IDF and AWS IoT for app-controlled automation of appliances and industrial machines.",
-    image: "/portfolio/assets/iot-automation/main.png",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/main.png`,
     imageHint: "iot circuit",
   },
   // {
@@ -30,21 +29,21 @@ export const projects: Project[] = [
     slug: "nyc-dynamic-wireless-charging-roads",
     title: "NYC Dynamic Wireless Charging Roads Simulation",
     summary: "Led research for NYC EV wireless charging lanes, developing a simulation model demonstrating real-time charging feasibility and recognized for innovation.",
-    image: "/portfolio/assets/dwpt/main.gif",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/main.gif`,
     imageHint: "wireless charging road",
   },
   {
     slug: "electromagnetic-kinetic-7-segment-display",
     title: "Electromagnetic Kinetic 7-Segment Display",
     summary: "An exploration of physical display technology using electromagnets and 7-segment displays.",
-    image: "/portfolio/assets/electromagnetic-display/demo.gif",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/demo.gif`,
     imageHint: "Electromagnetic Kinetic 7-Segment Display in action",
   }
 ];
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-background">
+      <section id="projects" className="pt-8 md:pt-12 pb-16 md:pb-24 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl font-bold text-primary inline-block uppercase tracking-wider">
@@ -76,6 +75,6 @@ export default function ProjectsSection() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
   );
 }

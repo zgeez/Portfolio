@@ -2,7 +2,7 @@ import type {NextConfig} from 'next';
 
 // Set this to true when deploying to GitHub Pages at username.github.io/portfolio
 // Set to false for local development or root domain deployment
-const isGitHubPages = true;
+const isGitHubPages = false;
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    unoptimized: true, // Add this line for static HTML export compatibility with next/image
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  // Expose asset prefix for public assets (e.g., in public folder)
+  env: {
+    NEXT_PUBLIC_ASSET_PREFIX: isGitHubPages ? '/portfolio' : '',
   },
 };
 

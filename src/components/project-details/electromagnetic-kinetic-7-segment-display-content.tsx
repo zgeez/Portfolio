@@ -8,7 +8,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
     <header className="mb-10">
       <p className="text-gray-600">
         A single-digit, ultra-low-power indicator that swaps LEDs for steel-core
-        coils and magnets—built to showcase precision electromechanics,
+        coils and magnets: built to showcase precision electromechanics,
         energy-aware firmware, and rapid-prototyped mechanics.
       </p>
     </header>
@@ -16,7 +16,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
     {/* ────────────── Hero / Demo GIF ────────────── */}
     <figure className="mb-12">
       <Image
-        src="/portfolio/assets/electromagnetic-display/demo.gif" // ► replace
+        src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/demo.gif`}
         alt="Animated demo of the kinetic digit counting down"
         width={1280}
         height={720}
@@ -24,7 +24,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
         priority
       />
       <figcaption className="text-center text-sm mt-2">
-        Demo: the digit counts&nbsp;9→0 with <code>{'< 25 ms'}</code> pulses &
+        Demo: the digit counts&nbsp;9→0 with <code>{'< 25 ms' }</code> pulses &
         zero hold current.
       </figcaption>
     </figure>
@@ -68,7 +68,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/portfolio/assets/electromagnetic-display/cad_model.png"
+            src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/cad_model.png`}
             alt="CAD cut-away of rail & coil"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -82,21 +82,21 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/portfolio/assets/electromagnetic-display/coil.jpg"
+            src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/coil.jpg`}
             alt="Hand-wound coil on M3 screw and TB6612 driver board"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
         </div>
-        <figcaption className="text-sm text-center mt-2">400-turn screw-core coil=</figcaption>
+        <figcaption className="text-sm text-center mt-2">400-turn screw-core coil</figcaption>
       </figure>
 
       {/* Firmware snippet */}
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/portfolio/assets/electromagnetic-display/firmware.png"
+            src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/firmware.png`}
             alt="Firmware diff-pulse logic"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -110,7 +110,7 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
       <figure className="rounded-lg shadow-sm flex flex-col">
         <div className="relative h-80 w-full overflow-hidden">
           <Image
-            src="/portfolio/assets/electromagnetic-display/assembly.jpg"
+            src={`${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/assembly.jpg`}
             alt="Completed single-digit module on desk"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -125,19 +125,19 @@ const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
     <h2>Architecture</h2>
     <ul>
       <li>
-        <strong>Mechanics  </strong>—M3 screw acts as low-cost steel core; PLA
+        <strong>Mechanics</strong>: M3 screw acts as low-cost steel core; PLA
         rail ensures sub-0.1 mm skew, so a 1 A pulse yields 7 mm travel.
       </li>
       <li>
-        <strong>Electronics  </strong>—Seven TB6612 half-bridges tie directly to
+        <strong>Electronics</strong>: Seven TB6612 half-bridges tie directly to
         14 GPIOs; future rev will multiplex through a 74HC595 to free I/O.
       </li>
       <li>
-        <strong>Firmware  </strong>—Segment font in flash; loop XORs desired vs
+        <strong>Firmware</strong>: Segment font in flash; loop XORs desired vs
         current mask and energises only changed bars (≈3 pulses per minute).
       </li>
       <li>
-        <strong>Energy</strong>—Pulse: 0.75 A · 25 ms = 0.018 mAh; 8 pulses/min
+        <strong>Energy</strong>: Pulse: 0.75 A · 25 ms = 0.018 mAh; 8 pulses/min
         → 2.5 mA avg vs 250 mA LED block → 100 × savings.
       </li>
     </ul>

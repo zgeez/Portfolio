@@ -8,18 +8,12 @@ export interface Credential {
 }
 
 export const credentials: Credential[] = [
-//   {
-//     title: "Generative AI for Software Developers",
-//     issuer: "IBM",
-//     date: "June 2025",
-//     icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/ibm.png`,
-//   },
-//   {
-//     title: "Applied Software Engineering Fundamentals",
-//     issuer: "IBM",
-//     date: "June 2025",
-//     icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/ibm.png`,
-//   },
+  {
+    title: "Microcontroller and Embedded Driver Development (MCU1)",
+    issuer: "FastBit Academy",
+    date: "July 2025",
+    icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/fastbit.webp`,
+  },
   {
     title: "C Programming with Linux",
     issuer: "Dartmouth College",
@@ -43,7 +37,7 @@ export const credentials: Credential[] = [
     issuer: "FastBit Academy",
     date: "March 2025",
     icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/fastbit.webp`,
-  },
+  }
 ];
 
 export default function CredentialsSection() {

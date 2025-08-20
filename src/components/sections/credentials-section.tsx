@@ -9,6 +9,18 @@ export interface Credential {
 
 export const credentials: Credential[] = [
   {
+    title: "Embedded Interface Design",
+    issuer: "University of Colorado Boulder",
+    date: "August 2025",
+    icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/cuboulder.png`,
+  },
+  {
+    title: "Computer Vision Engineer",
+    issuer: "MathWorks",
+    date: "August 2025",
+    icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/mathworks.png`,
+  },
+  {
     title: "Microcontroller and Embedded Driver Development (MCU1)",
     issuer: "FastBit Academy",
     date: "July 2025",
@@ -21,7 +33,7 @@ export const credentials: Credential[] = [
     icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/Dartmouth.png`,
   },
   {
-    title: "AI Developer Professional Certificate",
+    title: "AI Developer",
     issuer: "IBM",
     date: "May 2025",
     icon: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/credentials/ibm.png`,

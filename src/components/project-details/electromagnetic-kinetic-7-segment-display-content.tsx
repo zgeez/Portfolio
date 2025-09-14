@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 const ElectromagneticKinetic7SegmentDisplayContent: React.FC = () => (
-  <article className="container mx-auto px-4 py-12 prose lg:prose-lg">
+  <article className="container mx-auto px-4 py-0 prose lg:prose-lg">
     {/* ────────────── Header ────────────── */}
     <header className="mb-10">
       <p className="text-gray-600">

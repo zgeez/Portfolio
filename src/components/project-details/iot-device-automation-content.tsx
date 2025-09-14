@@ -9,7 +9,7 @@ import React from 'react';
  * Replace every `assets/...` path with your actual assets once ready.
  */
 const IotDeviceAutomationContent: React.FC = () => (
-  <article className="container mx-auto px-4 py-12 prose lg:prose-lg">
+  <article className="container mx-auto px-4 py-0 prose lg:prose-lg">
     {/* ────────────── Header ────────────── */}
     <header className="mb-14 text-center">
       <p className="text-gray-600 max-w-2xl mx-auto">

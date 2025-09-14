@@ -12,19 +12,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "smart-security-camera-raspberry-pi",
+    title: "Smart Motion-Triggered Security Camera",
+    summary: "Edge-AI security system with YOLOv11n object detection on Raspberry Pi 5, featuring real-time person detection, web dashboard, and optimized performance monitoring.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/security-cam/main.jpg`,
+    imageHint: "raspberry pi security camera system",
+  },
+  {
     slug: "iot-device-automation",
     title: "IoT Device Automation System",
     summary: "A versatile and energy-efficient IoT ecosystem using ESP-IDF and AWS IoT for app-controlled automation of appliances and industrial machines.",
     image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iot-automation/main.png`,
     imageHint: "iot circuit",
   },
-  // {
-  //   slug: "stm32-function-generator",
-  //   title: "STM32 Function Generator",
-  //   summary: "Development of a high-fidelity function generator using an STM32F4 microcontroller, supporting multiple waveforms with DMA and USB control.",
-  //   image: "/portfolio/assets/dwpt/square-10khz.png",
-  //   imageHint: "signal waveform",
-  // },
   {
     slug: "nyc-dynamic-wireless-charging-roads",
     title: "NYC Dynamic Wireless Charging Roads Simulation",
@@ -38,6 +38,13 @@ export const projects: Project[] = [
     summary: "An exploration of physical display technology using electromagnets and 7-segment displays.",
     image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/electromagnetic-display/demo.gif`,
     imageHint: "Electromagnetic Kinetic 7-Segment Display in action",
+  },
+  {
+    slug: "iguard-incident-reporting-app",
+    title: "iGuard - Community Incident Reporting App",
+    summary: "A Flutter-based community platform for businesses to share security incidents, receive real-time alerts, and enhance security through collaborative information sharing.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iguard/home.jpeg`,
+    imageHint: "mobile app incident reporting",
   }
 ];
 

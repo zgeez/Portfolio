@@ -15,6 +15,7 @@ import IotDeviceAutomationContent from '@/components/project-details/iot-device-
 import Stm32FunctionGeneratorContent from '@/components/project-details/stm32-function-generator-content';
 import NycDynamicWirelessChargingRoadsContent from '@/components/project-details/nyc-dynamic-wireless-charging-roads-content';
 import ElectromagneticKinetic7SegmentDisplayContent from '@/components/project-details/electromagnetic-kinetic-7-segment-display-content';
+import EegAcquisitionNeurofeedbackSystemContent from '@/components/project-details/eeg-acquisition-neurofeedback-system-content';
 import type React from 'react';
 
 async function getProjectBySlug(slug: string): Promise<Project | undefined> {
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const ProjectContentComponents: { [key: string]: React.FC } = {
+  'eeg-acquisition-neurofeedback-system': EegAcquisitionNeurofeedbackSystemContent,
   'smart-security-camera-raspberry-pi': SmartSecurityCameraRaspberryPiContent,
   'iguard-incident-reporting-app': IGuardIncidentReportingAppContent,
   'iot-device-automation': IotDeviceAutomationContent,

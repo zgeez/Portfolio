@@ -12,6 +12,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "eeg-acquisition-neurofeedback-system",
+    title: "EEG Acquisition & Neurofeedback System",
+    summary: "8-channel EEG acquisition and neurofeedback prototype pairing an ESP32-S3 SPI bridge with the TI ADS1299 front end, a MATLAB processing pipeline, and a Random Forest focus-state classifier at 83% block accuracy.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/eeg-neurofeedback/matlab_ui.png`,
+    imageHint: "EEG acquisition interface with raw signals, PSD, and focus index",
+  },
+  {
     slug: "smart-security-camera-raspberry-pi",
     title: "Smart Motion-Triggered Security Camera",
     summary: "Edge-AI security system with YOLOv11n object detection on Raspberry Pi 5, featuring real-time person detection, web dashboard, and optimized performance monitoring.",

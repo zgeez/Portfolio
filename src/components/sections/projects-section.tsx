@@ -12,6 +12,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "stm32-mixed-signal-instrument",
+    title: "STM32 Mixed-Signal Instrument",
+    summary: "A USB bench instrument on an STM32F407 Discovery board: 2-channel arbitrary waveform generator, 2-channel oscilloscope, and 8-channel logic analyzer, with analog and digital capture released by chained hardware timers onto a single timeline at -120 ns measured skew.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/stm32-msi/mixed_capture.png`,
+    imageHint: "mixed-signal capture with analog and logic traces on one timeline",
+  },
+  {
     slug: "eeg-acquisition-neurofeedback-system",
     title: "EEG Acquisition & Neurofeedback System",
     summary: "8-channel EEG acquisition and neurofeedback prototype pairing an ESP32-S3 SPI bridge with the TI ADS1299 front end, a MATLAB processing pipeline, and a Random Forest focus-state classifier at 83% block accuracy.",

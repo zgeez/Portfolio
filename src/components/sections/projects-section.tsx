@@ -26,6 +26,13 @@ export const projects: Project[] = [
     imageHint: "EEG acquisition interface with raw signals, PSD, and focus index",
   },
   {
+    slug: "led-waypoint-compass",
+    title: "LED Waypoint Compass",
+    summary: "An ESP32-S3 handheld navigator that fuses GPS with BNO08x IMU heading and points the way on a 16-pixel LED ring, with a Flutter companion app over BLE (Nordic UART Service), a custom command and telemetry protocol, and NVS-persisted destinations.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/waypoint-compass/main.jpg`,
+    imageHint: "LED compass ring glowing on a 3D-printed enclosure",
+  },
+  {
     slug: "smart-security-camera-raspberry-pi",
     title: "Smart Motion-Triggered Security Camera",
     summary: "Edge-AI security system with YOLOv11n object detection on Raspberry Pi 5, featuring real-time person detection, web dashboard, and optimized performance monitoring.",
@@ -40,13 +47,6 @@ export const projects: Project[] = [
     imageHint: "iot circuit",
   },
   {
-    slug: "nyc-dynamic-wireless-charging-roads",
-    title: "NYC Dynamic Wireless Charging Roads Simulation",
-    summary: "Led research for NYC EV wireless charging lanes, developing a simulation model demonstrating real-time charging feasibility and recognized for innovation.",
-    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/main.gif`,
-    imageHint: "wireless charging road",
-  },
-  {
     slug: "electromagnetic-kinetic-7-segment-display",
     title: "Electromagnetic Kinetic 7-Segment Display",
     summary: "An exploration of physical display technology using electromagnets and 7-segment displays.",
@@ -59,6 +59,13 @@ export const projects: Project[] = [
     summary: "A Flutter-based community platform for businesses to share security incidents, receive real-time alerts, and enhance security through collaborative information sharing.",
     image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/iguard/home.jpeg`,
     imageHint: "mobile app incident reporting",
+  },
+  {
+    slug: "nyc-dynamic-wireless-charging-roads",
+    title: "NYC Dynamic Wireless Charging Roads Simulation",
+    summary: "Led research for NYC EV wireless charging lanes, developing a simulation model demonstrating real-time charging feasibility and recognized for innovation.",
+    image: `${process.env.NEXT_PUBLIC_ASSET_PREFIX}/assets/dwpt/main.gif`,
+    imageHint: "wireless charging road",
   }
 ];
 

@@ -17,6 +17,7 @@ import NycDynamicWirelessChargingRoadsContent from '@/components/project-details
 import ElectromagneticKinetic7SegmentDisplayContent from '@/components/project-details/electromagnetic-kinetic-7-segment-display-content';
 import EegAcquisitionNeurofeedbackSystemContent from '@/components/project-details/eeg-acquisition-neurofeedback-system-content';
 import Stm32MixedSignalInstrumentContent from '@/components/project-details/stm32-mixed-signal-instrument-content';
+import LedWaypointCompassContent from '@/components/project-details/led-waypoint-compass-content';
 import type React from 'react';
 
 async function getProjectBySlug(slug: string): Promise<Project | undefined> {
@@ -47,6 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const ProjectContentComponents: { [key: string]: React.FC } = {
   'stm32-mixed-signal-instrument': Stm32MixedSignalInstrumentContent,
   'eeg-acquisition-neurofeedback-system': EegAcquisitionNeurofeedbackSystemContent,
+  'led-waypoint-compass': LedWaypointCompassContent,
   'smart-security-camera-raspberry-pi': SmartSecurityCameraRaspberryPiContent,
   'iguard-incident-reporting-app': IGuardIncidentReportingAppContent,
   'iot-device-automation': IotDeviceAutomationContent,

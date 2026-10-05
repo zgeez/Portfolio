@@ -1,104 +1,64 @@
-import type {Config} from 'tailwindcss';
+import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
+
+// Colours resolve to the RGB-triplet tokens in src/app/globals.css.
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
 export default {
   darkMode: ['class'],
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    container: { 
+    container: {
       center: true,
-      padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-      },
-      screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-        '2xl': '1400px', 
-      },
+      padding: { DEFAULT: '1rem', sm: '1.5rem', lg: '2rem' },
+      screens: { '2xl': '1240px' },
     },
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'], 
-        code: ['monospace', 'monospace'],
-      },
-      fontWeight: { 
-        normal: '400',
-        medium: '500',
-        semibold: '600',
-        bold: '700',
-        black: '900', 
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
+        bg: { DEFAULT: token('bg'), elevated: token('bg-elevated') },
+        panel: { DEFAULT: token('panel'), 2: token('panel-2') },
+        fg: token('text'),
+        muted: { DEFAULT: token('text-muted'), foreground: token('text-muted') },
+        dim: token('text-dim'),
+        line: { DEFAULT: token('line'), strong: token('line-strong') },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: token('accent'),
+          strong: token('accent-strong'),
+          blue: token('accent-blue'),
+          foreground: token('bg'),
         },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        warning: token('warning'),
+        danger: token('danger'),
+
+        // shadcn/ui compatibility names
+        background: token('bg'),
+        foreground: token('text'),
+        border: token('line'),
+        input: token('line'),
+        ring: token('accent'),
+        primary: { DEFAULT: token('text'), foreground: token('bg') },
+        secondary: { DEFAULT: token('panel-2'), foreground: token('text') },
+        card: { DEFAULT: token('panel'), foreground: token('text') },
+        popover: { DEFAULT: token('panel'), foreground: token('text') },
+        destructive: { DEFAULT: token('danger'), foreground: token('text') },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      aspectRatio: { 
-        '4/3': '4 / 3',
-        '3/2': '3 / 2',
-        '16/9': '16 / 9',
-        '1/1': '1 / 1',
-      },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
@@ -107,5 +67,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [animate],
 } satisfies Config;

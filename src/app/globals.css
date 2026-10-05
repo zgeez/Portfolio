@@ -2,76 +2,149 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+/* ──────────────────────────────────────────────────────────────
+   Design tokens: instrument-grade dark theme.
+   Values are RGB triplets so Tailwind opacity modifiers work
+   (e.g. bg-accent/10). See tailwind.config.ts for the mapping.
+   ────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White */
-    --foreground: 0 0% 13%; /* Very Dark Gray */
+    color-scheme: dark;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%; /* Medium Gray */
+    --bg: 6 10 13;            /* #060a0d */
+    --bg-elevated: 10 17 22;  /* #0a1116 */
+    --panel: 12 21 27;        /* #0c151b */
+    --panel-2: 16 27 34;      /* #101b22 */
+    --text: 237 246 247;      /* #edf6f7 */
+    --text-muted: 140 162 170;/* #8ca2aa */
+    --text-dim: 107 129 137;  /* #6b8189, labels only */
+    --line: 27 48 56;         /* #1b3038 */
+    --line-strong: 40 70 80;  /* #284650 */
+    --grid: rgba(100, 200, 210, 0.055);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
+    --accent: 84 230 206;        /* #54e6ce */
+    --accent-strong: 115 242 220;/* #73f2dc */
+    --accent-blue: 110 180 255;  /* #6eb4ff */
+    --warning: 242 184 91;       /* #f2b85b */
+    --danger: 255 98 98;         /* #ff6262 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 13%;
-
-    --border: 0 0% 89.8%; /* Light Gray for borders */
-    --input: 0 0% 89.8%;
-
-    --primary: 0 0% 9%; /* Black for primary elements */
-    --primary-foreground: 0 0% 98%; /* Light text on primary */
-
-    --secondary: 0 0% 96.1%; /* Light gray for secondary backgrounds */
-    --secondary-foreground: 0 0% 9%; /* Black text on secondary */
-
-    --accent: 10 60% 50%; /* Brownish-Red for "ALL PROJECTS" link */
-    --accent-foreground: 0 0% 98%; /* Light text on accent */
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --ring: 0 0% 63.9%; /* Lighter gray for rings */
     --radius: 0.5rem;
+    --header-h: 4rem;
   }
 
-  .dark {
-    /* Standard dark theme as a fallback */
-    --background: 0 0% 13%;
-    --foreground: 0 0% 98%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
-    --popover: 0 0% 13%;
-    --popover-foreground: 0 0% 98%;
-    --card: 0 0% 13%;
-    --card-foreground: 0 0% 98%;
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --accent: 10 50% 70%; /* Lighter accent for dark mode */
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --ring: 0 0% 80%;
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    background: rgb(var(--bg));
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
+    color: rgb(var(--text));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  /* Faint schematic grid, used behind the hero and diagrams. */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  .panel {
+    @apply rounded-lg border border-line bg-panel;
   }
+
+  .eyebrow {
+    @apply font-mono text-[0.7rem] font-medium uppercase tracking-[0.18em] text-accent;
+  }
+
+  .label {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.14em] text-dim;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded border border-line bg-panel-2/60 px-2 py-0.5 font-mono text-[0.72rem] text-muted;
+  }
+
+  .link-accent {
+    @apply text-accent underline-offset-4 transition-colors duration-150 hover:text-accent-strong hover:underline;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tight text-fg md:text-3xl;
+  }
+
+  /* Status tags that keep visualizations honest (see brief §25). */
+  .tag-illustrative,
+  .tag-recorded,
+  .tag-simulated,
+  .tag-measured {
+    @apply inline-flex items-center gap-1.5 rounded-sm border px-1.5 py-0.5 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.14em];
+  }
+  .tag-illustrative {
+    @apply border-warning/40 text-warning;
+  }
+  .tag-recorded {
+    @apply border-accent-blue/40 text-accent-blue;
+  }
+  .tag-measured {
+    @apply border-accent/40 text-accent;
+  }
+  .tag-simulated {
+    @apply border-danger/50 text-danger;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Motion. Every animation here explains data flow or a layer
+   change; prefers-reduced-motion collapses them to near-instant.
+   ────────────────────────────────────────────────────────────── */
+@keyframes layer-in-deeper {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); filter: blur(2px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes layer-in-shallower {
+  from { opacity: 0; transform: translateY(-14px) scale(1.015); filter: blur(2px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* Dashes travelling along a link: "what data is moving". */
+@keyframes trace-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+.animate-layer-deeper { animation: layer-in-deeper 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.animate-layer-shallower { animation: layer-in-shallower 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.animate-fade-in { animation: fade-in 240ms ease-out both; }
+.trace-flow { stroke-dasharray: 4 8; animation: trace-flow 1.6s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .trace-flow { animation: none; }
 }

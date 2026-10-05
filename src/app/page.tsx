@@ -1,17 +1,21 @@
-import Header from '@/components/header';
-import ProjectsSection from '@/components/sections/projects-section';
-import CredentialsSection from '@/components/sections/credentials-section';
-import Footer from '@/components/footer';
+import { Hero } from '@/components/portfolio/hero';
+import { ProofStrip } from '@/components/portfolio/proof-strip';
+import { FeaturedProjects } from '@/components/portfolio/featured-projects';
+import { DebugLog } from '@/components/portfolio/debug-log';
+import { SkillsStack } from '@/components/portfolio/skills-stack';
+import { ExperienceSection } from '@/components/portfolio/experience-section';
+import { AboutSection } from '@/components/portfolio/about-section';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow container mx-auto pb-12 md:pb-16">
-        <ProjectsSection />
-        <CredentialsSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <ProofStrip />
+      <FeaturedProjects />
+      <DebugLog />
+      <SkillsStack />
+      <ExperienceSection />
+      <AboutSection />
+    </>
   );
 }

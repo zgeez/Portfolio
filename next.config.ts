@@ -1,36 +1,22 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
-// Set this to true when deploying to GitHub Pages at username.github.io/portfolio
-// Set to false for local development or root domain deployment
+// Deployed to GitHub Pages at https://zgeez.github.io/portfolio/.
+// Set to false for local development or root-domain deployment.
 const isGitHubPages = true;
+const basePath = isGitHubPages ? '/portfolio' : '';
 
 const nextConfig: NextConfig = {
-  /* config options here */
   output: 'export',
   distDir: 'portfolio',
-  assetPrefix: isGitHubPages ? '/portfolio' : '',
-  basePath: isGitHubPages ? '/portfolio' : '',
+  assetPrefix: basePath,
+  basePath,
   trailingSlash: true,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
   },
-  // Expose asset prefix for public assets (e.g., in public folder)
+  // Exposed for public-folder assets, which next/image does not prefix with basePath.
   env: {
-    NEXT_PUBLIC_ASSET_PREFIX: isGitHubPages ? '/portfolio' : '',
+    NEXT_PUBLIC_ASSET_PREFIX: basePath,
   },
 };
 

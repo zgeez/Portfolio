@@ -6,7 +6,7 @@ export function FeaturedProjects() {
   const [lead, ...rest] = featuredProjects;
   return (
     <section aria-labelledby="systems-title" id="systems" className="container scroll-mt-20 py-20 md:py-28">
-      <SectionHeading id="systems-title" eyebrow="Featured systems" title="Systems, from product to signals">
+      <SectionHeading id="systems-title" eyebrow="Featured systems" title="Three embedded systems">
         Each one opens into layers: product, architecture, firmware, hardware, and the measurements behind the claims.
       </SectionHeading>
 
@@ -18,14 +18,18 @@ export function FeaturedProjects() {
           ))}
         </div>
       </div>
+    </section>
+  );
+}
 
-      <div className="mt-16">
-        <h3 className="label mb-4">More systems</h3>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {secondaryProjects.map((p) => (
-            <CompactProjectCard key={p.slug} project={p} />
-          ))}
-        </div>
+export function MoreSystems() {
+  return (
+    <section id="more-systems" aria-labelledby="more-systems-title" className="container scroll-mt-20 py-16 md:py-20">
+      <SectionHeading id="more-systems-title" eyebrow="More systems" title="Additional engineering projects" />
+      <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2 xl:grid-cols-3">
+        {secondaryProjects.map((p) => (
+          <CompactProjectCard key={p.slug} project={p} />
+        ))}
       </div>
     </section>
   );

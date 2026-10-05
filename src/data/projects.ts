@@ -75,11 +75,11 @@ export const projects: Project[] = [
     category: 'research',
     featured: true,
     order: 2,
-    role: 'Software lead on a 3-person team · Senior Design II, NYIT',
+    role: 'Software/firmware lead · 3-person Senior Design team, extended into M.S. EEG research at NYIT',
     technologies: ['ESP32-S3', 'TI ADS1299', 'SPI', 'MATLAB', 'Welch PSD', 'Random Forest'],
     metrics: [
       { value: '8 ch', label: '24-bit @ 250 Hz' },
-      { value: '~83%', label: 'Rest-vs-Task block accuracy' },
+      { value: '82.9%', label: 'Rest-vs-Task block accuracy' },
       { value: '33', label: 'labeled runs, 4 paradigms' },
     ],
     links: [{ label: 'Project site', href: 'https://zgeez.github.io/EEG-Based-Neurofeedback-System/' }],

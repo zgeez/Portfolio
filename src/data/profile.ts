@@ -10,7 +10,7 @@ export const research = {
   dates: 'Sep 2025 – Present',
   points: [
     'ESP32-S3 SPI firmware interfacing with the TI ADS1299 to acquire and stream eight 24-bit EEG channels at 250 Hz over USB serial.',
-    'Led firmware/software development on a 3-person team for an EEG acquisition and neurofeedback system, reaching 83% Rest-vs-Task block-classification accuracy with a Random Forest model.',
+    'Led firmware/software development on a 3-person Senior Design team, now continuing the EEG work as M.S. research. The best mental-math Random Forest model reached 82.9% Rest-vs-Task block accuracy.',
     'Built a MATLAB acquisition pipeline for real-time filtering, Welch PSD, artifact gating, visualization, logging, and synchronized task markers.',
   ],
   tags: ['ESP32-S3', 'ADS1299', 'SPI', '8 ch · 24-bit · 250 Hz', 'MATLAB', 'Signal processing'],
@@ -51,7 +51,7 @@ export const credentials = {
     { title: 'Embedded Interface Design', issuer: 'University of Colorado Boulder', date: 'Aug 2025' },
     { title: 'C Programming with Linux', issuer: 'Dartmouth College', date: 'Jun 2025' },
   ],
-  also: ['Computer Vision Engineer (MathWorks)', 'AI Developer (IBM)', 'Software Development Lifecycle (University of Minnesota)'],
+  also: ['Computer Vision Engineer (MathWorks)', 'Software Development Lifecycle (University of Minnesota)'],
 };
 
 /** Skills as abstraction layers, each pointing at projects that demonstrate it. */

@@ -52,7 +52,7 @@ export function IotAutomationCaseStudy({ project }: { project: Project }) {
         </div>
       </CaseSection>
 
-      <CaseSection id="architecture" eyebrow="Architecture" title="Device ↔ AWS ↔ app">
+      <CaseSection id="architecture" eyebrow="Device ↔ AWS ↔ app" title="Architecture">
         <Figure
           src={img('iot_diagram.jpeg')}
           alt="Architecture diagram: ESP32 nodes, AWS IoT Core, Lambda, DynamoDB and the Flutter app"
@@ -67,7 +67,7 @@ export function IotAutomationCaseStudy({ project }: { project: Project }) {
         </p>
       </CaseSection>
 
-      <CaseSection id="firmware" eyebrow="Firmware & power" title="Spend power only when it matters">
+      <CaseSection id="firmware" eyebrow="Implementation" title="Firmware & power management">
         <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_14rem] md:items-start">
           <div className="space-y-4">
             <Bullets

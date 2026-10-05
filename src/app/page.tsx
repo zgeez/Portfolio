@@ -1,6 +1,6 @@
 import { Hero } from '@/components/portfolio/hero';
 import { ProofStrip } from '@/components/portfolio/proof-strip';
-import { FeaturedProjects } from '@/components/portfolio/featured-projects';
+import { FeaturedProjects, MoreSystems } from '@/components/portfolio/featured-projects';
 import { DebugLog } from '@/components/portfolio/debug-log';
 import { SkillsStack } from '@/components/portfolio/skills-stack';
 import { ExperienceSection } from '@/components/portfolio/experience-section';
@@ -12,9 +12,10 @@ export default function Home() {
       <Hero />
       <ProofStrip />
       <FeaturedProjects />
-      <DebugLog />
-      <SkillsStack />
       <ExperienceSection />
+      <DebugLog />
+      <MoreSystems />
+      <SkillsStack />
       <AboutSection />
     </>
   );

@@ -6,15 +6,14 @@ import { SectionHeading } from './ui';
 export function SkillsStack() {
   return (
     <section aria-labelledby="skills-title" id="skills" className="container py-20 md:py-28">
-      <SectionHeading id="skills-title" eyebrow="Skills, by layer" title="The same stack, from application to probe tip">
+      <SectionHeading id="skills-title" eyebrow="Skills, by layer" title="Tools & technical skills">
         Each layer links to the systems where it is put to work.
       </SectionHeading>
-      <ol className="overflow-hidden rounded-xl border border-line">
+      <ol className="border-y border-line">
         {skillLayers.map((row, i) => (
           <li
             key={row.layer}
-            className="grid gap-2 border-b border-line bg-panel/50 px-4 py-4 last:border-b-0 md:grid-cols-[10rem_minmax(0,1fr)_minmax(0,1fr)] md:items-center md:gap-6 md:px-6"
-            style={{ backgroundColor: `rgb(var(--panel) / ${0.25 + i * 0.09})` }}
+            className="grid gap-2 border-b border-line py-4 last:border-b-0 md:grid-cols-[10rem_minmax(0,1fr)_minmax(0,1fr)] md:items-center md:gap-6"
           >
             <p className="flex items-baseline gap-2.5">
               <span className="font-mono text-[0.68rem] text-dim">L{i}</span>

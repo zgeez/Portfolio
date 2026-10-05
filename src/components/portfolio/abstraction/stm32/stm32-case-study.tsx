@@ -99,7 +99,7 @@ export function Stm32CaseStudy({ project }: { project: Project }) {
         </p>
       </CaseSection>
 
-      <CaseSection id="validation" eyebrow="Validation / testing" title="Measured rather than declared">
+      <CaseSection id="validation" eyebrow="Testing & evidence" title="Validation">
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="space-y-4 text-muted lg:col-span-1">
             <p>

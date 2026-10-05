@@ -4,7 +4,7 @@ import type { ProbeDiagramData } from '@/components/portfolio/abstraction/probe-
 import type { LensLayerMeta } from '@/components/portfolio/abstraction/abstraction-lens';
 
 export const waypointHeroMetrics = [
-  { value: '<2°', label: 'heading deviation', detail: 'BNO08x rotation vector' },
+  { value: '<2°', label: 'reported heading deviation', detail: 'BNO08x · project write-up' },
   { value: '22.5°', label: 'per pixel', detail: '16-pixel ring' },
   { value: '1 Hz', label: 'BLE telemetry', detail: 'GPS, nav & bearing' },
   { value: '2 m', label: 'arrival radius', detail: 'great-circle distance' },

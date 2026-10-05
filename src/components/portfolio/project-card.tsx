@@ -8,7 +8,7 @@ export function ProjectCard({ project, large }: { project: Project; large?: bool
     <Link
       href={`/projects/${project.slug}/`}
       className={cn(
-        'group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-150 hover:border-accent/50',
+        'group flex h-full flex-col overflow-hidden rounded-md border border-line bg-panel transition-colors duration-150 hover:border-accent/50',
         large && 'lg:grid lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]',
       )}
     >
@@ -59,9 +59,9 @@ export function CompactProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}/`}
-      className="group flex gap-4 rounded-lg border border-line bg-panel/60 p-3 transition-colors duration-150 hover:border-accent/50"
+      className="group flex gap-4 border-t border-line py-5 transition-colors duration-150 hover:border-accent/50"
     >
-      <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md border border-line bg-bg">
+      <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-sm bg-bg">
         <Image src={project.thumb} alt="" fill sizes="96px" className="object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="min-w-0">

@@ -5,8 +5,10 @@ import { MobileMenu } from './mobile-menu';
 
 export const NAV = [
   { href: '/#systems', label: 'Systems' },
-  { href: '/#research', label: 'Research' },
-  { href: '/#experience', label: 'Experience' },
+  { href: '/#research-experience', label: 'Research & Experience' },
+  { href: '/#debug', label: 'Debugging' },
+  { href: '/#more-systems', label: 'More Systems' },
+  { href: '/#skills', label: 'Tools' },
   { href: '/#about', label: 'About' },
 ];
 
@@ -31,18 +33,18 @@ export function Header() {
       </a>
       <div className="container flex h-full items-center justify-between gap-6">
         <Wordmark />
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-7 text-sm text-muted">
+        <nav aria-label="Primary" className="hidden xl:block">
+          <ul className="flex items-center gap-5 whitespace-nowrap text-sm text-muted">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="transition-colors duration-150 hover:text-fg">
+                <Link href={n.href} className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-fg">
                   {n.label}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <a
             href={site.github}
             target="_blank"

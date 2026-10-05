@@ -47,7 +47,7 @@ export function EegCaseStudy({ project }: { project: Project }) {
         />
       </section>
 
-      <CaseSection id="debugging" eyebrow="Debugging" title="What went wrong, and what is left">
+      <CaseSection id="debugging" eyebrow="Failure analysis" title="Debugging">
         <DataTable head={['Issue', 'What went wrong', 'Fix', 'Remaining limitation']} rows={eegChallenges.map((r) => [...r])} />
       </CaseSection>
 
@@ -89,6 +89,8 @@ export function EegCaseStudy({ project }: { project: Project }) {
           <p>
             Built with the TI ADS1299 analog front end, ESP32-S3 firmware, MATLAB, and an Electron/React dashboard by Team
             NeuroFocus (Senior Design II, NYIT). Full write-up, references, and team credits are on the project site.
+            {' '}My software/firmware work on the senior-design system continues as M.S. EEG research at NYIT;
+            the measurements on this page describe the documented prototype.
           </p>
           <div className="mt-4">
             <ExternalLink href={eegSite}>zgeez.github.io/EEG-Based-Neurofeedback-System</ExternalLink>

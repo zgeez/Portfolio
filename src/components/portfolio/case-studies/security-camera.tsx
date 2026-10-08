@@ -1,16 +1,8 @@
-import type { Project } from '@/data/projects';
 import { asset } from '@/data/site';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { CaseSection } from '@/components/projects/project-chapter';
 import { Bullets, Callout, Figure } from '@/components/portfolio/ui';
 
 const img = (name: string) => asset(`assets/security-cam/${name}`);
-
-const METRICS = [
-  { value: '3 → 30', label: 'FPS on CPU', detail: 'after optimization' },
-  { value: '33 ms', label: 'inference time', detail: 'from 330 ms · INT8' },
-  { value: '−70%', label: 'idle CPU', detail: 'PIR motion gating' },
-  { value: '95%', label: 'person-detection accuracy kept', detail: 'after INT8' },
-];
 
 const PIPELINE = [
   { stage: 'PIR sensor', detail: 'first-stage motion' },
@@ -21,25 +13,12 @@ const PIPELINE = [
   { stage: 'Flask dashboard', detail: 'MJPEG live stream' },
 ];
 
-export function SecurityCameraCaseStudy({ project }: { project: Project }) {
+export function SecurityCameraCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={METRICS} />
-        <OnThisPage
-          items={[
-            { id: 'overview', label: 'Overview' },
-            { id: 'architecture', label: 'Architecture' },
-            { id: 'implementation', label: 'Implementation' },
-            { id: 'optimizations', label: 'Optimizations' },
-            { id: 'dashboard', label: 'Dashboard' },
-            { id: 'results', label: 'Results & next' },
-          ]}
-        />
-      </div>
+    <div className="dossier-case-body">
 
       <CaseSection id="overview" eyebrow="Overview" title="Edge AI on a Raspberry Pi 5">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:items-start">
+        <div className="dossier-split">
           <div className="space-y-4 text-muted">
             <p>
               A complete edge-AI security system that combines PIR sensor triggering with YOLOv11n object detection,
@@ -120,7 +99,7 @@ export function SecurityCameraCaseStudy({ project }: { project: Project }) {
               <><strong className="text-fg">Asynchronous processing:</strong> background video conversion never blocks the real-time detection pipeline.</>,
             ]}
           />
-          <Figure src={img('performance_comparison.png')} alt="Before-and-after performance metrics for the optimizations" width={1368} height={1485} caption="Before vs. after optimization." />
+          <Figure src={img('performance_comparison.png')} alt="Before-and-after performance metrics for the optimizations" width={1368} height={1485} caption="Before vs. after optimization." imgClassName="bg-white" />
         </div>
       </CaseSection>
 

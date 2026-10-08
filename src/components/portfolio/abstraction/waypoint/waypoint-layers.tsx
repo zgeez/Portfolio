@@ -10,7 +10,7 @@ const img = (name: string) => asset(`assets/waypoint-compass/${name}`);
 export function WaypointProductLayer() {
   return (
     <div className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start">
+      <div className="dossier-split">
         <div className="space-y-4 text-muted">
           <p className="text-lg leading-relaxed text-fg">A direction you can read at a glance, from a device that keeps working if the phone goes away.</p>
           <p>
@@ -30,6 +30,7 @@ export function WaypointProductLayer() {
           width={1800}
           height={1244}
           priority
+          kind="Hardware photo"
           caption="Live session: the app reports 214.9° SW at 12 m, and the ring agrees. Blue trail pixels straddle the red forward pixel: the destination is dead ahead."
         />
       </div>

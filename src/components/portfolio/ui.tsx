@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { EvidenceFigure, type EvidenceFigureProps } from '@/components/projects/evidence-figure';
 
 export function MetricGrid({
   metrics,
@@ -27,55 +27,8 @@ export function MetricGrid({
   );
 }
 
-export function SectionHeading({
-  id,
-  eyebrow,
-  title,
-  children,
-  className,
-}: {
-  id?: string;
-  eyebrow: string;
-  title: ReactNode;
-  children?: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cn('mb-8 max-w-3xl', className)}>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 id={id} className="section-title mt-2">
-        {title}
-      </h2>
-      {children && <div className="mt-3 text-muted">{children}</div>}
-    </div>
-  );
-}
-
-export function Figure({
-  src,
-  alt,
-  width,
-  height,
-  caption,
-  className,
-  imgClassName,
-  priority,
-}: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  caption?: ReactNode;
-  className?: string;
-  imgClassName?: string;
-  priority?: boolean;
-}) {
-  return (
-    <figure className={cn('panel overflow-hidden', className)}>
-      <Image src={src} alt={alt} width={width} height={height} priority={priority} className={cn('h-auto w-full', imgClassName)} />
-      {caption && <figcaption className="border-t border-line px-4 py-3 text-sm text-muted">{caption}</figcaption>}
-    </figure>
-  );
+export function Figure(props: EvidenceFigureProps) {
+  return <EvidenceFigure {...props} />;
 }
 
 /** A phone screenshot in a minimal device frame. */
@@ -93,12 +46,7 @@ export function PhoneShot({
   height: number;
 }) {
   return (
-    <figure className="w-full max-w-[220px]">
-      <div className="overflow-hidden rounded-[1.6rem] border-[5px] border-panel-2 bg-panel-2">
-        <Image src={src} alt={alt} width={width} height={height} className="h-auto w-full" />
-      </div>
-      <figcaption className="mt-2 text-center text-xs text-muted">{caption}</figcaption>
-    </figure>
+    <EvidenceFigure src={src} alt={alt} width={width} height={height} caption={caption} kind="Screenshot" className="dossier-phone-shot w-full max-w-[220px]" />
   );
 }
 
@@ -214,7 +162,7 @@ export function DataTable({
   className?: string;
 }) {
   return (
-    <div className={cn('overflow-x-auto rounded-lg border border-line', className)}>
+    <div className={cn('dossier-table overflow-x-auto rounded-lg border border-line', className)}>
       <table className="w-full min-w-[32rem] text-left text-sm">
         <thead className="bg-panel-2">
           <tr>

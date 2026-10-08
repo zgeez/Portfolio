@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ──────────────────────────────────────────────────────────────
-   Design tokens: instrument-grade dark theme.
+   Shared workbench palette for technical documents.
    Values are RGB triplets so Tailwind opacity modifiers work
    (e.g. bg-accent/10). See tailwind.config.ts for the mapping.
    ────────────────────────────────────────────────────────────── */
@@ -11,25 +11,24 @@
   :root {
     color-scheme: dark;
 
-    --bg: 6 10 13;            /* #060a0d */
-    --bg-elevated: 10 17 22;  /* #0a1116 */
-    --panel: 12 21 27;        /* #0c151b */
-    --panel-2: 16 27 34;      /* #101b22 */
-    --text: 237 246 247;      /* #edf6f7 */
-    --text-muted: 140 162 170;/* #8ca2aa */
-    --text-dim: 107 129 137;  /* #6b8189, labels only */
-    --line: 27 48 56;         /* #1b3038 */
-    --line-strong: 40 70 80;  /* #284650 */
-    --grid: rgba(100, 200, 210, 0.055);
+    --bg: 16 20 22;          /* #101416 */
+    --bg-elevated: 25 31 33; /* #191f21 */
+    --panel: 32 39 41;       /* #202729 */
+    --panel-2: 39 47 49;     /* #272f31 */
+    --text: 228 231 230;     /* #e4e7e6 */
+    --text-muted: 174 183 183; /* #aeb7b7 */
+    --text-dim: 143 153 153; /* #8f9999, labels only */
+    --line: 62 73 75;        /* #3e494b */
+    --line-strong: 83 98 100; /* #536264 */
+    --grid: rgba(133, 207, 194, 0.04);
 
-    --accent: 84 230 206;        /* #54e6ce */
-    --accent-strong: 115 242 220;/* #73f2dc */
+    --accent: 133 207 194;       /* #85cfc2 */
+    --accent-strong: 164 228 215; /* #a4e4d7 */
     --accent-blue: 110 180 255;  /* #6eb4ff */
     --warning: 242 184 91;       /* #f2b85b */
     --danger: 255 98 98;         /* #ff6262 */
 
     --radius: 0.4375rem;
-    --header-h: 4rem;
   }
 
   * {
@@ -38,7 +37,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-h) + 1rem);
+    scroll-padding-top: 1rem;
     background: rgb(var(--bg));
   }
 
@@ -60,7 +59,7 @@
 }
 
 @layer components {
-  /* Faint schematic grid, used behind the hero and diagrams. */
+  /* Faint schematic grid for technical diagrams. */
   .grid-bg {
     background-image:
       linear-gradient(var(--grid) 1px, transparent 1px),
@@ -88,15 +87,11 @@
     @apply text-accent underline-offset-4 transition-colors duration-150 hover:text-accent-strong hover:underline;
   }
 
-  .section-title {
-    @apply text-2xl font-semibold tracking-tight text-fg md:text-3xl;
-  }
 
   /* Status tags that keep visualizations honest (see brief §25). */
   .tag-illustrative,
   .tag-recorded,
-  .tag-simulated,
-  .tag-measured {
+  .tag-simulated {
     @apply inline-flex items-center gap-1.5 rounded-sm border px-1.5 py-0.5 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.14em];
   }
   .tag-illustrative {
@@ -104,9 +99,6 @@
   }
   .tag-recorded {
     @apply border-accent-blue/40 text-accent-blue;
-  }
-  .tag-measured {
-    @apply border-accent/40 text-accent;
   }
   .tag-simulated {
     @apply border-danger/50 text-danger;
@@ -117,14 +109,6 @@
    Motion. Every animation here explains data flow or a layer
    change; prefers-reduced-motion collapses them to near-instant.
    ────────────────────────────────────────────────────────────── */
-@keyframes layer-in-deeper {
-  from { opacity: 0; transform: translateY(14px) scale(0.985); filter: blur(2px); }
-  to   { opacity: 1; transform: none; filter: none; }
-}
-@keyframes layer-in-shallower {
-  from { opacity: 0; transform: translateY(-14px) scale(1.015); filter: blur(2px); }
-  to   { opacity: 1; transform: none; filter: none; }
-}
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -134,8 +118,6 @@
   to { stroke-dashoffset: -24; }
 }
 
-.animate-layer-deeper { animation: layer-in-deeper 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.animate-layer-shallower { animation: layer-in-shallower 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .animate-fade-in { animation: fade-in 240ms ease-out both; }
 .trace-flow { stroke-dasharray: 4 8; animation: trace-flow 1.6s linear infinite; }
 

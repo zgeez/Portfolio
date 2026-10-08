@@ -101,7 +101,7 @@ export function XorDiffDemo() {
         </div>
       </div>
       <p className="border-t border-line px-4 py-3 text-xs text-dim">
-        Bars that turn on are drawn in cyan, bars that turn off in amber; coil polarity sets the direction of travel.
+        Bars that turn on are drawn in mint, bars that turn off in amber; coil polarity sets the direction of travel.
         The firmware’s own glyphs may differ slightly from this standard font.
       </p>
     </div>

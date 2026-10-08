@@ -8,10 +8,10 @@ export const asset = (path: string) => `${BASE_PATH}/${path.replace(/^\/+/, '')}
 export const SITE_URL = 'https://zgeez.github.io/portfolio';
 
 export const site = {
+  title: "Ziad's Portfolio",
   name: 'Ziad Ghanem',
   role: 'Embedded & Firmware Engineer',
   tagline: 'I build systems where software meets physical hardware.',
-  stack: ['STM32', 'ESP32', 'FreeRTOS', 'C/C++', 'Sensing', 'Instrumentation'],
   location: 'Brooklyn, NY',
   email: 'zghanema@gmail.com',
   github: 'https://github.com/zgeez',

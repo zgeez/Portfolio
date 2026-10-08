@@ -49,7 +49,7 @@ type Props = {
  */
 export function ProbeDiagram({ data, minWidth = 540, className }: Props) {
   const [hovered, setHovered] = useState<string | null>(null);
-  const [locked, setLocked] = useState<string | null>(null);
+  const [locked, setLocked] = useState<string | null>(() => data.nodes.find(node => node.variant === 'core')?.id ?? data.nodes[0]?.id ?? null);
   const activeId = hovered ?? locked;
   const active = data.nodes.find((n) => n.id === activeId) ?? null;
 
@@ -80,8 +80,8 @@ export function ProbeDiagram({ data, minWidth = 540, className }: Props) {
   };
 
   return (
-    <div className={cn('grid gap-4 xl:grid-cols-[minmax(0,1fr)_17rem]', className)}>
-      <div className="panel grid-bg overflow-x-auto p-3 sm:p-4">
+    <div className={cn('dossier-probe', className)}>
+      <div className="dossier-probe-canvas panel grid-bg overflow-x-auto p-3 sm:p-4">
         <svg
           viewBox={data.viewBox}
           role="group"
@@ -199,12 +199,12 @@ export function ProbeDiagram({ data, minWidth = 540, className }: Props) {
         </svg>
       </div>
 
-      <aside aria-live="polite" className="panel min-h-[9rem] p-4">
+      <aside aria-live="polite" className="dossier-probe-detail min-h-[9rem]">
         {active ? (
           <div key={active.id} className="animate-fade-in">
             <p className="label flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              Probe · {locked === active.id ? 'locked' : 'hover'}
+              Selected component · {locked === active.id ? 'locked' : 'preview'}
             </p>
             <h4 className="mt-2 font-semibold text-fg">{active.probe.title}</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted">
@@ -220,19 +220,12 @@ export function ProbeDiagram({ data, minWidth = 540, className }: Props) {
           <div>
             <p className="label">Probe</p>
             <p className="mt-2 text-sm text-muted">
-              Hover, tap or tab to a block to read what it does. Click to hold a reading.
+              Hover or focus a block to preview it. Select a block to keep its details open.
             </p>
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {data.nodes.map((n) => (
-                <li key={n.id}>
-                  <button type="button" className="chip min-h-8 hover:border-accent/50 hover:text-fg" onClick={() => setLocked(n.id)}>
-                    {n.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
           </div>
         )}
+        <div className="dossier-probe-selectors" aria-label="Choose a component">{data.nodes.map(node => <button key={node.id} type="button" className="chip hover:border-accent/50 hover:text-fg" aria-pressed={locked === node.id} onClick={() => { setHovered(null); setLocked(node.id); }}>{node.label}</button>)}</div>
+        <noscript><div className="mt-5 space-y-3">{data.nodes.map(node => <details key={node.id}><summary>{node.probe.title}</summary><ul className="mt-2 space-y-2 text-sm text-muted">{node.probe.items.map(item => <li key={item}>{item}</li>)}</ul></details>)}</div></noscript>
       </aside>
     </div>
   );

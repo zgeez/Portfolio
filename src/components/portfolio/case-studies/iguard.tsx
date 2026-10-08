@@ -1,6 +1,5 @@
-import type { Project } from '@/data/projects';
 import { asset } from '@/data/site';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { CaseSection } from '@/components/projects/project-chapter';
 import { Bullets, DataTable, PhoneShot } from '@/components/portfolio/ui';
 
 const img = (name: string) => asset(`assets/iguard/${name}`);
@@ -14,24 +13,12 @@ const SCREENS = [
   ['settings.jpeg', 'Settings and profile', 'Settings', 1969],
 ] as const;
 
-export function IGuardCaseStudy({ project }: { project: Project }) {
+export function IGuardCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} />
-        <OnThisPage
-          items={[
-            { id: 'overview', label: 'Overview' },
-            { id: 'features', label: 'Features' },
-            { id: 'architecture', label: 'Architecture' },
-            { id: 'screens', label: 'Screens' },
-            { id: 'challenges', label: 'Challenges' },
-          ]}
-        />
-      </div>
+    <div className="dossier-case-body">
 
       <CaseSection id="overview" eyebrow="Overview" title="Community security, in real time">
-        <div className="max-w-3xl space-y-4 text-muted">
+        <div className="dossier-split"><div className="space-y-4 text-muted">
           <p>
             A cross-platform Flutter app for Android and iOS that lets businesses share security incidents, receive
             real-time alerts, and strengthen collective security through collaborative reporting and geo-fenced
@@ -41,7 +28,7 @@ export function IGuardCaseStudy({ project }: { project: Project }) {
             Powered by Firebase, it lets businesses report incidents instantly, receive alerts for nearby events, and
             access community-driven security information to help prevent theft.
           </p>
-        </div>
+        </div><div className="flex justify-center"><PhoneShot src={img('home.jpeg')} alt="iGuard home screen with the incident feed" caption="Home feed — community incidents at a glance." width={921} height={1964} /></div></div>
       </CaseSection>
 
       <CaseSection id="features" eyebrow="Features" title="What it does">
@@ -76,7 +63,7 @@ export function IGuardCaseStudy({ project }: { project: Project }) {
       </CaseSection>
 
       <CaseSection id="screens" eyebrow="Screens" title="App interface">
-        <div className="grid grid-cols-2 justify-items-center gap-6 md:grid-cols-3 xl:grid-cols-6">
+        <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {SCREENS.map(([src, alt, cap, h]) => (
             <PhoneShot key={src} src={img(src)} alt={alt} caption={cap} width={src === 'register.jpeg' ? 1080 : 921} height={h} />
           ))}

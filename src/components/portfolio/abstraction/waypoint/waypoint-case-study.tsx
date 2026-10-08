@@ -1,7 +1,5 @@
-import type { Project } from '@/data/projects';
-import { waypointHeroMetrics, waypointLayers } from '@/data/waypoint';
-import { AbstractionLens } from '@/components/portfolio/abstraction/abstraction-lens';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { waypointLayers } from '@/data/waypoint';
+import { CaseSection, ProjectLayers } from '@/components/projects/project-chapter';
 import { Callout, DebugSteps } from '@/components/portfolio/ui';
 import {
   WaypointFirmwareLayer,
@@ -11,39 +9,19 @@ import {
   WaypointSystemLayer,
 } from './waypoint-layers';
 
-export function WaypointCaseStudy({ project }: { project: Project }) {
+export function WaypointCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={waypointHeroMetrics} />
-        <OnThisPage
-          items={[
-            { id: 'layers', label: 'Product → Protocol' },
-            { id: 'debugging', label: 'Debugging' },
-            { id: 'built-with', label: 'Built with' },
-          ]}
-        />
-      </div>
-
-      <section id="layers" aria-labelledby="layers-title" className="scroll-mt-24">
-        <div className="mb-8 max-w-3xl">
-          <p className="eyebrow">Abstraction lens</p>
-          <h2 id="layers-title" className="section-title mt-2">
-            From a glance to the wire
-          </h2>
-          <p className="mt-3 text-muted">Five layers, from what the ring tells you down to the bytes over BLE.</p>
-        </div>
-        <AbstractionLens
-          layers={waypointLayers}
-          panels={[
-            <WaypointProductLayer key="product" />,
-            <WaypointSystemLayer key="system" />,
-            <WaypointFirmwareLayer key="firmware" />,
-            <WaypointNavigationLayer key="navigation" />,
-            <WaypointProtocolLayer key="protocol" />,
-          ]}
-        />
-      </section>
+    <div className="dossier-case-body">
+      <ProjectLayers
+        layers={waypointLayers}
+        panels={[
+          <WaypointProductLayer key="product" />,
+          <WaypointSystemLayer key="system" />,
+          <WaypointFirmwareLayer key="firmware" />,
+          <WaypointNavigationLayer key="navigation" />,
+          <WaypointProtocolLayer key="protocol" />,
+        ]}
+      />
 
       <CaseSection id="debugging" eyebrow="Debugging" title="Bugs the tests caught">
         <div className="grid gap-5 lg:grid-cols-2">
@@ -71,7 +49,7 @@ export function WaypointCaseStudy({ project }: { project: Project }) {
               steps={[
                 { stage: 'Risk', text: 'Quantizing bearing − heading directly makes the pointer leap across the ring as heading crosses 0°/360°.' },
                 { stage: 'Fix', text: 'Take the shortest signed turn, −180° to 180°, before quantizing to 22.5° pixels.' },
-                { stage: 'Result', text: 'No jump at north. Drag the heading through 0° in the Sensor / nav layer to see it.' },
+            { stage: 'Result', text: 'No jump at north. Use the heading slider in the Sensor / nav chapter to see it.' },
               ]}
             />
           </article>

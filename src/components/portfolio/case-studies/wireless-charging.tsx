@@ -1,16 +1,8 @@
-import type { Project } from '@/data/projects';
 import { asset } from '@/data/site';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { CaseSection } from '@/components/projects/project-chapter';
 import { Bullets, Callout, DataTable, Figure } from '@/components/portfolio/ui';
 
 const img = (name: string) => asset(`assets/dwpt/${name}`);
-
-const METRICS = [
-  { value: '< 3 mi', label: 'of lane offsets an EV’s daily energy', detail: 'simulated, 42nd St' },
-  { value: '9–28%', label: 'SOC gain per trip', detail: 'WPT-4, 22 kW' },
-  { value: '≈35%', label: 'lower CapEx per lane-mile', detail: 'WPT-4 vs dual-pad WPT-3' },
-  { value: '±5%', label: 'pickup vs. published field data' },
-];
 
 const PIPELINE = [
   { stage: 'SUMO', detail: 'per-vehicle speed traces' },
@@ -18,24 +10,12 @@ const PIPELINE = [
   { stage: 'Python', detail: 'lifecycle cost & sensitivity' },
 ];
 
-export function WirelessChargingCaseStudy({ project }: { project: Project }) {
+export function WirelessChargingCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={METRICS} />
-        <OnThisPage
-          items={[
-            { id: 'problem', label: 'Problem' },
-            { id: 'method', label: 'Method' },
-            { id: 'results', label: 'Results' },
-            { id: 'validation', label: 'Validation' },
-            { id: 'impact', label: 'Impact & next' },
-          ]}
-        />
-      </div>
+    <div className="dossier-case-body">
 
       <CaseSection id="problem" eyebrow="Problem & goal" title="Can 42nd Street charge cars in motion?">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+        <div className="dossier-split">
           <div className="space-y-4 text-muted">
             <p>
               Simulated SAE J2954 lanes on Midtown’s busiest crosstown artery. 42nd St averages{' '}

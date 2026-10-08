@@ -5,7 +5,7 @@ import { Bullets, Callout, Chips, ExternalLink, Figure } from '@/components/port
 export function ProductLayer() {
   return (
     <div className="space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+      <div className="dossier-split">
         <div className="space-y-4 text-muted">
           <p className="text-lg leading-relaxed text-fg">One board, three instruments, one timeline.</p>
           <p>
@@ -30,6 +30,7 @@ export function ProductLayer() {
           width={2450}
           height={1575}
           priority
+          kind="Recorded capture"
           caption="Generator controls on the left, capture display on the right; here a 10 kHz sine measured at 9999.822 Hz."
         />
       </div>

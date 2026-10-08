@@ -30,7 +30,7 @@ export function SignalsLayer() {
           ]}
         />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+        <div id="postmortem-sync-skew" className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
           <Callout tone="warning" title="A shared start is not a shared sampling instant">
             <p>
               Measured skew between the two paths is <strong className="text-fg">−120 ns</strong>. That figure is not

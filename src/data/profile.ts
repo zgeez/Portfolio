@@ -13,7 +13,6 @@ export const research = {
     'Led firmware/software development on a 3-person Senior Design team, now continuing the EEG work as M.S. research. The best mental-math Random Forest model reached 82.9% Rest-vs-Task block accuracy.',
     'Built a MATLAB acquisition pipeline for real-time filtering, Welch PSD, artifact gating, visualization, logging, and synchronized task markers.',
   ],
-  tags: ['ESP32-S3', 'ADS1299', 'SPI', '8 ch · 24-bit · 250 Hz', 'MATLAB', 'Signal processing'],
   project: 'eeg-acquisition-neurofeedback-system',
 };
 
@@ -36,7 +35,6 @@ export const experience = [
 
 export const education = {
   school: 'New York Institute of Technology',
-  location: 'New York, NY',
   degrees: [
     { name: 'M.S. Electrical and Computer Engineering (Accelerated Program)', date: 'Expected May 2027' },
     { name: 'B.S. Electrical and Computer Engineering with Honors', date: 'May 2026' },
@@ -50,26 +48,28 @@ export const credentials = {
     { title: 'Embedded Systems Programming on ARM Cortex-M3/M4', issuer: 'FastBit Academy', date: 'Mar 2025' },
     { title: 'Embedded Interface Design', issuer: 'University of Colorado Boulder', date: 'Aug 2025' },
     { title: 'C Programming with Linux', issuer: 'Dartmouth College', date: 'Jun 2025' },
+    { title: 'Computer Vision Engineer', issuer: 'MathWorks', date: '' },
+    { title: 'Software Development Lifecycle', issuer: 'University of Minnesota', date: '' },
   ],
-  also: ['Computer Vision Engineer (MathWorks)', 'Software Development Lifecycle (University of Minnesota)'],
+
 };
 
-/** Skills as abstraction layers, each pointing at projects that demonstrate it. */
-export const skillLayers: { layer: string; items: string[]; evidence: string[] }[] = [
-  { layer: 'Application', items: ['Python', 'PySide6', 'MATLAB'], evidence: ['stm32-mixed-signal-instrument', 'eeg-acquisition-neurofeedback-system'] },
-  { layer: 'System', items: ['FreeRTOS', 'Linux'], evidence: ['stm32-mixed-signal-instrument', 'smart-security-camera-raspberry-pi'] },
-  { layer: 'Firmware', items: ['C', 'C++', 'ARM Assembly'], evidence: ['stm32-mixed-signal-instrument', 'led-waypoint-compass', 'eeg-acquisition-neurofeedback-system'] },
-  { layer: 'Protocols', items: ['USB', 'BLE', 'SPI', 'I2C', 'UART', 'MQTT'], evidence: ['stm32-mixed-signal-instrument', 'led-waypoint-compass', 'eeg-acquisition-neurofeedback-system', 'iot-device-automation'] },
-  { layer: 'Hardware', items: ['STM32', 'ESP32', 'MSP430', 'ATmega328', 'ARM Cortex-M'], evidence: ['stm32-mixed-signal-instrument', 'led-waypoint-compass', 'eeg-acquisition-neurofeedback-system'] },
-  { layer: 'Peripherals', items: ['ADC', 'DAC', 'DMA', 'Timers', 'GPIO'], evidence: ['stm32-mixed-signal-instrument'] },
-  { layer: 'Debug', items: ['JTAG/SWD', 'Oscilloscope', 'Logic analyzer', 'DMM'], evidence: ['stm32-mixed-signal-instrument', 'eeg-acquisition-neurofeedback-system'] },
-  { layer: 'Tooling', items: ['CMake', 'GCC', 'Git', 'STM32CubeIDE', 'ESP-IDF', 'PlatformIO', 'KiCad'], evidence: ['stm32-mixed-signal-instrument', 'led-waypoint-compass'] },
+/** Skills grouped by abstraction layer. */
+export const skillLayers: { layer: string; items: string[] }[] = [
+  { layer: 'Application', items: ['Python', 'PySide6', 'MATLAB'] },
+  { layer: 'System', items: ['FreeRTOS', 'Linux'] },
+  { layer: 'Firmware', items: ['C', 'C++', 'ARM Assembly'] },
+  { layer: 'Protocols', items: ['USB', 'BLE', 'SPI', 'I2C', 'UART', 'MQTT'] },
+  { layer: 'Hardware', items: ['STM32', 'ESP32', 'MSP430', 'ATmega328', 'ARM Cortex-M'] },
+  { layer: 'Peripherals', items: ['ADC', 'DAC', 'DMA', 'Timers', 'GPIO'] },
+  { layer: 'Debug', items: ['JTAG/SWD', 'Oscilloscope', 'Logic analyzer', 'DMM'] },
+  { layer: 'Tooling', items: ['CMake', 'GCC', 'Git', 'STM32CubeIDE', 'ESP-IDF', 'PlatformIO', 'KiCad'] },
 ];
 
 export type DebugStory = {
   id: string;
   project: string;
-  /** Deep link into the project page, e.g. an abstraction-lens layer. */
+  /** Direct anchor to the corresponding project postmortem. */
   anchor: string;
   title: string;
   headline: string;
@@ -80,7 +80,7 @@ export const debugStories: DebugStory[] = [
   {
     id: 'usb-latency',
     project: 'stm32-mixed-signal-instrument',
-    anchor: 'lens-firmware',
+    anchor: 'postmortem-usb-latency',
     title: 'STM32 USB latency floor',
     headline: '20 ms → 0.22 ms',
     steps: [
@@ -94,7 +94,7 @@ export const debugStories: DebugStory[] = [
   {
     id: 'sync-skew',
     project: 'stm32-mixed-signal-instrument',
-    anchor: 'lens-signals',
+    anchor: 'postmortem-sync-skew',
     title: 'Analog/digital synchronization',
     headline: '−120 ns, explained',
     steps: [
@@ -108,7 +108,7 @@ export const debugStories: DebugStory[] = [
   {
     id: 'eeg-labels',
     project: 'eeg-acquisition-neurofeedback-system',
-    anchor: 'lens-classification',
+    anchor: 'postmortem-eeg-labels',
     title: 'EEG label and data quality',
     headline: '70.0% → 82.9%',
     steps: [

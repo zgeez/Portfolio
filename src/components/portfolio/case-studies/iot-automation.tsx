@@ -1,35 +1,15 @@
-import type { Project } from '@/data/projects';
 import { asset } from '@/data/site';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { CaseSection } from '@/components/projects/project-chapter';
 import { Bullets, Callout, DataTable, Figure, PhoneShot } from '@/components/portfolio/ui';
 
 const img = (name: string) => asset(`assets/iot-automation/${name}`);
 
-const METRICS = [
-  { value: '<200 ms', label: 'command round trip', detail: 'reserved MQTT topics' },
-  { value: '×3', label: 'battery life vs. baseline', detail: 'multi-mode deep sleep' },
-  { value: '~80 ms', label: 'faster reconnect', detail: 'MQTT session in RTC memory' },
-];
-
-export function IotAutomationCaseStudy({ project }: { project: Project }) {
+export function IotAutomationCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={METRICS} />
-        <OnThisPage
-          items={[
-            { id: 'overview', label: 'Overview' },
-            { id: 'architecture', label: 'Architecture' },
-            { id: 'firmware', label: 'Firmware & power' },
-            { id: 'app', label: 'Mobile app' },
-            { id: 'debugging', label: 'Challenges' },
-            { id: 'stack', label: 'Stack & next' },
-          ]}
-        />
-      </div>
+    <div className="dossier-case-body">
 
       <CaseSection id="overview" eyebrow="Overview" title="Retrofitting machines with cloud automation">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
+        <div className="dossier-split">
           <div className="space-y-4 text-muted">
             <p>
               A modular, battery-friendly platform that retrofits legacy machinery with AWS-connected control: instant,

@@ -1,15 +1,13 @@
-import type { Project } from '@/data/projects';
 import {
-  stm32HeroMetrics,
   stm32Layers,
   stm32Limits,
   stm32Links,
   stm32Metrics,
   stm32Validation,
 } from '@/data/stm32-msi';
-import { AbstractionLens } from '@/components/portfolio/abstraction/abstraction-lens';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
-import { Bullets, Callout, DataTable, ExternalLink, MetricGrid } from '@/components/portfolio/ui';
+import { CaseSection, ProjectLayers } from '@/components/projects/project-chapter';
+import { Bullets, Callout, DataTable, ExternalLink, MetricGrid, Figure } from '@/components/portfolio/ui';
+import { asset } from '@/data/site';
 import { ProductLayer } from './product-layer';
 import { SystemLayer } from './system-layer';
 import { FirmwareLayer } from './firmware-layer';
@@ -28,25 +26,11 @@ const MEASUREMENTS: [string, string, string][] = [
   ['10 kHz sine, measured', '9999.822 Hz', 'scope readout in the application'],
 ];
 
-export function Stm32CaseStudy({ project }: { project: Project }) {
+export function Stm32CaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={stm32HeroMetrics} />
-        <OnThisPage
-          items={[
-            { id: 'overview', label: 'Overview' },
-            { id: 'layers', label: 'Architecture → Signals' },
-            { id: 'measurements', label: 'Measurements' },
-            { id: 'validation', label: 'Validation' },
-            { id: 'limitations', label: 'Limitations' },
-            { id: 'source', label: 'Source' },
-          ]}
-        />
-      </div>
-
+    <div className="dossier-case-body">
       <CaseSection id="overview" eyebrow="Overview" title="Generate, capture and correlate from one board">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div className="dossier-split">
           <div className="space-y-4 text-muted">
             <p>
               The project asked whether one board a student already owns can do the work of three bench instruments,
@@ -59,34 +43,21 @@ export function Stm32CaseStudy({ project }: { project: Project }) {
               what it says, with measurements, tests, and stated limits.
             </p>
           </div>
-          <MetricGrid
-            className="md:grid-cols-2"
-            metrics={[stm32Metrics.tasks, stm32Metrics.dma, stm32Metrics.commands, stm32Metrics.ddsStep]}
-          />
+          <Figure src={asset('assets/stm32-msi/mixed_capture.png')} alt="Instrument application showing analog and digital capture on a shared timeline" width={2450} height={1575} priority kind="Recorded capture" caption="One capture, a common timeline. Analog and digital evidence from the real host application." />
         </div>
+        <MetricGrid className="mt-6" metrics={[stm32Metrics.tasks, stm32Metrics.dma, stm32Metrics.commands, stm32Metrics.ddsStep]} />
       </CaseSection>
 
-      <section id="layers" aria-labelledby="layers-title" className="scroll-mt-24">
-        <div className="mb-8 max-w-3xl">
-          <p className="eyebrow">Abstraction lens</p>
-          <h2 id="layers-title" className="section-title mt-2">
-            Peel the system apart
-          </h2>
-          <p className="mt-3 text-muted">
-            Five layers, from what the instrument does down to the signals it captures. Stop at any depth.
-          </p>
-        </div>
-        <AbstractionLens
-          layers={stm32Layers}
-          panels={[
-            <ProductLayer key="product" />,
-            <SystemLayer key="system" />,
-            <FirmwareLayer key="firmware" />,
-            <HardwareLayer key="hardware" />,
-            <SignalsLayer key="signals" />,
-          ]}
-        />
-      </section>
+      <ProjectLayers
+        layers={stm32Layers.map(layer => layer.id === 'product' ? { ...layer, label: 'Instrument' } : layer)}
+        panels={[
+          <ProductLayer key="product" />,
+          <SystemLayer key="system" />,
+          <FirmwareLayer key="firmware" />,
+          <HardwareLayer key="hardware" />,
+          <SignalsLayer key="signals" />,
+        ]}
+      />
 
       <CaseSection id="measurements" eyebrow="Measurements" title="Measured results">
         <DataTable

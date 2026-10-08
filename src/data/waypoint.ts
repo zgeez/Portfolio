@@ -1,7 +1,7 @@
 // Verified facts for the LED Waypoint Compass. Source: the project write-up.
 
 import type { ProbeDiagramData } from '@/components/portfolio/abstraction/probe-diagram';
-import type { LensLayerMeta } from '@/components/portfolio/abstraction/abstraction-lens';
+import type { ProjectLayer } from '@/components/projects/types';
 
 export const waypointHeroMetrics = [
   { value: '<2°', label: 'reported heading deviation', detail: 'BNO08x · project write-up' },
@@ -10,7 +10,7 @@ export const waypointHeroMetrics = [
   { value: '2 m', label: 'arrival radius', detail: 'great-circle distance' },
 ];
 
-export const waypointLayers: LensLayerMeta[] = [
+export const waypointLayers: ProjectLayer[] = [
   { id: 'product', label: 'Product', caption: 'A compass that points instead of mapping' },
   { id: 'system', label: 'System', caption: 'Sensors, MCU, ring and phone' },
   { id: 'firmware', label: 'Firmware', caption: 'A ring that never shows a direction it cannot justify' },

@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# Regenerable visual audit captures
+/docs/audit/captures/
+
 # next.js
 /.next/
 /out/
@@ -37,9 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.genkit/*
 .env*
-
-# firebase
-firebase-debug.log
-firestore-debug.log

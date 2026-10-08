@@ -99,7 +99,7 @@ export function FirmwareLayer() {
       </div>
 
       {/* Debug story */}
-      <section aria-labelledby="fw-debug" className="space-y-5">
+      <section id="postmortem-usb-latency" aria-labelledby="fw-debug" className="space-y-5">
         <div>
           <p className="eyebrow text-warning">Debug log · postmortem</p>
           <h4 id="fw-debug" className="mt-1 text-xl font-semibold text-fg">

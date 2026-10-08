@@ -2,16 +2,14 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { SITE_URL, site } from '@/data/site';
-import { Header } from '@/components/portfolio/header';
-import { ContactFooter } from '@/components/portfolio/contact-footer';
 
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
 
-const title = `${site.name} — ${site.role}`;
+const title = site.title;
 
 export const metadata: Metadata = {
-  title: { default: title, template: `%s | ${site.name}` },
+  title,
   description: site.description,
   authors: [{ name: site.name, url: SITE_URL }],
   alternates: { canonical: `${SITE_URL}/` },
@@ -27,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#060a0d',
+  themeColor: '#101416',
   colorScheme: 'dark',
 };
 
@@ -35,11 +33,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
-        <Header />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
-        <ContactFooter />
       </body>
     </html>
   );

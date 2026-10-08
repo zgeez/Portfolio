@@ -8,7 +8,7 @@ const img = (name: string) => asset(`assets/eeg-neurofeedback/${name}`);
 export function EegProductLayer() {
   return (
     <div className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
+      <div className="dossier-split">
         <div className="space-y-4 text-muted">
           <p className="text-lg leading-relaxed text-fg">
             Can a locally processed, low-cost 8-channel EEG rig reliably separate rest from cognitive task?
@@ -31,6 +31,7 @@ export function EegProductLayer() {
         <Figure
           src={img('bench_setup.jpg')}
           alt="EEG bench setup with ADS1299EEG-FE front end, MMB0 motherboard, ESP32-S3 on a breadboard, and electrode leads"
+          kind="Hardware photo"
           width={1200}
           height={1600}
           caption="Bench setup: ADS1299EEG-FE front end, MMB0 motherboard, ESP32-S3 SPI bridge, and electrode leads."
@@ -229,7 +230,7 @@ export function EegProcessingLayer() {
         ))}
       </div>
 
-      <section aria-labelledby="eeg-markers" className="space-y-4">
+      <section id="postmortem-eeg-labels" aria-labelledby="eeg-markers" className="space-y-4">
         <h4 id="eeg-markers" className="font-semibold text-fg">
           Labels come from the task launcher
         </h4>

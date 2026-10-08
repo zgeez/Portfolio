@@ -25,11 +25,9 @@ export type Project = {
   hook: string;
   image: string;
   imageAlt: string;
-  imageHint: string;
   /** Lightweight card thumbnail (generated from `image`). */
   thumb: string;
   category: 'firmware' | 'research' | 'embedded-linux' | 'iot' | 'software';
-  featured: boolean;
   order: number;
   role?: string;
   technologies: string[];
@@ -48,10 +46,8 @@ export const projects: Project[] = [
     image: asset('assets/stm32-msi/mixed_capture.png'),
     imageAlt:
       'Mixed capture view: a sine on analog channel CH1 above eight logic traces D0 to D7, plotted against time from trigger',
-    imageHint: 'mixed-signal capture with analog and logic traces on one timeline',
     thumb: asset('assets/thumbs/stm32-mixed-signal-instrument.webp'),
     category: 'firmware',
-    featured: true,
     order: 1,
     role: 'Personal project · firmware, host application, protocol and validation',
     technologies: ['STM32F407', 'C', 'FreeRTOS', 'DMA', 'USB CDC', 'Python', 'PySide6'],
@@ -70,10 +66,8 @@ export const projects: Project[] = [
     hook: 'ESP32-S3 SPI firmware drives a TI ADS1299 at 250 Hz into a MATLAB filtering, PSD and classification pipeline.',
     image: asset('assets/eeg-neurofeedback/matlab_ui.png'),
     imageAlt: 'MATLAB acquisition interface showing raw EEG, filtered channels, Welch PSD and model focus index',
-    imageHint: 'EEG acquisition interface with raw signals, PSD, and focus index',
     thumb: asset('assets/thumbs/eeg-acquisition-neurofeedback-system.webp'),
     category: 'research',
-    featured: true,
     order: 2,
     role: 'Software/firmware lead · 3-person Senior Design team, extended into M.S. EEG research at NYIT',
     technologies: ['ESP32-S3', 'TI ADS1299', 'SPI', 'MATLAB', 'Welch PSD', 'Random Forest'],
@@ -92,10 +86,8 @@ export const projects: Project[] = [
     hook: 'Quaternion heading and great-circle bearing reduced to one lit pixel, with BLE telemetry and state that survives a reboot.',
     image: asset('assets/waypoint-compass/main.jpg'),
     imageAlt: 'LED compass ring glowing on a 3D-printed enclosure',
-    imageHint: 'LED compass ring glowing on a 3D-printed enclosure',
     thumb: asset('assets/thumbs/led-waypoint-compass.webp'),
     category: 'firmware',
-    featured: true,
     order: 3,
     role: 'Personal project',
     technologies: ['ESP32-S3', 'NimBLE', 'BLE NUS', 'BNO08x', 'GPS', 'NVS', 'Flutter'],
@@ -114,10 +106,8 @@ export const projects: Project[] = [
     hook: 'Bistable magnetic segments and XOR-diffed pulse actuation: power is spent only when a segment changes.',
     image: asset('assets/electromagnetic-display/demo-poster.jpg'),
     imageAlt: 'Kinetic seven-segment digit with raised magnetic segments in a white 3D-printed frame',
-    imageHint: 'Electromagnetic Kinetic 7-Segment Display',
     thumb: asset('assets/thumbs/electromagnetic-kinetic-7-segment-display.webp'),
     category: 'firmware',
-    featured: false,
     order: 4,
     technologies: ['C', 'STM32 HAL', 'H-bridge drive', 'N35 magnets', 'Fusion 360', 'KiCad'],
     metrics: [
@@ -134,10 +124,8 @@ export const projects: Project[] = [
     hook: 'PIR-gated YOLOv11n on a Raspberry Pi 5, INT8-quantized with an NCNN backend.',
     image: asset('assets/security-cam/main.jpg'),
     imageAlt: 'Raspberry Pi 5 security camera with Pi Camera Module',
-    imageHint: 'raspberry pi security camera system',
     thumb: asset('assets/thumbs/smart-security-camera-raspberry-pi.webp'),
     category: 'embedded-linux',
-    featured: false,
     order: 5,
     technologies: ['Raspberry Pi 5', 'Linux', 'Python', 'YOLOv11n', 'NCNN'],
     metrics: [{ value: '3 → 30', label: 'FPS after optimization' }],
@@ -151,10 +139,8 @@ export const projects: Project[] = [
     hook: 'ESP-IDF nodes registered with AWS IoT Core over MQTT, driven from a Flutter app.',
     image: asset('assets/iot-automation/main.png'),
     imageAlt: 'IoT automation hardware and companion app',
-    imageHint: 'iot circuit',
     thumb: asset('assets/thumbs/iot-device-automation.webp'),
     category: 'iot',
-    featured: false,
     order: 6,
     technologies: ['ESP32', 'ESP-IDF', 'MQTT', 'AWS IoT', 'Flutter'],
   },
@@ -167,10 +153,8 @@ export const projects: Project[] = [
     hook: 'SUMO traffic traces fed into a MATLAB charging model to size SAE J2954 lanes on 42nd Street.',
     image: asset('assets/dwpt/main-poster.jpg'),
     imageAlt: 'SUMO traffic simulation of the 5th Avenue and 42nd Street intersection',
-    imageHint: 'wireless charging road',
     thumb: asset('assets/thumbs/nyc-dynamic-wireless-charging-roads.webp'),
     category: 'research',
-    featured: false,
     order: 7,
     role: 'Team lead on a 3-person research group',
     technologies: ['SUMO', 'MATLAB', 'Python'],
@@ -185,17 +169,13 @@ export const projects: Project[] = [
     hook: 'Cross-platform Flutter and Firebase app with geo-fenced real-time alerts.',
     image: asset('assets/iguard/home.jpeg'),
     imageAlt: 'iGuard app home screen showing an incident feed',
-    imageHint: 'mobile app incident reporting',
     thumb: asset('assets/thumbs/iguard-incident-reporting-app.webp'),
     category: 'software',
-    featured: false,
     order: 8,
     technologies: ['Flutter', 'Firebase', 'Android', 'iOS'],
   },
 ];
 
 export const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
-export const featuredProjects = sortedProjects.filter((p) => p.featured);
-export const secondaryProjects = sortedProjects.filter((p) => !p.featured);
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

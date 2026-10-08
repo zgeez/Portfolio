@@ -4,7 +4,7 @@
 // estimated; anything illustrative is labelled where it is rendered.
 
 import type { ProbeDiagramData } from '@/components/portfolio/abstraction/probe-diagram';
-import type { LensLayerMeta } from '@/components/portfolio/abstraction/abstraction-lens';
+import type { ProjectLayer } from '@/components/projects/types';
 
 export const stm32Links = {
   repo: 'https://github.com/zgeez/stm32-mixed-signal-instrument',
@@ -35,7 +35,7 @@ export const stm32HeroMetrics = [
   stm32Metrics.skew,
 ];
 
-export const stm32Layers: LensLayerMeta[] = [
+export const stm32Layers: ProjectLayer[] = [
   { id: 'product', label: 'Product', caption: 'What it is and what it measures' },
   { id: 'system', label: 'System', caption: 'Host, link and instrument blocks' },
   { id: 'firmware', label: 'Firmware', caption: 'Tasks, DMA and the protocol path' },

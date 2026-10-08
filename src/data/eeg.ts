@@ -3,7 +3,7 @@
 // Research results, not medical or diagnostic claims.
 
 import type { ProbeDiagramData } from '@/components/portfolio/abstraction/probe-diagram';
-import type { LensLayerMeta } from '@/components/portfolio/abstraction/abstraction-lens';
+import type { ProjectLayer } from '@/components/projects/types';
 
 export const eegSite = 'https://zgeez.github.io/EEG-Based-Neurofeedback-System/';
 
@@ -14,7 +14,7 @@ export const eegHeroMetrics = [
   { value: '33', label: 'completed labeled runs', detail: '4 task paradigms' },
 ];
 
-export const eegLayers: LensLayerMeta[] = [
+export const eegLayers: ProjectLayer[] = [
   { id: 'product', label: 'Product', caption: 'Can a low-cost rig separate rest from task?' },
   { id: 'system', label: 'System', caption: 'Electrode to dashboard, all local' },
   { id: 'acquisition', label: 'Acquisition', caption: 'ADS1299, SPI firmware and the montage' },

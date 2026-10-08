@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import type React from 'react';
-import { SITE_URL } from '@/data/site';
-import { getProject, projects, type Project } from '@/data/projects';
+import { SITE_URL, site } from '@/data/site';
+import { getProject, projects } from '@/data/projects';
+import { ProjectDossier } from '@/components/projects/project-dossier';
 import { Stm32CaseStudy } from '@/components/portfolio/abstraction/stm32/stm32-case-study';
 import { EegCaseStudy } from '@/components/portfolio/abstraction/eeg/eeg-case-study';
 import { WaypointCaseStudy } from '@/components/portfolio/abstraction/waypoint/waypoint-case-study';
@@ -14,7 +15,7 @@ import { IGuardCaseStudy } from '@/components/portfolio/case-studies/iguard';
 
 type Params = { params: Promise<{ slug: string }> };
 
-const CASE_STUDIES: Record<string, React.FC<{ project: Project }>> = {
+const CASE_STUDIES: Record<string, React.FC> = {
   'stm32-mixed-signal-instrument': Stm32CaseStudy,
   'eeg-acquisition-neurofeedback-system': EegCaseStudy,
   'led-waypoint-compass': WaypointCaseStudy,
@@ -32,11 +33,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: 'Project not found' };
+  if (!project) return { title: site.title };
   const url = `${SITE_URL}/projects/${project.slug}/`;
   const image = `${SITE_URL}${project.image.replace(/^\/portfolio/, '')}`;
   return {
-    title: project.title,
+    title: site.title,
     description: project.summary,
     alternates: { canonical: url },
     openGraph: {
@@ -58,8 +59,8 @@ export default async function ProjectPage({ params }: Params) {
   const CaseStudy = CASE_STUDIES[project.slug];
 
   return (
-    <div className="container py-10 md:py-14">
-      <CaseStudy project={project} />
-    </div>
+    <ProjectDossier project={project}>
+      <CaseStudy />
+    </ProjectDossier>
   );
 }

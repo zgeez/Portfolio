@@ -1,36 +1,21 @@
-import type { Project } from '@/data/projects';
 import { asset } from '@/data/site';
-import { AbstractionLens, type LensLayerMeta } from '@/components/portfolio/abstraction/abstraction-lens';
-import { CaseSection, OnThisPage, ProjectHeader } from '@/components/portfolio/project-header';
+import { ProjectLayers } from '@/components/projects/project-chapter';
+import { kineticLayers } from '@/data/project-dossiers';
+import { CaseSection } from '@/components/projects/project-chapter';
 import { Bullets, Callout, DataTable, Figure, MetricGrid } from '@/components/portfolio/ui';
 import { XorDiffDemo } from './xor-diff-demo';
 
 const img = (name: string) => asset(`assets/electromagnetic-display/${name}`);
 
-const LAYERS: LensLayerMeta[] = [
-  { id: 'product', label: 'Product', caption: 'A digit that moves instead of glowing' },
-  { id: 'mechanics', label: 'Mechanics', caption: 'Rails, magnets and a screw for a core' },
-  { id: 'electronics', label: 'Electronics', caption: 'Coils and H-bridges' },
-  { id: 'firmware', label: 'Firmware', caption: 'Pulse only what changes' },
-  { id: 'energy', label: 'Energy', caption: 'Where the 100× comes from' },
-];
-
-const HEADER_METRICS = [
-  { value: '~12.5 mW', label: 'average display power', detail: '≈2.5 mA at 5 V' },
-  { value: '100×', label: 'less than an LED digit', detail: '≈250 mA / ~1.25 W' },
-  { value: '25 ms', label: 'actuation pulse', detail: 'zero hold current' },
-  { value: '400', label: 'turns per coil', detail: 'M3 screw core' },
-];
-
 function ProductLayer() {
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,18rem)] lg:items-start">
+    <div className="dossier-split">
       <div className="space-y-4 text-muted">
         <p className="text-lg leading-relaxed text-fg">
           A tactile, daylight-readable digit that spends power only when it changes.
         </p>
         <p>
-          Traditional LED displays idle at ≈250 mA. Here each segment is a PLA bar with an N35 magnet; a 400-turn
+          The LED digit used for comparison draws ≈250 mA. Here each segment is a PLA bar with an N35 magnet; a 400-turn
           screw-core coil repels or attracts it for 25 ms, then consumes nothing until the next change.
         </p>
         <p>
@@ -145,45 +130,26 @@ function EnergyLayer() {
           { value: '0 mA', label: 'hold current' },
           { value: '~12.5 mW', label: 'average power' },
           { value: '~1.25 W', label: 'LED digit, for comparison' },
-          { value: '100×', label: 'less energy' },
+          { value: '100×', label: 'LED / kinetic power ratio' },
         ]}
       />
     </div>
   );
 }
 
-export function KineticCaseStudy({ project }: { project: Project }) {
+export function KineticCaseStudy() {
   return (
-    <div className="space-y-14 md:space-y-20">
-      <div className="space-y-8">
-        <ProjectHeader project={project} metrics={HEADER_METRICS} />
-        <OnThisPage
-          items={[
-            { id: 'layers', label: 'Product → Energy' },
-            { id: 'reflection', label: 'What worked & next' },
-            { id: 'built-with', label: 'Built with' },
-          ]}
-        />
-      </div>
-
-      <section id="layers" aria-labelledby="layers-title" className="scroll-mt-24">
-        <div className="mb-8 max-w-3xl">
-          <p className="eyebrow">Abstraction lens</p>
-          <h2 id="layers-title" className="section-title mt-2">
-            From a moving digit to milliwatts
-          </h2>
-        </div>
-        <AbstractionLens
-          layers={LAYERS}
-          panels={[
-            <ProductLayer key="product" />,
-            <MechanicsLayer key="mechanics" />,
-            <ElectronicsLayer key="electronics" />,
-            <FirmwareLayer key="firmware" />,
-            <EnergyLayer key="energy" />,
-          ]}
-        />
-      </section>
+    <div className="dossier-case-body">
+      <ProjectLayers
+        layers={kineticLayers}
+        panels={[
+          <ProductLayer key="product" />,
+          <MechanicsLayer key="mechanics" />,
+          <ElectronicsLayer key="electronics" />,
+          <FirmwareLayer key="firmware" />,
+          <EnergyLayer key="energy" />,
+        ]}
+      />
 
       <CaseSection id="reflection" eyebrow="Reflection" title="What worked, and what’s next">
         <div className="grid gap-4 md:grid-cols-3">

@@ -16,7 +16,7 @@ export const site = {
   email: 'zghanema@gmail.com',
   github: 'https://github.com/zgeez',
   linkedin: 'https://linkedin.com/in/ziad-ghanem/',
-  resume: asset('Ziad_Ghanem_Resume.pdf'),
+  resume: asset('resume.pdf'),
   description:
     'Embedded and firmware engineering portfolio featuring STM32, ESP32, FreeRTOS, real-time acquisition, sensing, instrumentation, and hardware/software debugging.',
 } as const;

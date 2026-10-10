@@ -299,7 +299,7 @@ try {
   assert.equal(await evaluate("document.querySelector('a[href*=\"/overview\"]') === null"), true, 'no links to the retired design');
   assert.equal(await evaluate("document.querySelectorAll('.bench-noscript li').length"), 8, 'non-JavaScript project fallback');
   await cdp('Emulation.setScriptExecutionDisabled', { value: false });
-  assert.equal((await fetch(`${base}/Ziad_Ghanem_Resume.pdf`)).status, 200);
+  assert.equal((await fetch(`${base}/resume.pdf`)).status, 200);
   assert.deepEqual(errors, [], 'no runtime, hydration, or network errors');
   console.log('PASS: bench homepage, fixed angle, distinct devices, all 8 projects, architecture and evidence tabs, gallery, debugging, experience, education/skills/credentials, desktop/laptop/tablet/mobile, pointer/keyboard, Escape/focus restoration, direct/legacy hashes, Back/Forward, reduced motion, retired overview and portfolio chrome removed, project return links, all project pages, retired prototype routes, non-JavaScript fallback, basePath assets, resume, and no browser errors.');
   console.log(`Screenshots saved to ${screenshots}/.`);

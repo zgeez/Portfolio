@@ -1,6 +1,8 @@
 # Ziad Ghanem — Embedded & Firmware Portfolio
 
-Static Next.js site deployed to GitHub Pages at <https://zgeez.github.io/portfolio/>.
+Static Next.js site deployed to GitHub Pages at <https://ziadg.com/>.
+The custom domain serves the site at `/`; generated assets and routes use that root path.
+`public/CNAME` preserves the custom domain in each deployment.
 
 The homepage is an angled **Embedded Lab Bench**. Physical equipment opens project,
 debugging, experience, and profile inspections. All eight projects use the shared
@@ -14,11 +16,11 @@ The production source contains the workbench and eight project dossiers. See the
 
 ```bash
 npm ci
-npm run dev         # http://localhost:9002/portfolio/
+npm run dev         # http://localhost:9002/
 npm run typecheck
 npm run lint
 npm run build       # static export to ./portfolio
-npm start           # serve the export at http://localhost:4173/portfolio/
+npm start           # serve the export at http://localhost:4173/
 ```
 
 CI (`.github/workflows/deploy.yml`) runs typecheck, lint and build on every push and PR, and
@@ -28,7 +30,7 @@ deploys `./portfolio` to the `gh-pages` branch from `master`.
 
 | Path | What |
 | --- | --- |
-| `src/data/site.ts` | Contact links, resume path, `asset()` helper for the `/portfolio` base path |
+| `src/data/site.ts` | Contact links, resume path, canonical domain, and public `asset()` helper |
 | `src/data/projects.ts` | Project registry shared by the homepage and `/projects/[slug]` |
 | `src/data/stm32-msi.ts`, `eeg.ts`, `waypoint.ts` | Verified facts, diagrams and layer definitions for the flagship case studies |
 | `src/data/profile.ts` | Experience, education, credentials, skills stack, debug stories |

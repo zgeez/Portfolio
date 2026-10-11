@@ -1,6 +1,6 @@
 // Visual/text audit captures for the local static portfolio (Chrome CDP, no dependencies).
 import { mkdir, writeFile } from 'node:fs/promises';
-const base = `${process.env.BENCH_ORIGIN ?? 'http://localhost:4173'}/portfolio`;
+const base = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debug = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
 const output = process.env.AUDIT_OUTPUT ?? 'docs/audit/captures';
 await mkdir(output, { recursive: true });

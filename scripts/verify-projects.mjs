@@ -5,7 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const origin = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debuggerOrigin = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
-const base = `${origin}/portfolio`;
+const base = origin;
 const entries = [
   ['stm32-mixed-signal-instrument', 'stm32', 'board'],
   ['eeg-acquisition-neurofeedback-system', 'eeg', 'eeg'],
@@ -90,8 +90,8 @@ try {
     assert.equal(await evaluate("document.title"), "Ziad's Portfolio");
     assert.equal(await evaluate("document.querySelectorAll('h1').length"), 1, 'one document title');
     assert.equal(await evaluate(`!!document.querySelector('.dossier-device-${artifact}')`), true, 'project-specific angled artifact');
-    assert.equal(await evaluate(`document.querySelector('.dossier-topbar a').getAttribute('href')`), `/portfolio/#${target}`, 'bench return target');
-    assert.equal(await evaluate("document.querySelector('link[rel=canonical]').href"), `https://zgeez.github.io/portfolio/projects/${slug}/`, 'canonical URL retained');
+    assert.equal(await evaluate(`document.querySelector('.dossier-topbar a').getAttribute('href')`), `/#${target}`, 'bench return target');
+    assert.equal(await evaluate("document.querySelector('link[rel=canonical]').href"), `https://ziadg.com/projects/${slug}/`, 'custom domain canonical URL');
     const chapters = await evaluate("[...document.querySelectorAll('.dossier-chapters a[href^=\"#\"]')].map(a=>a.hash.slice(1))");
     assert.ok(chapters.length >= 5, 'substantive project chapters');
     assert.deepEqual(await evaluate("[...document.querySelectorAll('[data-project-chapter]')].map(el=>el.id)"), chapters, 'rail exactly matches content and order');

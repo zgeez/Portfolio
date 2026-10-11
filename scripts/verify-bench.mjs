@@ -6,7 +6,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const origin = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debuggerOrigin = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
-const base = `${origin}/portfolio`;
+const base = origin;
 const route = `${base}/`;
 const screenshots = 'docs/bench';
 const tab = await fetch(`${debuggerOrigin}/json/new?about:blank`, { method: 'PUT' }).then((response) => response.json());
@@ -99,7 +99,7 @@ try {
   await clickObject('stm32');
   await inspection('stm32');
   assert.equal(await evaluate("document.activeElement.id"), 'bench-inspection-title');
-  assert.equal(await evaluate("document.querySelector('.inspection-link').getAttribute('href')"), '/portfolio/projects/stm32-mixed-signal-instrument/');
+  assert.equal(await evaluate("document.querySelector('.inspection-link').getAttribute('href')"), '/projects/stm32-mixed-signal-instrument/');
   assert.notEqual(await evaluate("getComputedStyle(document.querySelector('.bench-camera')).transform"), overviewTransform);
   assert.equal(await selectedVisible('stm32'), true, 'scope remains visible beside inspection');
   assert.equal(await evaluate("[...document.querySelectorAll('[data-object]:not(.is-selected)')].every(el=>el.tabIndex===-1)"), true, 'clipped objects do not receive keyboard focus during inspection');
@@ -141,7 +141,7 @@ try {
   await delay(850);
   await clickObject('board');
   await inspection('board');
-  assert.equal(await evaluate("document.querySelector('.inspection-link').getAttribute('href')"), '/portfolio/projects/stm32-mixed-signal-instrument/#lens-hardware');
+  assert.equal(await evaluate("document.querySelector('.inspection-link').getAttribute('href')"), '/projects/stm32-mixed-signal-instrument/#lens-hardware');
   assert.equal(await evaluate("history.state.benchObject"), 'board', 'accessory remembers its camera target');
   assert.equal(await selectedVisible('board'), true, 'development board focus fits');
 
@@ -202,7 +202,7 @@ try {
   assert.equal(await evaluate("location.search"), '?ref=bench', 'returning to the bench preserves query parameters');
   await go(`${route}#stm32`);
   await inspection('stm32');
-  assert.equal(await evaluate("document.querySelector('.bench-identity a').getAttribute('href')"), '/portfolio/');
+  assert.equal(await evaluate("document.querySelector('.bench-identity a').getAttribute('href')"), '/');
   await clickElement("document.querySelector('.bench-identity a')");
   await waitFor("location.hash === '' && !document.querySelector('#bench-inspection')", 'identity link returns to the base URL');
   await viewport(1920, 1080);
@@ -274,7 +274,7 @@ try {
   await evaluate("document.querySelector('.inspection-link').click()");
   await waitFor("location.pathname.endsWith('/projects/led-waypoint-compass/') && document.querySelector('h1')", 'full project link navigation');
   assert.equal(await evaluate("document.body.querySelector(':scope > header, :scope > footer') === null"), true, 'old portfolio chrome is removed');
-  assert.equal(await evaluate("document.querySelector('a[href=\"/portfolio/#waypoint\"]').textContent.includes('Back to workbench')"), true, 'project return link opens its bench inspection');
+  assert.equal(await evaluate("document.querySelector('a[href=\"/#waypoint\"]').textContent.includes('Back to workbench')"), true, 'project return link opens its bench inspection');
   await evaluate('history.back()');
   await inspection('waypoint');
   assert.equal(await evaluate("!!document.querySelector('.bench-workspace')"), true, 'browser Back restores the bench after opening a project');
@@ -290,7 +290,7 @@ try {
     await waitFor("document.querySelector('h1')", path);
     assert.equal(await evaluate("document.title"), "Ziad's Portfolio");
     assert.equal(await evaluate("document.body.querySelector(':scope > header, :scope > footer') === null"), true);
-    assert.equal(await evaluate("!![...document.querySelectorAll('a')].find(a=>a.textContent.includes('Back to workbench') && a.hash && a.pathname==='/portfolio/')"), true, 'each project returns to a bench target');
+    assert.equal(await evaluate("!![...document.querySelectorAll('a')].find(a=>a.textContent.includes('Back to workbench') && a.hash && a.pathname==='/')"), true, 'each project returns to a bench target');
   }
   assert.equal((await fetch(`${base}/overview/`)).status, 404, 'old overview route is removed');
   for (const retired of ['bench-prototype', 'project-sample']) assert.equal((await fetch(`${base}/${retired}/`)).status, 404, `${retired} route is removed`);

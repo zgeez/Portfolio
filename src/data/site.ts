@@ -2,10 +2,10 @@
 
 export const BASE_PATH = process.env.NEXT_PUBLIC_ASSET_PREFIX ?? '';
 
-/** Prefix a public-folder path with the GitHub Pages base path. */
+/** Resolve a public-folder path relative to the site's base path. */
 export const asset = (path: string) => `${BASE_PATH}/${path.replace(/^\/+/, '')}`;
 
-export const SITE_URL = 'https://zgeez.github.io/portfolio';
+export const SITE_URL = 'https://ziadg.com';
 
 export const site = {
   title: "Ziad's Portfolio",

@@ -1,9 +1,7 @@
 import type { NextConfig } from 'next';
 
-// Deployed to GitHub Pages at https://zgeez.github.io/portfolio/.
-// Set to false for local development or root-domain deployment.
-const isGitHubPages = true;
-const basePath = isGitHubPages ? '/portfolio' : '';
+// The custom domain serves the GitHub Pages export at https://ziadg.com/.
+const basePath = '';
 
 const nextConfig: NextConfig = {
   output: 'export',

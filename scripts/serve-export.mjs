@@ -1,11 +1,11 @@
-// Serves the static export at /portfolio/, mirroring the GitHub Pages base path.
-// Usage: npm run build && npm start  →  http://localhost:4173/portfolio/
+// Serves the static export at /, mirroring the custom domain.
+// Usage: npm run build && npm start  →  http://localhost:4173/
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve } from 'node:path';
 
 const ROOT = resolve('portfolio');
-const BASE = '/portfolio';
+const BASE = '';
 const PORT = Number(process.env.PORT ?? 4173);
 
 const TYPES = {
@@ -43,10 +43,6 @@ async function resolveFile(urlPath) {
 
 createServer(async (req, res) => {
   const path = (req.url ?? '/').split('?')[0];
-  if (path === '/' || path === BASE) {
-    res.writeHead(302, { Location: `${BASE}/` }).end();
-    return;
-  }
   const file = path.startsWith(`${BASE}/`) ? await resolveFile(path) : null;
   if (!file) {
     const notFound = join(ROOT, '404.html');

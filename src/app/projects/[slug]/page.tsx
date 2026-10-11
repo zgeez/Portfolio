@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return { title: site.title };
   const url = `${SITE_URL}/projects/${project.slug}/`;
-  const image = `${SITE_URL}${project.image.replace(/^\/portfolio/, '')}`;
+  const image = `${SITE_URL}${project.image}`;
   return {
     title: site.title,
     description: project.summary,

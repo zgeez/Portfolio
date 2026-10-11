@@ -30,7 +30,7 @@ async function settleScroll() {
   }
   throw new Error('Native fragment scroll did not settle');
 }
-async function go(path) { await cdp('Page.navigate',{url:`${origin}/portfolio/${path}`}); for(let i=0;i<80;i++) { if(await evaluate("Boolean(document.readyState==='complete' && (document.querySelector('.bench-workspace') || document.querySelector('.project-dossier')))")) break; await delay(100); } await evaluate('document.fonts.ready.then(()=>true)'); await delay(1000); }
+async function go(path) { await cdp('Page.navigate',{url:`${origin}/${path}`}); for(let i=0;i<80;i++) { if(await evaluate("Boolean(document.readyState==='complete' && (document.querySelector('.bench-workspace') || document.querySelector('.project-dossier')))")) break; await delay(100); } await evaluate('document.fonts.ready.then(()=>true)'); await delay(1000); }
 async function capture(name) { const result=await cdp('Page.captureScreenshot',{format:'png'}); await writeFile(`docs/bench/${name}.png`,Buffer.from(result.data,'base64')); }
 async function checkCaptions(label) {
   const collisions=await evaluate(`(() => {

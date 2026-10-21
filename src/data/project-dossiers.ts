@@ -12,7 +12,7 @@ export const kineticLayers: ProjectLayer[] = [
   { id: 'energy', label: 'Energy', caption: 'Where the 100× comes from' },
 ];
 
-export type ProjectArtifact = 'board' | 'eeg' | 'waypoint' | 'kinetic' | 'camera' | 'iot' | 'study' | 'app';
+export type ProjectArtifact = 'board' | 'eeg' | 'waypoint' | 'kinetic' | 'camera' | 'iot' | 'study' | 'app' | 'badge';
 type Metric = ProjectMetric & { detail?: string };
 type Presentation = { title: string[]; artifact: ProjectArtifact; device: string; chapters: ProjectChapter[]; metrics?: readonly Metric[] };
 const chapters = (items: [string, string][]): ProjectChapter[] => items.map(([id, label]) => ({ id, label }));
@@ -20,6 +20,10 @@ const layers = (items: ProjectLayer[]): ProjectChapter[] => items.map(({ id, lab
 
 // Presentation only. Results are retained from the existing technical documents.
 export const projectPresentations: Record<string, Presentation> = {
+  'smart-led-badge': {
+    title: ['Pixel', 'Badge'], artifact: 'badge', device: 'nRF52840 / 32 × 32 / BLE + NFC',
+    chapters: chapters([['overview', 'Overview'], ['architecture', 'Architecture'], ['hardware', 'Hardware'], ['firmware', 'Firmware'], ['app', 'Companion app'], ['mechanics', 'Mechanical design'], ['debugging', 'Debugging'], ['validation', 'Validation'], ['reflection', 'Reflection']]),
+  },
   'stm32-mixed-signal-instrument': {
     title: ['STM32', 'Mixed-Signal Instrument'], artifact: 'board', device: 'STM32F407 / DISCOVERY', metrics: stm32HeroMetrics,
     chapters: [...chapters([['overview', 'Overview']]), ...layers(stm32Layers).map(chapter => chapter.id === 'lens-product' ? { ...chapter, label: 'Instrument' } : chapter), ...chapters([['measurements', 'Measurements'], ['validation', 'Validation'], ['limitations', 'Limitations'], ['source', 'Source']])],

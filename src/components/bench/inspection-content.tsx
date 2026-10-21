@@ -49,7 +49,13 @@ function ProjectInspection({ target, project }: { target: BenchTarget; project: 
 }
 
 function ProjectLibrary({ onSelect }: { onSelect: Select }) {
-  return <div className="inspection-project-list">{sortedProjects.map((project) => <button key={project.slug} onClick={(event) => onSelect(projectTargets[project.slug], event.currentTarget)} className="inspection-project-row"><Image src={project.thumb} alt="" width={90} height={65} sizes="90px" /><span><strong>{project.shortTitle ?? project.title}</strong><small>{project.technologies.slice(0, 3).join(' / ')}</small></span><span aria-hidden="true">→</span></button>)}</div>;
+  return <div className="inspection-project-list">{sortedProjects.map((project) => {
+    const target = projectTargets[project.slug];
+    const content = <><Image src={project.thumb} alt="" width={90} height={65} sizes="90px" /><span><strong>{project.shortTitle ?? project.title}</strong><small>{project.technologies.slice(0, 3).join(' / ')}</small></span><span aria-hidden="true">→</span></>;
+    return target
+      ? <button key={project.slug} onClick={(event) => onSelect(target, event.currentTarget)} className="inspection-project-row">{content}</button>
+      : <Link key={project.slug} href={`/projects/${project.slug}/`} className="inspection-project-row">{content}</Link>;
+  })}</div>;
 }
 
 function DebugInspection() {

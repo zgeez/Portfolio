@@ -1,4 +1,4 @@
-// Browser verification for all eight project dossiers against the static export.
+// Browser verification for all nine project dossiers against the static export.
 // Requires npm start and headless Chrome with --remote-debugging-port=9333.
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
@@ -6,6 +6,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const origin = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debuggerOrigin = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
 const base = origin;
+const screenshots = process.env.PROJECT_CAPTURES ?? 'docs/projects';
 const entries = [
   ['stm32-mixed-signal-instrument', 'stm32', 'board'],
   ['eeg-acquisition-neurofeedback-system', 'eeg', 'eeg'],
@@ -15,6 +16,7 @@ const entries = [
   ['iot-device-automation', 'iot', 'iot'],
   ['nyc-dynamic-wireless-charging-roads', 'charging', 'study'],
   ['iguard-incident-reporting-app', 'iguard', 'app'],
+  ['smart-led-badge', 'badge', 'badge'],
 ];
 const tab = await fetch(`${debuggerOrigin}/json/new?about:blank`, { method: 'PUT' }).then(r => r.json());
 const socket = new WebSocket(tab.webSocketDebuggerUrl);
@@ -68,7 +70,7 @@ async function screenshot(name) {
   await evaluate('Promise.all(document.getAnimations().filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))).then(()=>true)');
   await delay(150);
   const capture = await cdp('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
-  await writeFile(`docs/projects/${name}.png`, Buffer.from(capture.data, 'base64'));
+  await writeFile(`${screenshots}/${name}.png`, Buffer.from(capture.data, 'base64'));
 }
 async function fits(label) {
   assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, `${label}: document overflow; ${JSON.stringify(await evaluate("[...document.querySelectorAll('.project-dossier *')].filter(el=>el.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(el=>({tag:el.tagName,class:el.className,right:el.getBoundingClientRect().right}))"))}`);
@@ -82,7 +84,7 @@ async function checkChapter(id, label) {
 
 try {
   await Promise.all([cdp('Page.enable'), cdp('Runtime.enable'), cdp('Network.enable')]);
-  await mkdir('docs/projects', { recursive: true });
+  await mkdir(screenshots, { recursive: true });
   await viewport(1440, 1100);
   for (const [slug, target, artifact] of entries) {
     await go(slug);
@@ -108,7 +110,7 @@ try {
     const html = await fetch(`${base}/projects/${slug}/`).then(response => response.text());
     for (const chapter of chapters) assert.ok(html.includes(`id="${chapter}"`), 'chapter is statically exported');
   }
-  console.log('PASS: all eight desktop dossiers, exact chapter maps, preserved metadata, static content, media, and fixed-angle artifacts.');
+  console.log('PASS: all nine desktop dossiers, exact chapter maps, preserved metadata, static content, media, and fixed-angle artifacts.');
 
   await viewport(1440, 600);
   await go(entries[0][0]);
@@ -203,6 +205,35 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('#lens-system noscript details').length>0"), true, 'component details without JavaScript');
   assert.equal(await evaluate("document.querySelector('#overview .dossier-evidence-toolbar button').hidden"), true, 'no inert expansion control without JavaScript');
   await cdp('Emulation.setScriptExecutionDisabled', { value:false });
+  for (const width of [1440, 390]) {
+    await cdp('Emulation.setDeviceMetricsOverride', { width, height: 1100, deviceScaleFactor: 2, mobile: false });
+    await go('smart-led-badge', '#app');
+    await evaluate("document.querySelector('#app .grid').scrollIntoView({behavior:'instant',block:'start'}); scrollBy(0,-140)");
+    await waitFor("[...document.querySelectorAll('.pixel-badge-app-shot > img')].every(img=>img.complete && img.naturalWidth===1170 && img.naturalHeight===2532)", 'full-resolution Flutter app images');
+    assert.equal(await evaluate("document.querySelectorAll('.pixel-badge-app-shot').length"), 3);
+    assert.equal(await evaluate("[...document.querySelectorAll('.pixel-badge-app-shot')].every(figure=>parseFloat(getComputedStyle(figure).borderTopWidth)===0 && parseFloat(getComputedStyle(figure.querySelector('img')).borderTopWidth)===0)"), true, 'badge app screenshots have no gray borders');
+    assert.equal(await evaluate("[...document.querySelectorAll('.pixel-badge-app-shot > img')].every(img=>img.naturalWidth >= img.getBoundingClientRect().width*devicePixelRatio)"), true, 'app screenshots have enough pixels for a retina display');
+    await fits(`badge app/${width}px/2x`);
+    await screenshot(`badge-app-${width}`);
+  }
+  await viewport(1440, 1100);
+  await go('smart-led-badge', '#validation');
+  await waitFor("document.querySelector('.dossier-chapters [aria-current]').hash==='#validation'", 'badge validation deep link');
+  await click("document.querySelector('#validation .dossier-evidence-toolbar button')");
+  await waitFor("document.querySelector('#validation dialog').open", 'badge timing image expands');
+  await key('Escape', 'Escape', 27);
+  assert.equal(await evaluate("document.activeElement.getAttribute('aria-label').startsWith('Expand image:')"), true, 'badge image restores focus');
+  await cdp('Emulation.setScriptExecutionDisabled', { value:true });
+  await go('smart-led-badge', '?verify-nojs=1#validation');
+  assert.equal(await evaluate("document.querySelectorAll('[data-project-chapter]').length"), 9, 'all badge chapters without JavaScript');
+  assert.equal(await evaluate("document.querySelector('#overview .dossier-evidence-toolbar button').hidden"), true, 'badge expansion is hidden without JavaScript');
+  await cdp('Emulation.setScriptExecutionDisabled', { value:false });
+  await click("document.querySelector('.dossier-topbar a')");
+  await waitFor("location.hash==='#badge' && document.querySelector('#bench-inspection-title')?.textContent==='Pixel Badge'", 'badge returns to its workbench object');
+  await click("document.querySelector('.inspection-link')");
+  await waitFor("document.querySelector('.project-dossier')?.dataset.project==='smart-led-badge'", 'badge inspection opens dossier');
+  await click("document.querySelector('.dossier-next-project')");
+  await waitFor(`document.querySelector('.project-dossier')?.dataset.project===${JSON.stringify(stm32)}`, 'badge next project wraps to first project');
   assert.equal((await fetch(`${base}/project-sample/`)).status, 404, 'retired sample route is absent');
   assert.deepEqual(errors, [], 'no runtime/hydration/resource failures');
   console.log('PASS: bench deep links and Back/Forward, native chapter history, explicit return, next project, reduced motion, non-JavaScript chapters/details, and retired sample removal. No browser errors.');

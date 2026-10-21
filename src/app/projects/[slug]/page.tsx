@@ -12,10 +12,12 @@ import { SecurityCameraCaseStudy } from '@/components/portfolio/case-studies/sec
 import { IotAutomationCaseStudy } from '@/components/portfolio/case-studies/iot-automation';
 import { WirelessChargingCaseStudy } from '@/components/portfolio/case-studies/wireless-charging';
 import { IGuardCaseStudy } from '@/components/portfolio/case-studies/iguard';
+import { PixelBadgeCaseStudy } from '@/components/portfolio/case-studies/pixel-badge';
 
 type Params = { params: Promise<{ slug: string }> };
 
 const CASE_STUDIES: Record<string, React.FC> = {
+  'smart-led-badge': PixelBadgeCaseStudy,
   'stm32-mixed-signal-instrument': Stm32CaseStudy,
   'eeg-acquisition-neurofeedback-system': EegCaseStudy,
   'led-waypoint-compass': WaypointCaseStudy,

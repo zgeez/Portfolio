@@ -41,7 +41,7 @@ export function BenchCamera({ camera, angle, mobile, size, children }: { camera:
   return (
     <div className="bench-scroll-space" style={mobile ? { height: MOBILE_BENCH.height * mobileScale } : undefined}>
       <div className="bench-camera" style={cameraStyle}>
-        <div className="bench-plane" style={{ '--bench-angle': `${angle}deg`, ...(mobile ? { width: MOBILE_BENCH.width, height: MOBILE_BENCH.height } : {}) } as CSSProperties}>
+        <div className="bench-plane" style={{ '--bench-angle': `${angle}deg`, width: mobile ? MOBILE_BENCH.width : BENCH.width, height: mobile ? MOBILE_BENCH.height : BENCH.height } as CSSProperties}>
           {children}
         </div>
       </div>

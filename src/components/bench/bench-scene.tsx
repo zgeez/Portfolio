@@ -73,7 +73,7 @@ export function BenchScene() {
         router.replace(window.location.href, { scroll: false });
       }
       setSelection({ target, objectId: window.history.state?.benchObject });
-      if (target && !lastTrigger.current) lastTrigger.current = viewport.current?.querySelector<HTMLElement>(`[data-object="${target}"]`) ?? viewport.current;
+      if (target) lastTrigger.current = viewport.current?.querySelector<HTMLElement>(`[data-object="${inspections[target].focusObject ?? target}"]`) ?? viewport.current;
       if (!target && lastObject.current) returnFocus();
     };
     const onKey = (event: KeyboardEvent) => {

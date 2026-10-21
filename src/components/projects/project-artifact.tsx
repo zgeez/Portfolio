@@ -6,6 +6,7 @@ import type { ProjectArtifact as ArtifactType } from '@/data/project-dossiers';
 import type { Project } from '@/data/projects';
 
 function ArtifactIllustration({ type, project }: { type: ArtifactType; project: Project }) {
+  if (type === 'badge') return <Equipment type="badge" />;
   if (type === 'board') return <Stm32Board />;
   if (type === 'eeg') return <EegRig />;
   if (type === 'waypoint') return <Equipment type="waypoint" />;

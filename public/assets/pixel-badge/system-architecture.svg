@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="790" viewBox="0 0 1200 790" role="img" aria-labelledby="title desc">
+<title id="title">Pixel Badge system architecture</title>
+<desc id="desc">Illustrative system responsibilities: phone over BLE to nRF52840; display, sensors, passive NFC and separate power paths.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8" fill="#85cfc2"/></marker></defs>
+<rect width="1200" height="790" rx="24" fill="#101416"/>
+<g font-family="Arial, sans-serif" fill="#e4e7e6">
+<text x="48" y="56" font-size="28" font-weight="700">Pixel Badge / system architecture</text>
+<text x="48" y="86" font-size="16" fill="#aeb7b7">Illustrative responsibilities and power domains — not an electrical schematic</text>
+<rect x="48" y="155" width="260" height="160" rx="14" fill="#202729" stroke="#85cfc2" stroke-width="1.5"/>
+<text x="70" y="188" font-size="21" font-weight="700">Phone / Flutter</text>
+<text x="70" y="217" font-size="16" fill="#aeb7b7">Text, QR, art, animation</text>
+<text x="70" y="241" font-size="16" fill="#aeb7b7">Authenticated BLE</text>
+<text x="70" y="265" font-size="16" fill="#aeb7b7">Readback and local drafts</text>
+<rect x="428" y="155" width="320" height="160" rx="14" fill="#202729" stroke="#85cfc2" stroke-width="1.5"/>
+<text x="450" y="188" font-size="21" font-weight="700">nRF52840 / Zephyr</text>
+<text x="450" y="217" font-size="16" fill="#aeb7b7">Validated application state</text>
+<text x="450" y="241" font-size="16" fill="#aeb7b7">Workers + persistent storage</text>
+<text x="450" y="265" font-size="16" fill="#aeb7b7">Scan engine + power policy</text>
+<rect x="868" y="155" width="284" height="160" rx="14" fill="#202729" stroke="#85cfc2" stroke-width="1.5"/>
+<text x="890" y="188" font-size="21" font-weight="700">32×32 white matrix</text>
+<text x="890" y="217" font-size="16" fill="#aeb7b7">SPI / TIMER / PPI</text>
+<text x="890" y="241" font-size="16" fill="#aeb7b7">Blank → shift → latch</text>
+<text x="890" y="265" font-size="16" fill="#aeb7b7">Hardware stall protection</text>
+<path d="M308 235H428" fill="none" stroke="#85cfc2" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<text x="368" y="220" font-size="15" fill="#85cfc2" text-anchor="middle">BLE</text>
+<path d="M748 235H868" fill="none" stroke="#85cfc2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="808" y="220" font-size="15" fill="#85cfc2" text-anchor="middle">Display</text>
+<rect x="428" y="410" width="320" height="144" rx="14" fill="#202729" stroke="#6eb4ff" stroke-width="1.5"/>
+<text x="450" y="443" font-size="21" font-weight="700">IMU + PDM microphone</text>
+<text x="450" y="472" font-size="16" fill="#aeb7b7">Motion and audio input</text>
+<text x="450" y="496" font-size="16" fill="#aeb7b7">Separate acquisition paths</text>
+<path d="M588 410V315" fill="none" stroke="#85cfc2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="625" y="369" font-size="15" fill="#85cfc2" text-anchor="middle">Sensors</text>
+<rect x="868" y="410" width="284" height="144" rx="14" fill="#202729" stroke="#6eb4ff" stroke-width="1.5"/>
+<text x="890" y="443" font-size="21" font-weight="700">Passive NFC tag</text>
+<text x="890" y="472" font-size="16" fill="#aeb7b7">I2C-updated destination</text>
+<text x="890" y="496" font-size="16" fill="#aeb7b7">RF-write protection</text>
+<path d="M748 285H800V460H868" fill="none" stroke="#85cfc2" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<text x="827" y="395" font-size="15" fill="#85cfc2" text-anchor="middle">I2C</text>
+<rect x="48" y="410" width="260" height="144" rx="14" fill="#202729" stroke="#f2b85b" stroke-width="1.5"/>
+<text x="70" y="443" font-size="21" font-weight="700">Power path</text>
+<text x="70" y="472" font-size="16" fill="#aeb7b7">USB-C / protected LiPo</text>
+<text x="70" y="496" font-size="16" fill="#aeb7b7">BQ25620 charger</text>
+<rect x="48" y="640" width="260" height="100" rx="14" fill="#202729" stroke="#f2b85b" stroke-width="1.5"/>
+<text x="70" y="673" font-size="21" font-weight="700">Logic supply</text>
+<text x="70" y="702" font-size="16" fill="#aeb7b7">TPS63802</text>
+<rect x="428" y="640" width="320" height="100" rx="14" fill="#202729" stroke="#f2b85b" stroke-width="1.5"/>
+<text x="450" y="673" font-size="21" font-weight="700">Switchable LED supply</text>
+<text x="450" y="702" font-size="16" fill="#aeb7b7">TPS61023</text>
+<path d="M178 554V640" fill="none" stroke="#f2b85b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="211" y="601" font-size="15" fill="#f2b85b" text-anchor="middle">Logic</text>
+<path d="M308 505H358V690H428" fill="none" stroke="#f2b85b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="383" y="603" font-size="15" fill="#f2b85b" text-anchor="middle">LED</text>
+<text x="868" y="610" font-size="16" fill="#aeb7b7">Same selected URL as the QR.</text>
+<text x="868" y="635" font-size="16" fill="#aeb7b7">Passive RF path is independent</text>
+<text x="868" y="660" font-size="16" fill="#aeb7b7">of an illuminated display.</text>
+<text x="48" y="775" font-size="14" fill="#aeb7b7">Supply blocks identify domains; rail wiring and all protection details are omitted for readability.</text></g></svg>

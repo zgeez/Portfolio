@@ -1,8 +1,8 @@
 # Full project dossiers
 
-All eight `/projects/[slug]/` routes use the accepted workbench project layout. Each document has a fixed 28° artifact illustration, a flat reading surface, project-specific chapters, verified headline results, real media, and a persistent Back to workbench control. The homepage keeps its angled desk.
+All nine `/projects/[slug]/` routes use the accepted workbench project layout. Each document has a fixed 28° artifact illustration, a flat reading surface, project-specific chapters, documented headline results or design specifications, real media, and a persistent Back to workbench control. The homepage keeps its angled desk.
 
-Preview: `npm run build` then `npm start`, at <http://localhost:4173/portfolio/>. Nothing has been deployed as part of this implementation.
+Preview: `npm run build` then `npm start`, at <http://localhost:4173/>. Nothing has been deployed as part of this implementation.
 
 ## Project map
 
@@ -16,6 +16,7 @@ Preview: `npm run build` then `npm start`, at <http://localhost:4173/portfolio/>
 | IoT Device Automation | `#iot` | Modular node illustration; architecture, firmware/power, app, challenges, stack |
 | Wireless Charging Roads Simulation | `#charging` | Study preview; problem, method, simulated results, validation, impact |
 | iGuard | `#iguard` | Phone preview; features, architecture, screens, challenges |
+| Pixel Badge | `#badge` | Dedicated workbench badge and illustration; overview, architecture, hardware, firmware, app, mechanics, debugging, scoped validation, reflection |
 
 Illustrations represent project navigation rather than an exact hardware schematic. Real photographs, diagrams, captures, and videos remain the evidence. The phone/study header uses the existing project thumbnail. Projects without documented headline metrics do not receive invented numbers.
 
@@ -44,9 +45,17 @@ Without JavaScript, the full narrative, media, tables, videos, chapter links, an
 
 Run `npm run check` for typecheck, lint, and the production static export. With the static server and installed headless Chrome running on debugger port 9333, run `node scripts/verify-projects.mjs` and `node scripts/verify-bench.mjs`. Both use Node's built-in WebSocket; `BENCH_ORIGIN` and `BENCH_DEBUGGER` can override endpoints.
 
-The project checker exercises all eight documents and their chapters at 1440, 1024, 768, 390, and 320px; metadata/static content; real media; image dialogs; component selection; retained demos; native deep-link history; bench return; next project; reduced motion; and JavaScript-disabled reading. The bench checker verifies the desk, inspections, all project links, and existing navigation contracts. Browser coverage is Chrome.
+The project checker exercises all nine documents and their chapters at 1440, 1024, 768, 390, and 320px; metadata/static content; real media; image dialogs; component selection; retained demos; native deep-link history; bench return; next project; reduced motion; and JavaScript-disabled reading. The bench checker verifies the desk, inspections, all project links, and existing navigation contracts. Browser coverage is Chrome.
 
 Verification passed on October 7, 2026: typecheck, lint, production static export, and both browser suites. Chrome reported no runtime, hydration, or media errors. Desktop and mobile captures below show the implemented layout.
+
+Pixel Badge added October 21, 2026. Its headline figures are design/capacity specifications; CAD, synthetic app captures and DK signal-bench evidence are labeled separately. Public source links remain absent for the private firmware repository. It has a dedicated selectable `#badge` workbench object, an inspection with curated CAD/prototype media, and matching project return links.
+
+The workbench groups the logic analyzer and debugger beside the laptop at the top right, with short USB loops joining the tools to the laptop. Contact sits at the bottom, including at the end of the mobile reading order. Pixel Badge sits beside the development board in the center, with the kinetic display at the middle right. The compact 2200×1240 desktop plane keeps the three object bands close together with balanced horizontal spacing; camera geometry and rendered dimensions share the same constants. Mobile reading order places the badge before the kinetic display. The shared `badge-board.svg` illustration follows the PCB CAD proportions, using a 32×32 surface-mount LED field, copper NFC loop with ZG mark, driver packages, radio module, buttons and USB-C connector. It is a navigational drawing rather than hardware evidence.
+
+App screenshots were rendered directly from the Pixel Badge Flutter app (0.10.3+31) with synthetic fixtures, real Roboto/Material fonts, a 390×844 logical viewport and `RenderRepaintBoundary.toImage(pixelRatio: 3)`. The 1170×2532 lossless PNGs replace 260×590 montage crops. The copied app and capture helper live in ignored `build/pixel-badge-app/`; the original badge project is unchanged. Screenshot presentation removes both the montage framing and the added CSS border. Browser checks verify source resolution on 2× displays, border removal, the badge inspection, return navigation and next-project wraparound.
+
+October 21 verification passed: Flutter capture test, typecheck/lint/production build, `verify-projects.mjs`, `verify-bench.mjs` and `verify-bench-visuals.mjs`. The badge fits desktop/tablet/mobile/landscape layouts without caption collisions. Direct hash changes now update the focus-return target, so Escape from `#badge` restores focus to the badge. To retain fresh audit captures without overwriting documentation images, set `BENCH_CAPTURES` and `PROJECT_CAPTURES` to directories under `docs/audit/captures/`.
 
 | Project | Desktop | Mobile |
 | --- | --- | --- |
@@ -58,5 +67,6 @@ Verification passed on October 7, 2026: typecheck, lint, production static expor
 | IoT automation | [Desktop](iot-desktop.png) | [Mobile](iot-mobile.png) |
 | Charging simulation | [Desktop](charging-desktop.png) | [Mobile](charging-mobile.png) |
 | iGuard | [Desktop](iguard-desktop.png) | [Mobile](iguard-mobile.png) |
+| Pixel Badge | [Desktop](pixel-badge-desktop.png) | [Mobile](pixel-badge-mobile.png) |
 
 Additional captures: [System probe](stm32-system.png), [Signal explorer](stm32-signals.png), [Mobile document](stm32-mobile-content.png).

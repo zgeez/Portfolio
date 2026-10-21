@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280" role="img" aria-labelledby="title desc">
+  <title id="title">Pixel Badge circuit board illustration</title>
+  <desc id="desc">A populated green PCB with a 32 by 32 white LED matrix, copper NFC antenna and ZG mark, row drivers, Nordic wireless module, buttons and USB-C connector. Navigational illustration based on the board design.</desc>
+  <defs>
+    <linearGradient id="pcb" x2="0.7" y2="1">
+      <stop stop-color="#32654c"/><stop offset="1" stop-color="#1c4036"/>
+    </linearGradient>
+    <linearGradient id="metal" x2="0.2" y2="1">
+      <stop stop-color="#edf0dd"/><stop offset="0.4" stop-color="#bfc9bc"/><stop offset="1" stop-color="#899c94"/>
+    </linearGradient>
+    <pattern id="leds" width="7" height="7" patternUnits="userSpaceOnUse" x="26" y="24">
+      <path d="M1 3.5h5" stroke="#b4a574" stroke-width="2.2"/>
+      <rect x="1.2" y="1.8" width="4.6" height="4.6" rx="0.65" fill="#112c26"/>
+      <rect x="1" y="1" width="4.6" height="4.6" rx="0.65" fill="#d8ddc6"/>
+      <rect x="1.8" y="1.7" width="2.8" height="2.8" rx="0.45" fill="#f4f2d9"/>
+      <path d="M1.7 1.6h3" stroke="#fffde8" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="row-drivers" width="17" height="14" patternUnits="userSpaceOnUse" x="260" y="27">
+      <path d="M2 3h12M2 10h12" stroke="#b2bcaa" stroke-width="2"/>
+      <rect x="5" y="1" width="7" height="11" rx="0.8" fill="#1c2825" stroke="#6f8773" stroke-width="0.6"/>
+      <path d="M7 3h3" stroke="#aab6a3" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="pins" width="4" height="7" patternUnits="userSpaceOnUse">
+      <path d="M2 0v7" stroke="#c0c9b7" stroke-width="1.7"/>
+    </pattern>
+    <g id="capacitor">
+      <rect width="11" height="5" rx="0.6" fill="#a8b5a4"/>
+      <path d="M3 0h5v5H3z" fill="#b19b75"/>
+    </g>
+    <g id="via"><circle r="2.4" fill="#b8ac6f"/><circle r="1.15" fill="#19352c"/></g>
+    <g id="button">
+      <rect width="14" height="17" rx="1.5" fill="#161f1d"/>
+      <rect x="1" y="1" width="12" height="14" rx="1" fill="url(#metal)" stroke="#d7dec9" stroke-width="0.6"/>
+      <circle cx="7" cy="7.7" r="4" fill="#35443c"/><circle cx="6.5" cy="7" r="2.6" fill="#4e6053"/>
+    </g>
+  </defs>
+
+  <!-- Routed edge, board thickness and a fine highlight on the top face. -->
+  <rect x="10" y="16" width="420" height="258" rx="10" fill="#102e27"/>
+  <rect x="10" y="8" width="420" height="258" rx="10" fill="url(#pcb)" stroke="#73917b" stroke-width="1.5"/>
+  <path d="M20 10H419M12 18V253" fill="none" stroke="#a3b49a" stroke-width="0.8" opacity="0.65"/>
+  <path d="M20 269H418" stroke="#526f59" stroke-width="1"/>
+
+  <g fill="none" stroke="#8c9563" stroke-width="0.8" opacity="0.6">
+    <path d="M253 29h31v93h29v42h32M253 57h27v78h26v47h47M253 85h23v64h20v43h45M253 113h19v50h18v49h63"/>
+    <path d="M285 239h29v-17h38M298 247h29v-17h27M366 164h-19v-26h-27M410 192h-26v-35h-19M410 205h-33v-32h-18"/>
+    <path d="M253 224h14v32h70M30 257h70v-13h20M168 257h42v-13h28M364 120v19h33v37M372 120v12h33v47"/>
+  </g>
+
+  <!-- Exactly 32 columns and 32 rows of surface-mount white LEDs. -->
+  <rect x="22" y="20" width="232" height="232" rx="3" fill="#173b30" stroke="#65876a" stroke-width="0.6"/>
+  <rect x="26" y="24" width="224" height="224" fill="url(#leds)"/>
+  <rect x="260" y="27" width="17" height="224" fill="url(#row-drivers)"/>
+  <rect x="281" y="27" width="17" height="224" fill="url(#row-drivers)"/>
+
+  <!-- Copper NFC loop and the board's ZG silkscreen identity. -->
+  <g fill="none" stroke="#a6955f" stroke-width="1.3">
+    <path d="M311 16h101l10 10v76l-10 10H311l-9-10V26z"/>
+    <path d="M314 20h95l9 9v70l-9 9h-95l-8-9V29z"/>
+    <path d="M317 24h89l8 8v64l-8 8h-89l-7-8V32z"/>
+    <path d="M320 28h83l7 7v58l-7 7h-83l-6-7V35z"/>
+    <path d="M323 32h77l6 6v52l-6 6h-77l-5-6V38z"/>
+  </g>
+  <g fill="none" stroke="#e5e9d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M331 48h25v4l-25 27v4h25M392 55l-5-7h-17l-5 5v25l5 5h22V69h-12"/>
+    <circle cx="331" cy="48" r="1.8" fill="#32614a"/><circle cx="356" cy="83" r="1.8" fill="#32614a"/>
+    <circle cx="392" cy="55" r="1.8" fill="#32614a"/><circle cx="380" cy="69" r="1.8" fill="#32614a"/>
+  </g>
+
+  <!-- Power, sensing and radio components keep their physical scale. -->
+  <g>
+    <rect x="309" y="131" width="19" height="26" rx="1" fill="#151f1d" stroke="#9da995"/>
+    <rect x="313" y="135" width="11" height="18" fill="#59685a"/>
+    <use href="#capacitor" x="333" y="135"/><use href="#capacitor" x="333" y="146"/>
+    <rect x="351" y="139" width="26" height="7" fill="url(#pins)"/>
+    <rect x="351" y="163" width="26" height="7" fill="url(#pins)"/>
+    <rect x="349" y="146" width="30" height="17" rx="1" fill="#192823" stroke="#73896c"/>
+    <circle cx="353" cy="150" r="1" fill="#b7b9a0"/>
+    <use href="#capacitor" x="387" y="138"/><use href="#capacitor" x="387" y="149"/>
+    <use href="#capacitor" x="310" y="171"/><use href="#capacitor" x="310" y="183"/>
+    <rect x="330" y="172" width="17" height="18" rx="1" fill="#1a2923" stroke="#718469"/>
+    <path d="M333 177h10m-10 5h10" stroke="#53694f" stroke-width="1"/>
+    <use href="#capacitor" x="333" y="198"/><use href="#capacitor" x="314" y="209"/>
+    <rect x="355" y="184" width="60" height="67" rx="2" fill="#516b53" stroke="#9ba98e"/>
+    <path d="M355 190h-4m4 7h-4m4 7h-4m4 7h-4m4 7h-4m4 7h-4m64-35h4m-4 7h4m-4 7h4m-4 7h4m-4 7h4m-4 7h4" stroke="#c0c5a9" stroke-width="2"/>
+    <rect x="359" y="188" width="52" height="43" rx="1.5" fill="url(#metal)" stroke="#e0e3d0" stroke-width="0.8"/>
+    <path d="M363 235h8v9h8v-9h8v9h8v-9h12" fill="none" stroke="#c8c79d" stroke-width="1.2"/>
+    <path d="M364 193h42" stroke="#f2f2df" stroke-width="0.8"/>
+    <text x="385" y="209" text-anchor="middle" fill="#455a4e" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="0.6">nRF52840</text>
+    <text x="385" y="218" text-anchor="middle" fill="#5c7061" font-family="Arial,sans-serif" font-size="4.5" letter-spacing="0.5">BLUETOOTH LE</text>
+  </g>
+
+  <g>
+    <use href="#button" x="307" y="235"/><use href="#button" x="330" y="235"/>
+    <rect x="365" y="252" width="36" height="17" rx="3" fill="#7d9088" stroke="#d4dbcc" stroke-width="1"/>
+    <rect x="369" y="257" width="28" height="7" rx="3" fill="#1c302c" stroke="#a7b7a5" stroke-width="0.8"/>
+    <path d="M373 260.5h20" stroke="#9ca485" stroke-width="1.3"/>
+    <use href="#via" x="307" y="121"/><use href="#via" x="341" y="121"/><use href="#via" x="418" y="121"/>
+    <use href="#via" x="303" y="196"/><use href="#via" x="347" y="211"/><use href="#via" x="417" y="174"/>
+    <circle cx="285" cy="18" r="4.5" fill="#213630" stroke="#aab99a" stroke-width="1.2"/>
+    <circle cx="339" cy="221" r="4.5" fill="#213630" stroke="#aab99a" stroke-width="1.2"/>
+    <circle cx="416" cy="127" r="4.5" fill="#213630" stroke="#aab99a" stroke-width="1.2"/>
+    <circle cx="346" cy="125" r="1.6" fill="#85cfc2"/>
+    <path d="M303 260h45" stroke="#a6bfa0" stroke-width="0.6"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#cbd8be" font-size="4.7" letter-spacing="0.7">
+    <text x="306" y="119">NFC</text><text x="306" y="229">PIXEL BADGE</text>
+    <text x="30" y="260">32 × 32 · WHITE LED MATRIX</text><text x="267" y="262">REV A</text>
+  </g>
+</svg>

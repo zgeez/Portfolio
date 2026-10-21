@@ -27,6 +27,7 @@
 .dossier-device-cables { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dossier-artifact { position: absolute; width: 65%; left: 18%; top: 19%; transform: rotate(9deg); filter: drop-shadow(8px 13px 7px #0007); }
 .dossier-artifact > svg { width: 100%; height: auto; }
+.dossier-device-badge .dossier-artifact > img { width: 100%; height: auto; }
 .dossier-device-waypoint .dossier-artifact { width: 43%; left: 29%; top: 14%; }
 .dossier-device-eeg .dossier-artifact { width: 67%; left: 17%; top: 19%; }
 .dossier-device-study .dossier-artifact { width: 60%; top: 8%; }
@@ -86,6 +87,10 @@
 .dossier-phone-shot .dossier-evidence-toolbar button { font-size: 8px; }
 .dossier-phone-shot .dossier-evidence-image { border: 8px solid #263530; }
 .dossier-phone-shot > figcaption { padding: 10px; font-size: 11px; }
+.pixel-badge-app-shot { max-width: 260px; border: 0; background: transparent; }
+.pixel-badge-app-shot .dossier-evidence-image { border: 0; }
+.pixel-badge-app-shot .dossier-evidence-toolbar, .pixel-badge-app-shot > figcaption { border: 0; }
+.pixel-badge-app-shot .dossier-lightbox-image { max-width: 520px; margin-inline: auto; }
 .dossier-lightbox { width: min(1400px, 95vw); max-height: 95svh; padding: 16px; margin: auto; color: #e4e7e6; background: #192023; border: 1px solid #617c70; overflow: auto; }
 .dossier-lightbox::backdrop { background: #090d10df; }
 .dossier-lightbox-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; font: 11px var(--font-mono), monospace; }

@@ -174,6 +174,26 @@ export const projects: Project[] = [
     order: 8,
     technologies: ['Flutter', 'Firebase', 'Android', 'iOS'],
   },
+  {
+    slug: 'smart-led-badge',
+    title: 'Pixel Badge',
+    summary:
+      'A programmable LED wearable with BLE editing, a shared QR/NFC destination, motion and audio visuals, and a custom printed carrier.',
+    hook: 'Hardware-timed pixels, verified wireless state, and a serviceable wearable built as one system.',
+    image: asset('assets/pixel-badge/pcb-front-render.webp'),
+    imageAlt: 'CAD render of the custom Pixel Badge PCB with its white LED matrix and NFC antenna region.',
+    thumb: asset('assets/pixel-badge/pixel-badge-card.webp'),
+    category: 'firmware',
+    order: 9,
+    role: 'Personal project — electronics, firmware, mobile app, mechanical design and validation tooling',
+    technologies: ['nRF52840', 'Zephyr / nRF Connect SDK', 'C++17', 'Flutter / Dart', 'Bluetooth LE', 'Passive NFC', 'KiCad', 'Fusion 360', 'PETG'],
+    metrics: [
+      { value: '32 × 32', label: 'white LED matrix · design' },
+      { value: '118 × 76 mm', label: 'four-layer PCB design' },
+      { value: '128 frames', label: 'encoded animation capacity' },
+      { value: '8 MHz', label: 'SPI display clock · configured' },
+    ],
+  },
 ];
 
 export const sortedProjects = [...projects].sort((a, b) => a.order - b.order);

@@ -5,6 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const origin = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debuggerOrigin = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
+const screenshots = process.env.BENCH_CAPTURES ?? 'docs/bench';
 const tab = await fetch(`${debuggerOrigin}/json/new?about:blank`, { method: 'PUT' }).then(r => r.json());
 const socket = new WebSocket(tab.webSocketDebuggerUrl);
 await new Promise(resolve => socket.addEventListener('open', resolve, { once: true }));
@@ -31,7 +32,7 @@ async function settleScroll() {
   throw new Error('Native fragment scroll did not settle');
 }
 async function go(path) { await cdp('Page.navigate',{url:`${origin}/${path}`}); for(let i=0;i<80;i++) { if(await evaluate("Boolean(document.readyState==='complete' && (document.querySelector('.bench-workspace') || document.querySelector('.project-dossier')))")) break; await delay(100); } await evaluate('document.fonts.ready.then(()=>true)'); await delay(1000); }
-async function capture(name) { const result=await cdp('Page.captureScreenshot',{format:'png'}); await writeFile(`docs/bench/${name}.png`,Buffer.from(result.data,'base64')); }
+async function capture(name) { const result=await cdp('Page.captureScreenshot',{format:'png'}); await writeFile(`${screenshots}/${name}.png`,Buffer.from(result.data,'base64')); }
 async function checkCaptions(label) {
   const collisions=await evaluate(`(() => {
     const objects=[...document.querySelectorAll('[data-object]')];
@@ -56,14 +57,14 @@ async function checkUsb() {
 
 try {
   await Promise.all([cdp('Page.enable'),cdp('Runtime.enable')]);
-  await mkdir('docs/bench',{recursive:true});
+  await mkdir(screenshots,{recursive:true});
   for(const [width,height] of [[1440,900],[1920,1080],[1024,768],[820,900],[390,844],[320,700],[844,390]]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
     await go('');
     await checkCaptions(`${width}×${height}`);
     if(width>=768) {
       await checkUsb();
-      for(const device of ['debug','logic','waypoint']) {
+      for(const device of ['debug','logic','waypoint','badge']) {
         const point=await evaluate(`(() => { const r=document.querySelector('[data-object=${device}]').getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; })()`);
         await cdp('Input.dispatchMouseEvent',{type:'mouseMoved',...point}); await delay(250);
         await checkUsb(); await checkCaptions(`${width}×${height} hover ${device}`);

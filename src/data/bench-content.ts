@@ -5,6 +5,11 @@ import { waypointSystemDiagram } from '@/data/waypoint';
 
 export type BenchPhoto = { src: string; caption: string; kind: 'Recorded capture' | 'Hardware photo' | 'Project image' };
 export const benchMedia: Record<string, BenchPhoto[]> = {
+  'smart-led-badge': [
+    { src: asset('assets/pixel-badge/pcb-front-render.webp'), caption: 'Custom white-LED badge PCB. KiCad CAD render.', kind: 'Project image' },
+    { src: asset('assets/pixel-badge/qr-bench.webp'), caption: 'QR prototype on the nRF5340 DK / HUB75 development rig.', kind: 'Hardware photo' },
+    { src: asset('assets/pixel-badge/carrier-covered.webp'), caption: 'Serviceable carrier and removable face. Fusion CAD assembly.', kind: 'Project image' },
+  ],
   'stm32-mixed-signal-instrument': [
     { src: asset('assets/stm32-msi/mixed_capture.png'), caption: 'Analog and digital capture on a shared timeline.', kind: 'Recorded capture' },
     { src: asset('assets/stm32-msi/workspace.png'), caption: 'Instrument workspace.', kind: 'Recorded capture' },

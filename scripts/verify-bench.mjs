@@ -8,7 +8,7 @@ const origin = process.env.BENCH_ORIGIN ?? 'http://localhost:4173';
 const debuggerOrigin = process.env.BENCH_DEBUGGER ?? 'http://localhost:9333';
 const base = origin;
 const route = `${base}/`;
-const screenshots = 'docs/bench';
+const screenshots = process.env.BENCH_CAPTURES ?? 'docs/bench';
 const tab = await fetch(`${debuggerOrigin}/json/new?about:blank`, { method: 'PUT' }).then((response) => response.json());
 const socket = new WebSocket(tab.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => { socket.addEventListener('open', resolve, { once: true }); socket.addEventListener('error', reject, { once: true }); });
@@ -84,7 +84,8 @@ try {
   await delay(900);
   assert.equal(await evaluate("document.body.querySelector(':scope > header, :scope > footer') === null"), true, 'retired chrome is absent on the bench');
   assert.equal(await evaluate("document.title"), "Ziad's Portfolio");
-  assert.equal(await evaluate("document.querySelectorAll('[data-object]').length"), 12);
+  assert.equal(await evaluate("document.querySelectorAll('[data-object]').length"), 13);
+  assert.equal(await evaluate("document.querySelector('[data-object=badge] [data-device]').dataset.device"), 'pixel-badge');
   assert.equal(await evaluate("document.querySelector('.bench-work-area, .bench-view-controls') === null"), true, 'work-area outline and top-right location removed');
   assert.equal(await evaluate("document.querySelector('[data-object=kinetic] [data-device]').dataset.device"), 'kinetic-seven-segment');
   assert.equal(await evaluate("(() => { const lid=document.querySelector('.laptop-lid'), base=document.querySelector('.laptop-base'); return Math.abs(lid.offsetWidth-base.offsetWidth)<1; })()"), true, 'laptop lid and keyboard base share a width');
@@ -146,7 +147,7 @@ try {
   assert.equal(await selectedVisible('board'), true, 'development board focus fits');
 
   const instrumentSummaries = [];
-  for (const target of ['stm32', 'board', 'logic', 'eeg', 'waypoint', 'debug', 'experience', 'about', 'contact', 'projects', 'kinetic', 'camera', 'iot', 'charging', 'iguard']) {
+  for (const target of ['stm32', 'board', 'logic', 'eeg', 'waypoint', 'badge', 'debug', 'experience', 'about', 'contact', 'projects', 'kinetic', 'camera', 'iot', 'charging', 'iguard']) {
     await go(`${route}#${target}`);
     await inspection(target);
     assert.equal(await evaluate("document.querySelectorAll('[role=dialog]').length"), 1);
@@ -159,7 +160,13 @@ try {
   assert.equal(new Set(instrumentSummaries).size, 3, 'scope, board, and logic have distinct content');
   await go(`${route}#projects`);
   await inspection('projects');
-  assert.equal(await evaluate("document.querySelectorAll('.inspection-project-row').length"), 8);
+  assert.equal(await evaluate("document.querySelectorAll('.inspection-project-row').length"), 9);
+  await evaluate("[...document.querySelectorAll('.inspection-project-row')].find(el=>el.textContent.includes('Pixel Badge')).click()");
+  await inspection('badge');
+  assert.equal(await selectedVisible('badge'), true, 'library selection focuses the badge');
+  assert.equal(await evaluate("document.querySelector('.inspection-link').getAttribute('href')"), '/projects/smart-led-badge/');
+  await go(`${route}#projects`);
+  await inspection('projects');
   await evaluate("[...document.querySelectorAll('.inspection-project-row')].find(el=>el.textContent.includes('Kinetic')).click()");
   await inspection('kinetic');
   assert.equal(await selectedVisible('kinetic'), true);
@@ -254,6 +261,17 @@ try {
   await clickObject('stm32');
   await inspection('stm32');
   assert.equal(await selectedVisible('stm32'), true, 'small-screen scope stays visible');
+  for (const width of [390, 320]) {
+    await viewport(width, 844, true);
+    for (const target of ['badge', 'contact']) {
+      await go(`${route}#${target}`);
+      await inspection(target);
+      assert.equal(await selectedVisible(target), true, `${width}px: ${target} remains visible above its inspection`);
+      await key('Escape', 'Escape', 27);
+      await waitFor("location.hash==='' && !document.querySelector('#bench-inspection')", `${target} Escape returns to bench`);
+      assert.equal(await evaluate("document.activeElement.dataset.object"), target, `${target} focus is restored`);
+    }
+  }
 
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   for (const [width, height] of [[1440, 500], [844, 390], [667, 375]]) {
@@ -285,7 +303,7 @@ try {
   assert.equal(await selectedVisible('waypoint'), true, 'explicit project return restores the focused object');
 
   // Technical content remains accessible without the retired portfolio shell.
-  for (const path of ['stm32-mixed-signal-instrument', 'eeg-acquisition-neurofeedback-system', 'led-waypoint-compass', 'electromagnetic-kinetic-7-segment-display', 'smart-security-camera-raspberry-pi', 'iot-device-automation', 'nyc-dynamic-wireless-charging-roads', 'iguard-incident-reporting-app'].map((slug) => `/projects/${slug}/`)) {
+  for (const path of ['stm32-mixed-signal-instrument', 'eeg-acquisition-neurofeedback-system', 'led-waypoint-compass', 'electromagnetic-kinetic-7-segment-display', 'smart-security-camera-raspberry-pi', 'iot-device-automation', 'nyc-dynamic-wireless-charging-roads', 'iguard-incident-reporting-app', 'smart-led-badge'].map((slug) => `/projects/${slug}/`)) {
     await go(`${base}${path}`);
     await waitFor("document.querySelector('h1')", path);
     assert.equal(await evaluate("document.title"), "Ziad's Portfolio");
@@ -297,11 +315,11 @@ try {
   await cdp('Emulation.setScriptExecutionDisabled', { value: true });
   await go(route);
   assert.equal(await evaluate("document.querySelector('a[href*=\"/overview\"]') === null"), true, 'no links to the retired design');
-  assert.equal(await evaluate("document.querySelectorAll('.bench-noscript li').length"), 8, 'non-JavaScript project fallback');
+  assert.equal(await evaluate("document.querySelectorAll('.bench-noscript li').length"), 9, 'non-JavaScript project fallback');
   await cdp('Emulation.setScriptExecutionDisabled', { value: false });
   assert.equal((await fetch(`${base}/resume.pdf`)).status, 200);
   assert.deepEqual(errors, [], 'no runtime, hydration, or network errors');
-  console.log('PASS: bench homepage, fixed angle, distinct devices, all 8 projects, architecture and evidence tabs, gallery, debugging, experience, education/skills/credentials, desktop/laptop/tablet/mobile, pointer/keyboard, Escape/focus restoration, direct/legacy hashes, Back/Forward, reduced motion, retired overview and portfolio chrome removed, project return links, all project pages, retired prototype routes, non-JavaScript fallback, basePath assets, resume, and no browser errors.');
+  console.log('PASS: bench homepage, fixed angle, distinct devices, all 9 projects, architecture and evidence tabs, gallery, debugging, experience, education/skills/credentials, desktop/laptop/tablet/mobile, pointer/keyboard, Escape/focus restoration, direct/legacy hashes, Back/Forward, reduced motion, retired overview and portfolio chrome removed, project return links, all project pages, retired prototype routes, non-JavaScript fallback, basePath assets, resume, and no browser errors.');
   console.log(`Screenshots saved to ${screenshots}/.`);
 } finally {
   await new Promise((resolve) => { socket.addEventListener('close', resolve, { once: true }); socket.close(); });

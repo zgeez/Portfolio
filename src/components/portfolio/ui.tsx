@@ -38,15 +38,17 @@ export function PhoneShot({
   caption,
   width,
   height,
+  className,
 }: {
   src: string;
   alt: string;
   caption: string;
   width: number;
   height: number;
+  className?: string;
 }) {
   return (
-    <EvidenceFigure src={src} alt={alt} width={width} height={height} caption={caption} kind="Screenshot" className="dossier-phone-shot w-full max-w-[220px]" />
+    <EvidenceFigure src={src} alt={alt} width={width} height={height} caption={caption} kind="Screenshot" className={cn('dossier-phone-shot w-full max-w-[220px]', className)} />
   );
 }
 

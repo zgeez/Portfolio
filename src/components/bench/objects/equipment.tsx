@@ -6,6 +6,7 @@ import { JtagDebugger, LogicAnalyzer } from './debug-tools';
 import { KineticDisplay } from './kinetic-display';
 
 export function Equipment({ type }: { type: BenchKind }) {
+  if (type === 'badge') return <Image src={asset('assets/pixel-badge/badge-board.svg')} alt="" width={440} height={280} sizes="(max-width: 767px) 65vw, 300px" className="bench-svg" data-device="pixel-badge" />;
   if (type === 'scope') return (
     <div className="scope-equipment">
       <div className="scope-top"><div className="scope-handle" /><div className="scope-vents">{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</div></div>

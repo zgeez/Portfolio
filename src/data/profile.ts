@@ -78,6 +78,47 @@ export type DebugStory = {
 
 export const debugStories: DebugStory[] = [
   {
+    id: 'badge-upload-watchdog',
+    project: 'smart-led-badge',
+    anchor: 'postmortem-badge-upload',
+    title: 'Pixel Badge upload and scan timing',
+    headline: '93 frames uploaded and read back',
+    steps: [
+      { stage: 'Symptom', text: 'A large animation upload stopped and the nRF5340 DK entered watchdog-loop safe mode.' },
+      { stage: 'Timing hazard', text: 'The shortest row timer started before shifting finished. A compare could expire inside the ISR and starve the watchdog thread.' },
+      { stage: 'Fix', text: 'Start the row slot after shifting. Separately, negotiate MTU before artwork readback to remove a misleading reconnect delay.' },
+      { stage: 'Result', text: 'A 93-frame, 36,297-byte clip uploaded and read back, with scan progress observed afterward.' },
+      { stage: 'Scope', text: 'One DK/app recovery transaction. The original first watchdog trigger was not captured; this was not a soak test.' },
+    ],
+  },
+  {
+    id: 'badge-port-contract',
+    project: 'smart-led-badge',
+    anchor: 'postmortem-badge-port',
+    title: 'Pixel Badge processor port',
+    headline: '43 schematic pads checked',
+    steps: [
+      { stage: 'Constraint', text: 'Parts availability forced a move from the nRF5340 development rig to an nRF52840 module, tightening both GPIO and flash budgets.' },
+      { stage: 'Check', text: 'Compare the compiled configuration against all 43 module schematic pads.' },
+      { stage: 'Regression', text: 'Add negative checks that reject incorrect latch pins and overlapping flash partitions.' },
+      { stage: 'Result', text: 'Both target builds fit their recorded budgets, with incorrect pin and partition inputs rejected.' },
+      { stage: 'Scope', text: 'Build and configuration consistency. Physical bring-up of the custom board remains a separate test.' },
+    ],
+  },
+  {
+    id: 'badge-i2c-timing',
+    project: 'smart-led-badge',
+    anchor: 'postmortem-badge-i2c',
+    title: 'Pixel Badge charger bus timing',
+    headline: '400 kHz to 100 kHz',
+    steps: [
+      { stage: 'Observation', text: 'A successful I2C response alone could not establish correct charger behavior across power states.' },
+      { stage: 'Requirement', text: 'The BQ25620 charger requires additional low-power bus timing at 400 kHz that the controller could not insert.' },
+      { stage: 'Fix', text: 'Move the shared charger/IMU bus to 100 kHz and keep sensing freshness visible to power policy.' },
+      { stage: 'Scope', text: 'A datasheet-driven timing correction. One successful bench response does not validate every power state.' },
+    ],
+  },
+  {
     id: 'usb-latency',
     project: 'stm32-mixed-signal-instrument',
     anchor: 'postmortem-usb-latency',

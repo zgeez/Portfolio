@@ -81,7 +81,7 @@ Equipment remains illustrated; recorded signals are existing captures rather tha
 
 ## Visual feedback refinements
 
-The desk now has twelve objects, including a dedicated kinetic display illustrated from the real module?s printed frame, sliding segments, magnets, and screw-core coils. Laptop lid and keyboard base share their width. USB cables use equipment coordinates and rotations, remain attached on hover, and meet visible laptop ports. The JTAG ribbon keeps a consistent width through bends and enters its keyed connector; all eight analyzer leads meet their channel pins. Discovery/ADS1299 boards, compass housing, scope controls, paper, notebook, and tray have additional physical details.
+The desk now has twelve objects, including a dedicated kinetic display illustrated from the real module's printed frame, sliding segments, magnets, and screw-core coils. Laptop lid and keyboard base share their width. USB cables use equipment coordinates and rotations, remain attached on hover, and meet visible laptop ports. The JTAG ribbon keeps a consistent width through bends and enters its keyed connector; all eight analyzer leads meet their channel pins. Discovery/ADS1299 boards, compass housing, scope controls, paper, notebook, and tray have additional physical details.
 
 The top-right location and dotted work-area boundary are removed. Captions are bounded to their objects and have reserved space; muted captions disappear during inspection. Experience entries consistently use prose without skill chips. Skills contain no project links. All six credentials use the same list layout.
 

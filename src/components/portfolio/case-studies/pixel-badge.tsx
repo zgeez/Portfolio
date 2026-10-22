@@ -70,15 +70,15 @@ export function PixelBadgeCaseStudy() {
 
       <CaseSection id="debugging" eyebrow="Debugging" title="Follow the failure across boundaries">
         <div className="space-y-6 text-muted">
-          <section>
+          <section id="postmortem-badge-upload">
             <h3 className="mb-2 font-medium text-fg">An upload that looked like a radio failure</h3>
             <p>A large animation upload stopped and the DK entered watchdog-loop safe mode. I found that the shortest row timer started before shifting finished: a compare could expire inside the ISR and starve the watchdog thread. Starting the slot after shifting removed that hazard. Separately, negotiating MTU before artwork readback fixed a misleading reconnect delay. A 93-frame, 36,297-byte clip then uploaded and read back, with scan progress observed afterward. The original first watchdog trigger was not captured.</p>
           </section>
-          <section>
+          <section id="postmortem-badge-port">
             <h3 className="mb-2 font-medium text-fg">A processor change became a contract check</h3>
             <p>Moving to the available nRF52840 module tightened both pins and flash. I checked the compiled configuration against all 43 module schematic pads and added negative checks for incorrect latch pins and overlapping partitions. Both target builds fit their recorded budgets. This established source consistency; physical bring-up remains a separate test.</p>
           </section>
-          <section>
+          <section id="postmortem-badge-i2c">
             <h3 className="mb-2 font-medium text-fg">An I2C response was insufficient evidence</h3>
             <p>The BQ25620 charger requires additional low-power bus timing at 400 kHz that the controller could not insert. I moved the shared charger/IMU bus to 100 kHz and kept sensing freshness visible to power policy. This was a datasheet-driven correction; one successful bench response could not validate every power state.</p>
           </section>

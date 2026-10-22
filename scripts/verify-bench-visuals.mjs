@@ -84,6 +84,9 @@ try {
   for(const [width,height] of [[1440,900],[390,844]]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
     for(const [slug,anchor,text] of [
+      ['smart-led-badge','postmortem-badge-upload','36,297-byte'],
+      ['smart-led-badge','postmortem-badge-port','43 module schematic pads'],
+      ['smart-led-badge','postmortem-badge-i2c','100 kHz'],
       ['stm32-mixed-signal-instrument','postmortem-usb-latency','20 ms'],
       ['stm32-mixed-signal-instrument','postmortem-sync-skew','−120 ns'],
       ['eeg-acquisition-neurofeedback-system','postmortem-eeg-labels','Labels come from the task launcher'],
@@ -96,7 +99,7 @@ try {
       if(anchor==='postmortem-eeg-labels') await capture(`postmortem-${width}`);
     }
   }
-  console.log('PASS: all captions clear adjacent equipment across desktop/tablet/mobile/landscape; USB endpoints stay attached on hover; all three postmortems land below navigation on desktop and phone.');
+  console.log('PASS: all captions clear adjacent equipment across desktop/tablet/mobile/landscape; USB endpoints stay attached on hover; all six postmortems land below navigation on desktop and phone.');
 } finally {
   await new Promise(resolve => { socket.addEventListener('close',resolve,{once:true}); socket.close(); });
   await fetch(`${debuggerOrigin}/json/close/${tab.id}`);

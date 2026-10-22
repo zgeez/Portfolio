@@ -1,10 +1,10 @@
-# Ziad Ghanem ? Embedded & Firmware Portfolio
+# Ziad Ghanem - Embedded & Firmware Portfolio
 
-[Live portfolio](https://ziadg.com/) ? [LinkedIn](https://linkedin.com/in/ziad-ghanem/) ? [GitHub](https://github.com/zgeez)
+[Live portfolio](https://ziadg.com/) | [LinkedIn](https://linkedin.com/in/ziad-ghanem/) | [GitHub](https://github.com/zgeez)
 
 ## About
 
-My personal portfolio, presenting embedded systems, firmware, and the software that connects them. I?m Ziad Ghanem, an embedded and firmware engineer based in Brooklyn, NY, with a B.S. in Electrical and Computer Engineering from New York Institute of Technology and ongoing M.S. research in EEG acquisition and neurofeedback.
+My personal portfolio, presenting embedded systems, firmware, and the software that connects them. I'm Ziad Ghanem, an embedded and firmware engineer based in Brooklyn, NY, with a B.S. in Electrical and Computer Engineering from New York Institute of Technology and ongoing M.S. research in EEG acquisition and neurofeedback.
 
 The site is an interactive lab bench: select equipment to explore projects, debugging stories, experience, skills, and contact details. Nine project case studies document the architecture, implementation, evidence, and limitations behind the work, from an STM32 mixed-signal instrument and ESP32 EEG acquisition to a wireless Pixel Badge.
 
@@ -57,7 +57,7 @@ Contact links and the canonical domain live in `src/data/site.ts`; profile conte
 
 `npm run check` runs the same typecheck, lint, and build steps used by CI.
 
-The browser suites use Chrome?s debugging protocol and Node?s built-in WebSocket. Start the static preview with `npm start` and a separate headless Chrome instance with `--remote-debugging-port=9333` and a temporary `--user-data-dir`, then run these sequentially:
+The browser suites use Chrome's debugging protocol and Node's built-in WebSocket. Start the static preview with `npm start` and a separate headless Chrome instance with `--remote-debugging-port=9333` and a temporary `--user-data-dir`, then run these sequentially:
 
 ```bash
 node scripts/verify-bench.mjs

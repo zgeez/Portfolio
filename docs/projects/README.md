@@ -2,7 +2,7 @@
 
 All nine `/projects/[slug]/` routes use the accepted workbench project layout. Each document has a fixed 28° artifact illustration, a flat reading surface, project-specific chapters, documented headline results or design specifications, real media, and a persistent Back to workbench control. The homepage keeps its angled desk.
 
-Preview: `npm run build` then `npm start`, at <http://localhost:4173/>. Nothing has been deployed as part of this implementation.
+Preview: `npm run build` then `npm start`, at <http://localhost:4173/>.
 
 ## Project map
 

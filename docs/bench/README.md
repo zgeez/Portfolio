@@ -48,7 +48,7 @@ Edit `benchObjects` in `src/data/bench.ts`:
 
 ## Shareable navigation
 
-The overview uses `/portfolio/` without a fragment. Inspection hashes: `#stm32`, `#board`, `#logic`, `#eeg`, `#waypoint`, `#debug`, `#experience`, `#about`, `#contact`, `#projects`, `#kinetic`, `#camera`, `#iot`, `#charging`, `#iguard`.
+The overview uses `/` without a fragment. Inspection hashes: `#stm32`, `#board`, `#logic`, `#eeg`, `#waypoint`, `#debug`, `#experience`, `#about`, `#contact`, `#projects`, `#kinetic`, `#camera`, `#iot`, `#charging`, `#iguard`.
 
 Selection uses `history.pushState` with the custom object ID; Next’s history bridge copies routing fields and synchronizes its URL. Native fragment entries with null history state are normalized with `router.replace`, so Back from a full project page restores the bench route. `popstate` and `hashchange` restore the inspection. Direct inspection hashes work; legacy `#bench` and unknown hashes normalize to the base URL without a fragment. Legacy homepage anchors for systems, additional projects, research/experience, and skills still open the appropriate bench area. The scope, development board, and logic analyzer have distinct summaries, metrics, capabilities, and Build views. `#stm32` opens analog capture, `#board` opens hardware, and `#logic` opens digital capture. `#kinetic` focuses its own physical display; the other additional projects focus the parts tray. Debugging stories link directly to named postmortem sections.
 

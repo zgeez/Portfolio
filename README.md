@@ -1,59 +1,82 @@
-# Ziad Ghanem — Embedded & Firmware Portfolio
+# Ziad Ghanem ? Embedded & Firmware Portfolio
 
-Static Next.js site deployed to GitHub Pages at <https://ziadg.com/>.
-The custom domain serves the site at `/`; generated assets and routes use that root path.
-`public/CNAME` preserves the custom domain in each deployment.
+[Live portfolio](https://ziadg.com/) ? [LinkedIn](https://linkedin.com/in/ziad-ghanem/) ? [GitHub](https://github.com/zgeez)
 
-The homepage is an angled **Embedded Lab Bench**. Physical equipment opens project,
-debugging, experience, and profile inspections. All eight projects use the shared
-**project dossier**: an angled artifact header, a chapter rail, engineering narrative,
-real evidence, and interactive technical demonstrations.
+## About
 
-The production source contains the workbench and eight project dossiers. See the
-[bench guide](docs/bench/README.md) and [project dossier guide](docs/projects/README.md).
+My personal portfolio, presenting embedded systems, firmware, and the software that connects them. I?m Ziad Ghanem, an embedded and firmware engineer based in Brooklyn, NY, with a B.S. in Electrical and Computer Engineering from New York Institute of Technology and ongoing M.S. research in EEG acquisition and neurofeedback.
 
-## Commands
+The site is an interactive lab bench: select equipment to explore projects, debugging stories, experience, skills, and contact details. Nine project case studies document the architecture, implementation, evidence, and limitations behind the work, from an STM32 mixed-signal instrument and ESP32 EEG acquisition to a wireless Pixel Badge.
+
+![The interactive lab bench portfolio](docs/bench/desktop-bench.png)
+
+## Features
+
+- Nine project dossiers with chapter navigation, photographs, diagrams, and recorded demonstrations.
+- Interactive signal, timing, navigation, and firmware visualizations.
+- Responsive bench and reading layouts, keyboard navigation, and reduced-motion support.
+- Static HTML for project narratives and native chapter links, including without JavaScript.
+- Static export deployed to GitHub Pages at [ziadg.com](https://ziadg.com/).
+
+Built with **Next.js 15**, **React 18**, **TypeScript**, and **Tailwind CSS**.
+
+## Run locally
+
+Use Node.js 22 or newer and npm. No API keys, environment file, or backend services are required.
 
 ```bash
 npm ci
-npm run dev         # http://localhost:9002/
-npm run typecheck
-npm run lint
-npm run build       # static export to ./portfolio
-npm start           # serve the export at http://localhost:4173/
+npm run dev
 ```
 
-CI (`.github/workflows/deploy.yml`) runs typecheck, lint and build on every push and PR, and
-deploys `./portfolio` to the `gh-pages` branch from `master`.
+Open <http://localhost:9002/>. To check and preview the production export:
 
-## Where things live
+```bash
+npm run check      # TypeScript, lint, and production build
+npm start          # http://localhost:4173/
+```
 
-| Path | What |
+The build writes the static site to `portfolio/`. Generated output, dependencies, local configuration, and audit captures are ignored by Git.
+
+## Repository structure
+
+| Path | Contents |
 | --- | --- |
-| `src/data/site.ts` | Contact links, resume path, canonical domain, and public `asset()` helper |
-| `src/data/projects.ts` | Project registry shared by the homepage and `/projects/[slug]` |
-| `src/data/stm32-msi.ts`, `eeg.ts`, `waypoint.ts` | Verified facts, diagrams and layer definitions for the flagship case studies |
-| `src/data/profile.ts` | Experience, education, credentials, skills stack, debug stories |
-| `src/components/bench/` | Angled workbench, equipment, inspections, and dock |
-| `src/data/bench.ts`, `bench-content.ts` | Bench composition, inspection targets, real media |
-| `src/data/project-dossiers.ts` | Project-specific titles, artifacts, chapters, and existing headline metrics |
-| `src/components/projects/` | Shared dossier layout, chapters, artifact illustrations, and native evidence expansion |
-| `src/components/portfolio/` | Technical document content and shared evidence UI |
-| `src/components/portfolio/abstraction/` | Probe diagrams, technical chapter content, and project-specific interactive demos |
-| `src/components/portfolio/case-studies/` | Case studies for projects without a lens |
+| `src/app/` | Routes, metadata, global styles, and the 404 page |
+| `src/components/bench/` | Interactive workbench, equipment, and inspection panels |
+| `src/components/projects/` | Shared project dossier layout, chapters, and evidence viewer |
+| `src/components/portfolio/` | Case studies, diagrams, and interactive technical demonstrations |
+| `src/data/` | Project registry, engineering content, profile, and site configuration |
+| `public/` | Project media, resume, and custom-domain configuration |
+| `scripts/` | Static preview server and browser verification scripts |
+| `docs/` | Workbench and project guides, screenshots, and review notes |
 
-## Content rules
+Contact links and the canonical domain live in `src/data/site.ts`; profile content lives in `src/data/profile.ts`. Add or update projects in `src/data/projects.ts` and `src/data/project-dossiers.ts`.
 
-- Every number on the site must come from a project write-up, repository, or the resume.
-- Visualizations that are not data are labelled **Illustrative** / **Schematic**; replayed
-  data is **Recorded**; the HardFault Easter egg is **Simulated**.
-- Unverified details (DMA stream numbers, task priorities) are deliberately omitted.
+## Verification
 
-## Media
+`npm run check` runs the same typecheck, lint, and build steps used by CI.
 
-Large GIFs were converted to MP4/WebM with posters (`preload="none"`). Card images use WebP
-thumbnails in `public/assets/thumbs/`.
+The browser suites use Chrome?s debugging protocol and Node?s built-in WebSocket. Start the static preview with `npm start` and a separate headless Chrome instance with `--remote-debugging-port=9333` and a temporary `--user-data-dir`, then run these sequentially:
 
-## Source maintenance
+```bash
+node scripts/verify-bench.mjs
+node scripts/verify-projects.mjs
+node scripts/verify-bench-visuals.mjs
+```
 
-The browser tab title is `Ziad's Portfolio` on every page. Retired preview routes, sample captures, unused UI scaffolding, and unused dependencies have been removed. TypeScript rejects unused locals and parameters. Browser verification scripts cover the workbench, dossiers, and visual geometry; run them sequentially against the local static preview with headless Chrome on port 9333.
+`BENCH_ORIGIN` and `BENCH_DEBUGGER` override the default preview and debugger endpoints. Set `BENCH_CAPTURES` and `PROJECT_CAPTURES` to directories under `docs/audit/captures/` to keep new screenshots out of the tracked documentation.
+
+See the [workbench guide](docs/bench/README.md), [project guide](docs/projects/README.md), and [visual review](docs/audit/README.md) for implementation details and existing verification coverage.
+
+## Deployment
+
+[GitHub Actions](.github/workflows/deploy.yml) checks pull requests and pushes to `master`. Successful pushes to `master` publish `portfolio/` to the `gh-pages` branch. The custom domain serves the site at `/`; `public/CNAME` preserves the domain on deployment.
+
+To adapt the site for another domain, update `src/data/site.ts` and `public/CNAME`, and review `next.config.ts` for the intended base path.
+
+## Content and evidence
+
+Project numbers come from the project write-ups, source repositories, or resume. Diagrams and illustrative interactions are distinguished from recorded captures and measured results. Project-specific scope and limitations remain with each case study.
+
+This repository contains the portfolio website. Firmware and application source for the featured projects are linked from their case studies when publicly available.

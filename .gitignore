@@ -25,7 +25,14 @@
 
 # misc
 .DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+/.modified
 *.pem
+*.key
+*.p12
+*.pfx
 
 # debug
 npm-debug.log*
@@ -40,4 +47,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Local configuration and credentials
 .env*
+!.env.example
+/.aws/
+/.codex/
+/.agents/

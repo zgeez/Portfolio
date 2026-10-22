@@ -1,19 +1,18 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "TypeScript Check",
-			"type": "shell",
-			"command": "node",
-			"args": [
-				"C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
-				"run",
-				"typecheck"
-			],
-			"group": "build",
-			"problemMatcher": [
-				"$tsc"
-			]
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TypeScript Check",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "typecheck"
+      ],
+      "group": "build",
+      "problemMatcher": [
+        "$tsc"
+      ]
+    }
+  ]
 }

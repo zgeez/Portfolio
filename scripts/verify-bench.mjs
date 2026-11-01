@@ -75,6 +75,26 @@ async function selectedVisible(id) {
   return evaluate(`(() => {const r=document.querySelector('[data-object="${id}"]').getBoundingClientRect();const p=document.querySelector('.bench-inspection').getBoundingClientRect();return r.left>=0 && r.top>=0 && r.right<=innerWidth && r.bottom<=innerHeight && (r.right<=p.left || r.bottom<=p.top || r.left>=p.right);})()`);
 }
 
+async function phoneInspectionReadable(label, minimumHeight = 120) {
+  assert.equal(await evaluate("[...document.querySelectorAll('[data-object], .bench-viewport')].every(el=>el.tabIndex===-1)"), true, `${label}: covered desk leaves keyboard navigation`);
+  const geometry = await evaluate(`(() => {
+    const panel = document.querySelector('.bench-inspection');
+    const body = panel.querySelector('.inspection-body');
+    const footer = panel.querySelector('.inspection-footer');
+    const dock = document.querySelector('.bench-dock');
+    const rect = element => element.getBoundingClientRect().toJSON();
+    return { panel: rect(panel), body: rect(body), footer: rect(footer), dock: rect(dock),
+      contentWidth: body.scrollWidth, width: innerWidth, height: innerHeight };
+  })()`);
+  assert.ok(geometry.body.height >= minimumHeight, `${label}: readable content height (${geometry.body.height}px)`);
+  assert.ok(geometry.panel.top >= 0 && geometry.panel.bottom <= geometry.dock.top, `${label}: panel stays above navigation`);
+  assert.ok(geometry.panel.left >= 0 && geometry.panel.right <= geometry.width && geometry.dock.bottom <= geometry.height, `${label}: controls fit screen`);
+  assert.ok(geometry.contentWidth <= Math.ceil(geometry.body.width), `${label}: content fits panel width`);
+  assert.ok(geometry.body.bottom <= geometry.footer.top + 1, `${label}: footer does not cover content`);
+  await evaluate("(() => {const body=document.querySelector('.inspection-body');body.scrollTop=body.scrollHeight;})()");
+  assert.equal(await evaluate("(() => {const b=document.querySelector('.inspection-body');return b.scrollHeight-b.clientHeight-b.scrollTop<2;})()"), true, `${label}: all content can be scrolled into view`);
+}
+
 try {
   await Promise.all([cdp('Page.enable'), cdp('Runtime.enable'), cdp('Network.enable')]);
   await mkdir(screenshots, { recursive: true });
@@ -236,7 +256,7 @@ try {
   await screenshot('mobile-bench');
   await clickObject('stm32');
   await inspection('stm32');
-  assert.equal(await selectedVisible('stm32'), true, 'mobile scope visible above inspection');
+  await phoneInspectionReadable('mobile scope inspection');
   await screenshot('mobile-inspection');
   await key('Escape', 'Escape', 27);
   await delay(650);
@@ -245,7 +265,7 @@ try {
   assert.equal(await evaluate("document.activeElement.dataset.object"), 'board', 'mobile keyboard order matches visual order');
   await go(`${route}#eeg`);
   await inspection('eeg');
-  assert.equal(await selectedVisible('eeg'), true, 'direct mobile hash scrolls to board');
+  await phoneInspectionReadable('direct mobile EEG inspection');
   await key('Escape', 'Escape', 27);
   await delay(650);
   assert.equal(await evaluate("document.querySelector('.bench-viewport').scrollTop"), 0, 'mobile Back to bench restores top');
@@ -262,17 +282,37 @@ try {
   assert.equal(await evaluate("[...document.querySelectorAll('.bench-dock button, .bench-dock a')].every(el=>el.getBoundingClientRect().width>=44)"), true, 'small-screen dock touch targets');
   await clickObject('stm32');
   await inspection('stm32');
-  assert.equal(await selectedVisible('stm32'), true, 'small-screen scope stays visible');
+  await phoneInspectionReadable('small-screen scope inspection');
   for (const width of [390, 320]) {
     await viewport(width, 844, true);
     for (const target of ['badge', 'contact']) {
       await go(`${route}#${target}`);
       await inspection(target);
-      assert.equal(await selectedVisible(target), true, `${width}px: ${target} remains visible above its inspection`);
+      await phoneInspectionReadable(`${width}px: ${target} inspection`);
       await key('Escape', 'Escape', 27);
       await waitFor("location.hash==='' && !document.querySelector('#bench-inspection')", `${target} Escape returns to bench`);
       assert.equal(await evaluate("document.activeElement.dataset.object"), target, `${target} focus is restored`);
     }
+  }
+
+  // Phone panels must leave actual reading space even with a wrapped title
+  // and browser chrome reducing the visible height.
+  for (const [width, height] of [[320, 568], [360, 640], [390, 664], [430, 740]]) {
+    await viewport(width, height, true);
+    for (const target of ['stm32', 'kinetic', 'projects', 'about', 'contact', 'debug']) {
+      await go(`${route}#${target}`);
+      await inspection(target);
+      await phoneInspectionReadable(`${width}x${height}: ${target}`);
+      if (target === 'stm32') await screenshot(`phone-reading-${width}x${height}`);
+    }
+    const overlaps = await evaluate(`(() => {
+      const items=[...document.querySelectorAll('.bench-dock a, .bench-dock button')];
+      return items.some((item, index) => items.slice(index+1).some(other => {
+        const a=item.getBoundingClientRect(), b=other.getBoundingClientRect();
+        return a.left<b.right-1 && a.right>b.left+1 && a.top<b.bottom-1 && a.bottom>b.top+1;
+      }) || item.scrollWidth>item.clientWidth);
+    })()`);
+    assert.equal(overlaps, false, `${width}px: navigation labels fit separate touch targets`);
   }
 
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });

@@ -4,6 +4,7 @@ body:has(.bench-workspace) { overflow: hidden; }
   --bench-accent: #85cfc2;
   position: relative;
   height: 100svh;
+  height: 100dvh;
   min-height: 0;
   overflow: hidden;
   color: #e4e7e6;
@@ -135,14 +136,12 @@ body:has(.bench-workspace) { overflow: hidden; }
   .is-inspecting .bench-hint { display: none; }
 }
 @media (max-width: 767px) {
-  .bench-workspace { height: 100svh; min-height: 0; }
-  .bench-identity { top: 18px; left: 18px; }
+  .bench-workspace { height: 100svh; height: 100dvh; min-height: 0; }
+  .bench-identity { top: calc(18px + env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); }
   .bench-identity a { font-size: 12px; }
   .bench-identity p { font-size: 11px; }
-  .bench-viewport { inset: 106px 10px 88px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .bench-viewport { inset: calc(106px + env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
   .bench-camera { transition: none; }
-  /* Let the last desk object scroll above the open inspection panel. */
-  .is-inspecting .bench-scroll-space { margin-bottom: 48svh; }
   .bench-plane { transform: none; border-radius: 6px; }
   .bench-plane::before { filter: none; box-shadow: inset 0 -14px #1a2022; }
   .bench-desk-mark { top: 16px; left: 16px; font-size: 20px; }
@@ -172,14 +171,17 @@ body:has(.bench-workspace) { overflow: hidden; }
   .resume-paper span { font-size: 10px; }
   .resume-paper i { margin-top: 7px; }
   .resume-paper small { margin-top: 10px; }
-  .bench-inspection { top: auto; bottom: 84px; right: 12px; left: 12px; width: auto; height: 48svh; transform: none; }
+  /* Give phone readers the available height instead of squeezing content
+     between a fixed header and footer in a half-height sheet. */
+  .bench-inspection { top: calc(84px + env(safe-area-inset-top)); bottom: calc(76px + env(safe-area-inset-bottom)); right: max(12px, env(safe-area-inset-right)); left: max(12px, env(safe-area-inset-left)); width: auto; height: auto; transform: none; }
+  .inspection-body { flex: 1; overflow-wrap: anywhere; }
   .bench-inspection h2 { margin-top: 8px; font-size: 20px; }
   .bench-inspection dl { gap: 12px; margin-top: 14px; }
   .inspection-link { margin-top: 12px; }
   .back-to-bench { margin-top: 4px; }
-  .bench-hint { bottom: 65px; font-size: 10px; }
+  .bench-hint { bottom: calc(65px + env(safe-area-inset-bottom)); font-size: 10px; }
   .is-inspecting .bench-hint { display: none; }
-  .bench-dock { bottom: 12px; padding: 0 3px; width: calc(100% - 24px); justify-content: space-around; }
+  .bench-dock { bottom: calc(12px + env(safe-area-inset-bottom)); padding: 0 3px; width: calc(100% - 24px); justify-content: space-around; }
   .bench-dock button, .bench-dock a { padding: 0 6px; letter-spacing: .03em; font-size: 9px; }
 }
 
@@ -362,4 +364,13 @@ details[open] > summary .details-mark { transform: rotate(45deg); }
 @media (max-width: 767px) and (max-height: 540px) {
   .bench-viewport { inset: 78px 10px 68px; }
   .bench-inspection { left: 12px; width: auto; }
+}
+
+/* Keep phone navigation labels separate with comfortable touch targets. */
+@media (max-width: 479px) {
+  .bench-dock { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bench-dock button, .bench-dock a { min-width: 0; font-size: 11px; }
+  .bench-viewport { bottom: calc(132px + env(safe-area-inset-bottom)); }
+  .bench-inspection { bottom: calc(112px + env(safe-area-inset-bottom)); }
+  .bench-hint { bottom: calc(110px + env(safe-area-inset-bottom)); }
 }

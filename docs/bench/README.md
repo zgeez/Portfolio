@@ -10,7 +10,7 @@ Local preview: `npm run build` then `npm start`, and open `http://localhost:4173
 - Distinct JTAG/SWD probe with a flat ribbon connector and USB logic analyzer with eight independent channel leads/grabbers. The blue Discovery board and green ADS1299/MMB0 stack have different component/header layouts. The compass follows the photographed white enclosure and LED ring. Scope, laptop, notebook, resume, contact card, and parts tray have their own physical forms.
 - All eight projects are accessible through the parts tray. Each has a summary, existing metrics/technologies, a full case study link, and a real media gallery. The three main projects also expose their existing architecture component details.
 - Complete existing debugging stories, research/experience descriptions, education, honors, all six credentials, skills by layer, and contact links. Facts come from the repository’s existing data; SVG equipment is a navigation representation, not a claim about a particular commercial device or hardware purchase.
-- Separate mobile desk composition, full scrollable inspection content, large touch controls, and selected-object placement above the inspection.
+- Separate mobile desk composition, full-height scrollable phone inspections, and large touch controls. Phone navigation uses two rows below 480px.
 - URL hashes/history, keyboard navigation, accessible tabs/details, Escape, focus restoration, reduced motion, a skip link, and non-JavaScript project links. Objects outside a focused camera view leave Tab order until the overview is restored; pointer selection remains available.
 
 ## Main files
@@ -44,7 +44,7 @@ Edit `benchObjects` in `src/data/bench.ts`:
 - `focus.scale`: zoom multiplier relative to the fitted overview, limited to preserve visibility.
 - `mobile`: independent guided coordinates and sizes; keyboard order follows these positions.
 
-`BENCH.angle` is fixed at 28°. `BENCH.rotation` and `perspective` also drive the projection; if those two values change, update the matching desk CSS transform. The camera projects the focus point through the desk transform and then translates/scales its wrapper. ResizeObserver recalculates the fit. On mobile, scrolling centers the selected object in the actual available space above the panel.
+`BENCH.angle` is fixed at 28°. `BENCH.rotation` and `perspective` also drive the projection; if those two values change, update the matching desk CSS transform. The camera projects the focus point through the desk transform and then translates/scales its wrapper. ResizeObserver recalculates the fit. On mobile, the inspection fills the reading area between the identity and navigation. Its body scrolls independently while the close and return controls remain visible; the desk stays behind it until the reader returns to the overview. Dynamic viewport height follows browser chrome, and safe-area offsets protect the controls.
 
 ## Shareable navigation
 
@@ -90,3 +90,5 @@ Run `node scripts/verify-bench-visuals.mjs` for caption clearance, USB attachmen
 Feedback verification passed: `npm run check`, the bench and project browser suites, and the visual geometry suite. Caption/USB checks covered 1440 × 900, 1920 × 1080, 1024 × 768, 820 × 900, 390 × 844, 320 × 700, and 844 × 390. All three postmortem links landed on their relevant content below navigation at desktop and phone sizes. The final overview and debugger/analyzer/laptop captures were refreshed after the cable routing changes.
 
 The production cleanup removed duplicate preview routes, sample documentation/captures, unused UI components and their hook, obsolete styles/animations/data, and Firebase Studio scaffolding. The source import/export audit found no unreachable modules or unused exports. TypeScript now rejects unused locals and parameters. All page tabs use `Ziad's Portfolio`. The production build and all three browser verification suites passed after cleanup; retired preview routes return 404.
+
+Phone clipping fix (October 31, 2026): half-height sheets could leave only a tab bar visible at 320 x 568. Phone inspections now use the available height, and navigation wraps into two rows below 480px. `verify-bench.mjs` checks readable body height, scrolling to the end, panel/footer boundaries, and navigation label fit at 320 x 568, 360 x 640, 390 x 664, and 430 x 740. Desktop object visibility checks remain in place.

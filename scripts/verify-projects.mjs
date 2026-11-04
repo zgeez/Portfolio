@@ -217,6 +217,14 @@ try {
     await screenshot(`badge-app-${width}`);
   }
   await viewport(1440, 1100);
+  await go('smart-led-badge', '#postmortem-badge-pads');
+  await settleScroll();
+  assert.equal(await evaluate("document.querySelector('.dossier-chapters [aria-current]').hash"), '#bringup', 'badge pads postmortem selects bring-up chapter');
+  assert.equal(await evaluate("document.getElementById('postmortem-badge-pads')?.textContent.includes('91,401 ticks')"), true, 'badge pads postmortem content');
+  await go('smart-led-badge', '#postmortem-badge-scan');
+  await settleScroll();
+  assert.equal(await evaluate("document.querySelector('.dossier-chapters [aria-current]').hash"), '#bringup', 'badge scan postmortem selects bring-up chapter');
+  assert.equal(await evaluate("document.getElementById('postmortem-badge-scan')?.textContent.includes('215 frames per second')"), true, 'badge scan postmortem content');
   await go('smart-led-badge', '#validation');
   await waitFor("document.querySelector('.dossier-chapters [aria-current]').hash==='#validation'", 'badge validation deep link');
   await click("document.querySelector('#validation .dossier-evidence-toolbar button')");
@@ -225,7 +233,7 @@ try {
   assert.equal(await evaluate("document.activeElement.getAttribute('aria-label').startsWith('Expand image:')"), true, 'badge image restores focus');
   await cdp('Emulation.setScriptExecutionDisabled', { value:true });
   await go('smart-led-badge', '?verify-nojs=1#validation');
-  assert.equal(await evaluate("document.querySelectorAll('[data-project-chapter]').length"), 9, 'all badge chapters without JavaScript');
+  assert.equal(await evaluate("document.querySelectorAll('[data-project-chapter]').length"), 10, 'all badge chapters without JavaScript');
   assert.equal(await evaluate("document.querySelector('#overview .dossier-evidence-toolbar button').hidden"), true, 'badge expansion is hidden without JavaScript');
   await cdp('Emulation.setScriptExecutionDisabled', { value:false });
   await click("document.querySelector('.dossier-topbar a')");

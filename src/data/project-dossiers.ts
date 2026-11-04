@@ -22,7 +22,7 @@ const layers = (items: ProjectLayer[]): ProjectChapter[] => items.map(({ id, lab
 export const projectPresentations: Record<string, Presentation> = {
   'smart-led-badge': {
     title: ['Pixel', 'Badge'], artifact: 'badge', device: 'nRF52840 / 32 × 32 / BLE + NFC',
-    chapters: chapters([['overview', 'Overview'], ['architecture', 'Architecture'], ['hardware', 'Hardware'], ['firmware', 'Firmware'], ['app', 'Companion app'], ['mechanics', 'Mechanical design'], ['debugging', 'Debugging'], ['validation', 'Validation'], ['reflection', 'Reflection']]),
+    chapters: chapters([['overview', 'Overview'], ['architecture', 'Architecture'], ['hardware', 'Hardware'], ['firmware', 'Firmware'], ['app', 'Companion app'], ['mechanics', 'Mechanical design'], ['bringup', 'Bring-up'], ['debugging', 'Debugging'], ['validation', 'Validation'], ['reflection', 'Reflection']]),
   },
   'stm32-mixed-signal-instrument': {
     title: ['STM32', 'Mixed-Signal Instrument'], artifact: 'board', device: 'STM32F407 / DISCOVERY', metrics: stm32HeroMetrics,

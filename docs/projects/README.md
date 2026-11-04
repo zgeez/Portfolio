@@ -16,7 +16,7 @@ Preview: `npm run build` then `npm start`, at <http://localhost:4173/>.
 | IoT Device Automation | `#iot` | Modular node illustration; architecture, firmware/power, app, challenges, stack |
 | Wireless Charging Roads Simulation | `#charging` | Study preview; problem, method, simulated results, validation, impact |
 | iGuard | `#iguard` | Phone preview; features, architecture, screens, challenges |
-| Pixel Badge | `#badge` | Dedicated workbench badge and illustration; overview, architecture, hardware, firmware, app, mechanics, debugging, scoped validation, reflection |
+| Pixel Badge | `#badge` | Dedicated workbench badge and illustration; overview, architecture, hardware, firmware, app, mechanics, bring-up, debugging, scoped validation, reflection |
 
 Illustrations represent project navigation rather than an exact hardware schematic. Real photographs, diagrams, captures, and videos remain the evidence. The phone/study header uses the existing project thumbnail. Projects without documented headline metrics do not receive invented numbers.
 
@@ -49,7 +49,7 @@ The project checker exercises all nine documents and their chapters at 1440, 102
 
 Verification passed on October 7, 2026: typecheck, lint, production static export, and both browser suites. Chrome reported no runtime, hydration, or media errors. Desktop and mobile captures below show the implemented layout.
 
-Pixel Badge added October 21, 2026. Its headline figures are design/capacity specifications; CAD, synthetic app captures and DK signal-bench evidence are labeled separately. Public source links remain absent for the private firmware repository. It has a dedicated selectable `#badge` workbench object, an inspection with curated CAD/prototype media, and matching project return links.
+Pixel Badge added October 21, 2026. Its headline figures are design/capacity specifications; CAD, synthetic app captures and DK signal-bench evidence are labeled separately. Pixel Badge links to its public repository. Rev A bring-up results (2026-11-03) come from that repository's bring-up record; figures are labeled measured, observed or design. It has a dedicated selectable `#badge` workbench object, an inspection with curated CAD/prototype media, and matching project return links.
 
 The workbench groups the logic analyzer and debugger beside the laptop at the top right, with short USB loops joining the tools to the laptop. Contact sits at the bottom, including at the end of the mobile reading order. Pixel Badge sits beside the development board in the center, with the kinetic display at the middle right. The compact 2200×1240 desktop plane keeps the three object bands close together with balanced horizontal spacing; camera geometry and rendered dimensions share the same constants. Mobile reading order places the badge before the kinetic display. The shared `badge-board.svg` illustration follows the PCB CAD proportions, using a 32×32 surface-mount LED field, copper NFC loop with ZG mark, driver packages, radio module, buttons and USB-C connector. It is a navigational drawing rather than hardware evidence.
 

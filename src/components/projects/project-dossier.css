@@ -64,7 +64,7 @@
 .dossier-content { counter-reset: dossier-chapter; }
 .dossier-chapter { counter-increment: dossier-chapter; padding: 38px 0 48px; border-bottom: 1px solid #323c3e; scroll-margin-top: 98px; }
 .dossier-layer-chapters { scroll-margin-top: 98px; }
-.dossier-content [id^="postmortem-"] { scroll-margin-top: 110px; }
+.dossier-content [id^="postmortem-"], .dossier-content [id^="bringup-"] { scroll-margin-top: 110px; }
 .dossier-section-heading { margin-bottom: 27px; }
 .dossier-section-heading > .dossier-label::before { content: counter(dossier-chapter, decimal-leading-zero) ' / '; }
 .dossier-section-heading h2 { font-size: 28px; line-height: 1.25; letter-spacing: -.03em; font-weight: 500; margin-top: 14px; max-width: 750px; }
@@ -160,7 +160,7 @@
   .dossier-chapters > .dossier-label, .dossier-chapters > .dossier-rail-return, .dossier-chapters > a > svg { display: none; }
   .dossier-chapters > a { white-space: nowrap; padding: 0 9px; flex-shrink: 0; min-width: max-content; border-left: 0; border-bottom: 2px solid transparent; font-size: 11px; gap: 5px; }
   .dossier-chapter, .dossier-layer-chapters { scroll-margin-top: 110px; }
-  .dossier-content [id^="postmortem-"] { scroll-margin-top: 124px; }
+  .dossier-content [id^="postmortem-"], .dossier-content [id^="bringup-"] { scroll-margin-top: 124px; }
   .dossier-chapter { padding: 30px 0 36px; }
   .dossier-section-heading { margin-bottom: 20px; }
   .dossier-section-heading h2 { font-size: 27px; }

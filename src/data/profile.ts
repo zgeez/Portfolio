@@ -78,6 +78,34 @@ export type DebugStory = {
 
 export const debugStories: DebugStory[] = [
   {
+    id: 'badge-module-pads',
+    project: 'smart-led-badge',
+    anchor: 'postmortem-badge-pads',
+    title: 'Pixel Badge Rev A bring-up',
+    headline: 'Four unsoldered module pads',
+    steps: [
+      { stage: 'Symptom', text: 'The IMU reported about 365 samples/s instead of 100, and the display safety check failed on the same board.' },
+      { stage: 'Measure', text: 'The RTC counted 91,401 ticks in 10 s over SWD. The 32.768 kHz crystal ran near 9.1 kHz while the driver reported it running.' },
+      { stage: 'Isolate', text: 'Halted the core and drove arm and latch from a timer through PPI. The MCU input register toggled; a meter read 0 V on the board nets.' },
+      { stage: 'Root cause', text: 'All failing signals were on one module edge; continuity showed four unsoldered pads.' },
+      { stage: 'Result', text: 'After a hand reflow, 327,744 ticks in 10 s and a working safety path. The second board was unaffected.' },
+    ],
+  },
+  {
+    id: 'badge-hardware-scan',
+    project: 'smart-led-badge',
+    anchor: 'postmortem-badge-scan',
+    title: 'Pixel Badge matrix scan',
+    headline: '33 → 215 frames/s',
+    steps: [
+      { stage: 'Symptom', text: 'A thread-per-slot scan starved lower threads at high priority, and flickered at 33 frames/s at low priority.' },
+      { stage: 'Evidence', text: 'The heartbeat froze while the RTC advanced; PC samples showed only scan code; 115 µs per slot against a 16 µs design.' },
+      { stage: 'Fix', text: 'SPIM2 EasyDMA list with TIMER/PPI/GPIOTE, one interrupt per plane; SPIM3 avoided because of nRF52840 anomaly 198.' },
+      { stage: 'Result', text: 'About 215 frames/s with no visible flicker.' },
+      { stage: 'Scope', text: 'Frame counter over SWD and observation by eye; no Rev A analyzer capture yet.' },
+    ],
+  },
+  {
     id: 'badge-upload-watchdog',
     project: 'smart-led-badge',
     anchor: 'postmortem-badge-upload',
@@ -102,7 +130,7 @@ export const debugStories: DebugStory[] = [
       { stage: 'Check', text: 'Compare the compiled configuration against all 43 module schematic pads.' },
       { stage: 'Regression', text: 'Add negative checks that reject incorrect latch pins and overlapping flash partitions.' },
       { stage: 'Result', text: 'Both target builds fit their recorded budgets, with incorrect pin and partition inputs rejected.' },
-      { stage: 'Scope', text: 'Build and configuration consistency. Physical bring-up of the custom board remains a separate test.' },
+      { stage: 'Scope', text: 'Build and configuration consistency. The custom board was later brought up; see the Rev A bring-up.' },
     ],
   },
   {

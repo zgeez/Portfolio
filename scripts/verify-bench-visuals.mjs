@@ -84,6 +84,8 @@ try {
   for(const [width,height] of [[1440,900],[390,844]]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
     for(const [slug,anchor,text] of [
+      ['smart-led-badge','postmortem-badge-pads','91,401 ticks'],
+      ['smart-led-badge','postmortem-badge-scan','215 frames per second'],
       ['smart-led-badge','postmortem-badge-upload','36,297-byte'],
       ['smart-led-badge','postmortem-badge-port','43 module schematic pads'],
       ['smart-led-badge','postmortem-badge-i2c','100 kHz'],

@@ -194,10 +194,11 @@ try {
   assert.equal(await evaluate("document.activeElement.dataset.object"), 'kinetic', 'library selection restores dedicated display focus');
   await go(`${route}#debug`);
   await inspection('debug');
-  assert.equal(await evaluate("document.querySelectorAll('.inspection-debug-stories details').length"), 6);
+  assert.equal(await evaluate("document.querySelectorAll('.inspection-debug-stories details').length"), 8);
   const postmortems = await evaluate("[...document.querySelectorAll('.inspection-debug-stories a')].map(el=>el.href)");
-  assert.equal(postmortems.filter(url => new URL(url).pathname === '/projects/smart-led-badge/').length, 3, 'Pixel Badge stories are included');
-  assert.equal(new URL(postmortems[0]).hash, '#postmortem-badge-upload', 'Pixel Badge upload story is featured first');
+  assert.equal(postmortems.filter(url => new URL(url).pathname === '/projects/smart-led-badge/').length, 5, 'Pixel Badge stories are included');
+  assert.equal(new URL(postmortems[0]).hash, '#postmortem-badge-pads', 'Pixel Badge Rev A bring-up story is featured first');
+  assert.equal(new URL(postmortems[1]).hash, '#postmortem-badge-scan', 'Pixel Badge matrix scan story is featured second');
   for (const url of postmortems) {
     assert.match(new URL(url).hash, /^#postmortem-/);
     const response = await fetch(url);
